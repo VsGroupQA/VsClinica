@@ -26,6 +26,7 @@ public class loginPage {
         actions.escreverPegandoPeloName("senha", senha);
         Log.registrar("informações");
         actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-login/div/form/div/div[4]/button");
+        actions.esperar(1000);
         Log.registrar("Logar");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
     }

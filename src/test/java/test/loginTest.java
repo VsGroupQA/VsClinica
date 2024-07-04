@@ -35,6 +35,7 @@ public class loginTest {
         driver = Browser.iniciarNavegador(Access.navegador);
         driver.get(Access.url);
         loginPage = new loginPage(driver);
+        actions = new Actions(driver);
     }
 
     @AfterEach
@@ -48,13 +49,10 @@ public class loginTest {
     	
         String urlInicial = driver.getCurrentUrl();
         loginPage.signIn(Access.usuario, Access.senha);
-        actions.esperar(4000);
+        Log.registrar("esperar");
         
         String urlAposLogin = driver.getCurrentUrl();
-        actions.esperar(500);
-        
         String mensagem = "Login realizado com sucesso!";
-        
         assertNotEquals(urlInicial, urlAposLogin, mensagem);
         Log.registrar(mensagem);
     }
@@ -82,7 +80,7 @@ public class loginTest {
     	actions.esperar(1000);
     	
     	loginPage.logout();
-    	actions.esperar(500);
+    	actions.esperar(200);
         String urlAposLogin = driver.getCurrentUrl();
         
         String mensagem = "Login realizado com sucesso!";
