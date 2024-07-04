@@ -1,11 +1,10 @@
 package pages;
 
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
-
 import utils.Actions;
+import java.util.List;
 
 public class AgendamentoPage {
     private WebDriver driver;
@@ -13,40 +12,33 @@ public class AgendamentoPage {
 
     public AgendamentoPage(WebDriver driver) {
         this.driver = driver;
-        this.actions = new Actions(this.driver); 
+        this.actions = new Actions(this.driver);
     }
 
-    public void agendarPaciente() {
-        actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-calendario/div/app-filtro-pacientes/p-card/div/div/div/div/div[6]/p-button");
-        System.out.println("Acessar agendamento");
-        // Abrir procedimento e validar
-        selecionarProcedimentoEValidar("Cardiologia", 3); // Colocar para iterar item por item 'for'
-        System.out.println("Procedimento selecionado e validado com sucesso");
-        actions.escreverPegandoPeloXpath("/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[6]/p-autocomplete/span/input", "biro biro");
+    public void modalAgendamento() {
+    	// abrir novo agendamento
+        actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-calendario/div/app-filtro-pacientes/p-card/div/div/div/div/div[6]/p-button/button");
+
+    	
     }
+    
+    public void dropdown(String campo, String itensDrop, String nomeItem) {
+    	
+        // abrir dropdown
+        actions.clicarBotaoPegandoPeloXpath(campo);
+        // /html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]
+        
+        // obter todos os itens do dropdown
+        List<WebElement> items = driver.findElements(By.xpath(itensDrop));
+        // /html/body/div[2]/div/div/div/ul/p-dropdownitem/li
 
-    public void procedimento() {
-        // Abrir o dropdown
-        System.out.println("Abrir dropdown");
-        actions.clicarBotaoPegandoPeloXpath("//div[2]/div/p-dropdown/div/span");
-    }
-
-    public void selecionarProcedimentoEValidar(String textoEsperado, int indice) {
-        // Abrir o dropdown
-        procedimento();
-
-        // Selecionar o item do dropdown com base no índice
-        String itemXpath = "//p-dropdownitem[" + indice + "]/li/div";
-        actions.clicarBotaoPegandoPeloXpath(itemXpath);
-
-        // Validar se o texto selecionado no dropdown é igual ao texto esperado
-        WebElement dropdownElement = driver.findElement(By.xpath("//div[2]/div/p-dropdown/div/span"));
-        String textoSelecionado = dropdownElement.getText();
-
-        if (textoEsperado.equals(textoSelecionado)) {
-            System.out.println("Texto do dropdown validado com sucesso: " + textoSelecionado);
-        } else {
-            System.err.println("Erro na validação do texto do dropdown. Texto esperado: " + textoEsperado + ", Texto encontrado: " + textoSelecionado);
+        // iterar sobre os itens do dropdown
+        for (WebElement item : items) {
+            if (item.getText().equalsIgnoreCase(nomeItem)) {
+            	// Transplante de Sombracelha
+                item.click();
+                break; // adicionar if
+            }
         }
     }
 }

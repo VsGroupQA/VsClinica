@@ -50,6 +50,21 @@ public class AgendamentoTest {
     @Test
     public void teste() {
     	actions.esperar(100);
-    	agendamento.agendarPaciente();
+    	String dropdown = "/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]";
+    	String item = "/html/body/div[2]/div/div/div/ul/p-dropdownitem/li";
+    	String procurado = "Transplante de Sombracelha";
+    	
+    	agendamento.modalAgendamento();
+    	agendamento.dropdown(dropdown, item, procurado);
+    	
+    	// profissional
+    	
+    	String dropProfissional = "//*[@id=\"pr_id_17_label\"]";
+    	String itemProfissional = "/html/body/div[2]/div/div/div/ul/p-dropdownitem/li";
+    	String procuradoProf = "VS GROUP";
+    	
+    	agendamento.modalAgendamento();
+    	agendamento.dropdown(dropProfissional, itemProfissional, procuradoProf);
+    	
     }
 }
