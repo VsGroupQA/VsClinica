@@ -16,29 +16,43 @@ public class AgendamentoPage {
     }
 
     public void modalAgendamento() {
-    	// abrir novo agendamento
         actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-calendario/div/app-filtro-pacientes/p-card/div/div/div/div/div[6]/p-button/button");
 
     	
     }
     
-    public void dropdown(String campo, String itensDrop, String nomeItem) {
+    public void procedimento(String campo, String itensDrop, String nomeItem) {
     	
-        // abrir dropdown
         actions.clicarBotaoPegandoPeloXpath(campo);
-        // /html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]
-        
-        // obter todos os itens do dropdown
+        System.out.println("1");
         List<WebElement> items = driver.findElements(By.xpath(itensDrop));
-        // /html/body/div[2]/div/div/div/ul/p-dropdownitem/li
-
-        // iterar sobre os itens do dropdown
+    
+        System.out.println("2");
+       
         for (WebElement item : items) {
             if (item.getText().equalsIgnoreCase(nomeItem)) {
-            	// Transplante de Sombracelha
+            	
                 item.click();
-                break; // adicionar if
+                System.out.println("3");
+                break; 
+                
+            
             }
         }
+    }
+    
+    public void profissional () {
+    	// abre dorpdown
+    	actions.clicarBotaoPegandoPeloCss(".px-0 .p-dropdown-label");
+    	// selecionar item
+    	actions.clicarBotaoPegandoPeloCss(".p-element:nth-child(13) > .p-dropdown-item");
+    	
+    }
+    
+    public void compromisso () {
+    	// abre dropdown
+    	actions.clicarBotaoPegandoPeloCss("p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)");
+    	// seleciona item
+    	actions.clicarBotaoPegandoPeloCss("p-dropdownitem.p-element:nth-child(2) > li:nth-child(1)");
     }
 }
