@@ -63,8 +63,8 @@ public class AgendamentoPage {
     	actions.escreverPegandoPeloXpath("//input[@name='paciente']", nomePaciente);
     	actions.esperar(1000);
 
-    	actions.clicarBotaoPegandoPeloXpath("//li[contains(.,'brabo')]");
-    	
+    	actions.clicarBotaoPegandoPeloXpath("//li[contains(.,'"+ nomePaciente +"')]");
+    	// adicironar um try except de NosuchElement = falha no teste
     }
     
     public void dataAgendamento () {
@@ -73,6 +73,6 @@ public class AgendamentoPage {
     }
     
     public void hora () {
-    	
+    	// CONTINUAR DAQUI
     }
 }

@@ -51,7 +51,7 @@ public class AgendamentoTest {
 
 		agendamento.modalAgendamento();
 		
-		// procedimento
+		// procedimento - OK
 		agendamento.procedimento( "Transplante de Sombracelha");
 		System.out.println("procedimento");
 		
@@ -63,7 +63,7 @@ public class AgendamentoTest {
 		agendamento.compromisso();
 		System.out.println("compromisso");
 		
-		//paciente
+		//paciente - OK
 		agendamento.paciente("Jhonata Venancio - VS GROUP");
 
 		// dia
