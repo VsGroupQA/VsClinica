@@ -52,15 +52,22 @@ public class AgendamentoTest {
 		agendamento.modalAgendamento();
 		
 		// procedimento
-		agendamento.procedimento("/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
-				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li", "Transplante de Sombracelha");
-		System.out.println("certo");
+		agendamento.procedimento( "Transplante de Sombracelha");
+		System.out.println("procedimento");
 		
 		// profissional
 		agendamento.profissional();
-		System.out.println("certo");
+		System.out.println("profissional");
 		
+		// compromisso
 		agendamento.compromisso();
+		System.out.println("compromisso");
+		
+		//paciente
+		agendamento.paciente("Jhonata Venancio - VS GROUP");
 
+		// dia
+		agendamento.dataAgendamento();
+		System.out.println("dia");
 	}
 }
