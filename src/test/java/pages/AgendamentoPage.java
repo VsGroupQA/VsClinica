@@ -73,6 +73,9 @@ public class AgendamentoPage {
     }
     
     public void hora () {
-    	// CONTINUAR DAQUI
+    	// hora inicio
+    	actions.escreverPegandoPeloXpath("//div[5]/div/p-calendar/span/input", "12:00");
+    	
+    	actions.escreverPegandoPeloXpath("//div[2]/p-calendar/span/input", "12:30");
     }
 }

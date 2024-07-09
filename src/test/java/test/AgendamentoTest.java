@@ -69,5 +69,8 @@ public class AgendamentoTest {
 		// dia
 		agendamento.dataAgendamento();
 		System.out.println("dia");
+		
+		agendamento.hora();
+		System.out.println("hora");
 	}
 }
