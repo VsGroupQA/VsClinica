@@ -56,11 +56,11 @@ public class AgendamentoTest {
 		System.out.println("procedimento");
 		
 		// profissional
-		agendamento.profissional();
+		agendamento.profissional("VS GROUP");
 		System.out.println("profissional");
 		
 		// compromisso
-		agendamento.compromisso();
+		agendamento.compromisso("FINALIZADO");
 		System.out.println("compromisso");
 		
 		//paciente - OK
@@ -72,5 +72,9 @@ public class AgendamentoTest {
 		
 		agendamento.hora();
 		System.out.println("hora");
+		
+		agendamento.observacao();
+		
+		agendamento.criar();
 	}
 }
