@@ -1,20 +1,20 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.Actions;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class AgendamentoPage {
     private WebDriver driver;
     private Actions actions;
 
-    static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    static DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:m");
+//    static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//    static DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm");
     
     public AgendamentoPage(WebDriver driver) {
         this.driver = driver;
@@ -22,7 +22,7 @@ public class AgendamentoPage {
     }
 
     public void modalAgendamento() {
-        actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-calendario/div/app-filtro-pacientes/p-card/div/div/div/div/div[5]/p-button/button");
+        actions.clicarBotaoPegandoPeloCss("p-button.ng-star-inserted > button:nth-child(1)");
     }
     
     public void procedimento(String nomeItem) {
@@ -38,10 +38,8 @@ public class AgendamentoPage {
     }
     
     public void profissional(String nomeProfissional) {
-        // Abre dropdown
         actions.clicarBotaoPegandoPeloCss(".px-0 .p-dropdown-label");
         
-        // Itera sobre os itens do dropdown e seleciona o profissional desejado
         List<WebElement> profissionais = driver.findElements(By.cssSelector(".p-element .p-dropdown-item"));
         for (WebElement profissional : profissionais) {
             if (profissional.getText().equalsIgnoreCase(nomeProfissional)) {
@@ -52,10 +50,8 @@ public class AgendamentoPage {
     }
     
     public void compromisso(String nomeCompromisso) {
-        // Abre dropdown
         actions.clicarBotaoPegandoPeloCss("p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)");
         
-        // Itera sobre os itens do dropdown e seleciona o compromisso desejado
         List<WebElement> compromissos = driver.findElements(By.cssSelector("p-dropdownitem.p-element > li"));
         for (WebElement compromisso : compromissos) {
             if (compromisso.getText().equalsIgnoreCase(nomeCompromisso)) {
@@ -76,36 +72,43 @@ public class AgendamentoPage {
         }
     }
     
-    public void dataAgendamento() {
-        String dia = LocalDateTime.now().format(data);
-        actions.escreverPegandoPeloXpath("//*[@id=\"icon\"]", dia);
+    public void dataAgendamento(String data) {
+        actions.escreverPegandoPeloXpath("//*[@id=\"icon\"]", data);
     }
     
-    public void hora() {
-    	String horario = LocalDateTime.now().format(hora);
-    	
-        // Hora início
+    public void horaAgendamento(String horario) {
+
         actions.escreverPegandoPeloXpath("//div[5]/div/p-calendar/span/input", horario);
         System.out.println("adiciondo hora inicio" + horario);
-        
-        // Hora fim
+
         actions.escreverPegandoPeloXpath("//div[2]/p-calendar/span/input", horario);
         System.out.println("adiciondo hora fim" + horario + "aa");
     }
     
     // validar se hora é valida
-    public void validarHorario () {
-    	
+    public void validarNotificacao() {
+        // Localizar o elemento da notificação usando um seletor CSS
+        WebElement notf = driver.findElement(By.xpath("/html/body/app-root/p-toast/div"));
+        
+        // Obter o texto da notificação
+        String notfText = notf.getText();
+        System.out.println(notf);
+        
+        // Validar se o texto da notificação contém a palavra "Salvo"
+        Assert.assertTrue("A notificação não contém a palavra 'Salvo'. Texto da notificação: " + notfText, notfText.contains("Salvo"));
     }
     
-    public void criar() {
-    	actions.clicarBotaoPegandoPeloXpath("/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+    public void criarAgendamento() {
+        try {
+            actions.clicarBotaoPegandoPeloXpath("/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+        } catch (ElementClickInterceptedException e) {
+            Assert.fail("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. " + e.getMessage());
+        }
     }
     
-    public void observacao() {
-    	String horaObs = LocalDateTime.now().format(hora);
+    public void observacao(String horaObs, String data) {
     	
     	actions.escreverPegandoPeloXpath("/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea",
-    			"TESTE DE AGENDAMENTO" + horaObs);
+    			"TESTE DE AGENDAMENTO" + data + " - "+ horaObs);
     }
 }

@@ -1,5 +1,8 @@
 package test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
-import utils.Actions;
+//import utils.Actions;
 import utils.Browser;
 import pages.AgendamentoPage;
 import pages.loginPage;
@@ -17,9 +20,14 @@ import pages.loginPage;
 public class AgendamentoTest {
 	private static WebDriver driver;
 	private loginPage loginPage;
-	private Actions actions;
+//	private Actions actions;
 	private AgendamentoPage agendamento;
-
+	
+    static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm");
+	String horario = LocalDateTime.now().format(hora);
+	String dia = LocalDateTime.now().format(data);
+    
 	@BeforeAll
 	public static void iniciarLog() {
 		Log.criarArquivoLog("Log.Agendamento");
@@ -36,45 +44,48 @@ public class AgendamentoTest {
 		driver.get(Access.url);
 		loginPage = new loginPage(driver);
 		loginPage.signIn(Access.usuario, Access.senha);
-		actions = new Actions(driver);
+//		actions = new Actions(driver);
 		agendamento = new AgendamentoPage(driver);
 	}
 
 	@AfterEach
 	public void encerrarDriver() {
-//        Browser.fecharNavegador();
+        Browser.fecharNavegador();
 	}
 
 	@Test
-	public void teste() {
-		actions.esperar(100);
-
+	public void agendamento() {
+		
 		agendamento.modalAgendamento();
-		
-		// procedimento - OK
 		agendamento.procedimento( "Transplante de Sombracelha");
-		System.out.println("procedimento");
-		
-		// profissional
 		agendamento.profissional("VS GROUP");
-		System.out.println("profissional");
-		
-		// compromisso
 		agendamento.compromisso("FINALIZADO");
-		System.out.println("compromisso");
-		
-		//paciente - OK
 		agendamento.paciente("Jhonata Venancio - VS GROUP");
-
-		// dia
-		agendamento.dataAgendamento();
-		System.out.println("dia");
+		agendamento.dataAgendamento(dia);
+		agendamento.horaAgendamento(horario);		
+		agendamento.observacao(horario, dia);
 		
-		agendamento.hora();
-		System.out.println("hora");
+		agendamento.criarAgendamento();
+		agendamento.validarNotificacao();
+	}
+	
+	public void agendamentoSemCamposObrigatorios () {
 		
-		agendamento.observacao();
+	}
+	
+	public void agendamentEmMassa() {
 		
-		agendamento.criar();
+	}
+	
+	public void agendamentoMesmoHorario() {
+		
+	}
+	
+	public void agendamentoPelaLista() {
+		
+	}
+	
+	public void agendamentoPelaFicha() {
+		
 	}
 }
