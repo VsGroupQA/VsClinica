@@ -8,10 +8,8 @@ public class Access {
 	// https://rejuvenesce.vsgestaoclinica.com.br/
 	// https://homologacao-rejuvenesce.vsgestaoclinica.com.br/
 	
-	// 1. Parametrizar ambiente 2. Ajustar "criar agendamento" nos ambientes
-	
 	// NAVEGADOR
-	public static String navegador = "FIREFOX";
+	public static String navegador = "firefox";
 	
 	// ACESSO ADMIN
 	public static String usuario = "admin.vs";
@@ -20,5 +18,11 @@ public class Access {
 	// ACESSO CLINICO
 	public static String usuarioMedico = "vena";
 	public static String senhaMedico = "123";
+	
+	// AGENDAMENTO
+	public static String procedimento = "Transplante de Sombracelha";
+	public static String compromisso = "FINALIZADO";
+	public static String paciente = "Jhonata Venancio - VS GROUP";
+	public static String medico = "VS GROUP";
 	
 }

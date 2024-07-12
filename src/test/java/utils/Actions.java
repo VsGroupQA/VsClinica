@@ -6,81 +6,93 @@ import org.openqa.selenium.WebElement;
 
 public class Actions {
 
-    private WebDriver driver;
+	private WebDriver driver;
 
-    public Actions(WebDriver driver) {
-        this.driver = driver;
-    }
+	public Actions(WebDriver driver) {
+		this.driver = driver;
+	}
 
-    // CSS
-    public WebElement pegarElementoPeloCss(String css) {
-        return driver.findElement(By.cssSelector(css));
-    }
+	// CSS
+	public WebElement pegarElementoPeloCss(String css) {
+		return driver.findElement(By.cssSelector(css));
+	}
 
-    public void clicarBotaoPegandoPeloCss(String css) {
-        driver.findElement(By.cssSelector(css)).click();
-    }
+	public void clicarBotaoPegandoPeloCss(String css) {
+		pegarElementoPeloCss(css).click();
+	}
 
-    public void escreverPegandoPeloCss(String css, String texto) {
-        driver.findElement(By.cssSelector(css)).sendKeys(texto);
-    }
-    
-    public String lerTextoPegandoPeloCss(String css) {
-        return driver.findElement(By.cssSelector(css)).getText();
-    }
+	public void escreverPegandoPeloCss(String css, String texto) {
+		pegarElementoPeloCss(css).sendKeys(texto);
+	}
 
-    // ID
-    public WebElement pegarElementoPeloId(String id) {
-        return driver.findElement(By.id(id));
-    }
+	public String lerTextoPegandoPeloCss(String css) {
+		return pegarElementoPeloCss(css).getText();
+	}
 
-    public void clicarBotaoPegandoPeloId(String id) {
-        driver.findElement(By.id(id)).click();
-    }
+	// ID
+	public WebElement pegarElementoPeloId(String id) {
+		return driver.findElement(By.id(id));
+	}
 
-    public void escreverPegandoPeloId(String id, String texto) {
-        driver.findElement(By.id(id)).sendKeys(texto);
-    }
+	public void clicarBotaoPegandoPeloId(String id) {
+		pegarElementoPeloId(id).click();
+	}
 
-    // XPATH
-    public WebElement pegarElementoPeloXpath(String xpath) {
-        return driver.findElement(By.xpath(xpath));
-    }
+	public void escreverPegandoPeloId(String id, String texto) {
+		pegarElementoPeloId(id).sendKeys(texto);
+	}
 
-    public void clicarBotaoPegandoPeloXpath(String xpath) {
-        driver.findElement(By.xpath(xpath)).click();
-    }
+	// XPATH
+	public WebElement pegarElementoPeloXpath(String xpath) {
+		return driver.findElement(By.xpath(xpath));
+	}
 
-    public void escreverPegandoPeloXpath(String xpath, String texto) {
-        driver.findElement(By.xpath(xpath)).sendKeys(texto);
-    }
-    
-    // NOME
-    public WebElement pegarElementoPeloName(String name) {
-        return driver.findElement(By.name(name));
-    }
-    
-    public void clicarBotaoPegandoPeloName(String name) {
-        driver.findElement(By.name(name)).click();
-    }
+	public void clicarBotaoPegandoPeloXpath(String xpath) {
+		pegarElementoPeloXpath(xpath).click();
+	}
 
-    public void escreverPegandoPeloName(String name, String texto) {
-        driver.findElement(By.name(name)).sendKeys(texto);
-    }
+	public void escreverPegandoPeloXpath(String xpath, String texto) {
+		pegarElementoPeloXpath(xpath).sendKeys(texto);
+	}
 
-    // ESPERA
-    public void esperar(int tempoEspera) { // milesegundos
-        try {
-            Thread.sleep(tempoEspera);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.registrar("Problema com a esperada erro: "+ e +"");
-        }
-    }
+	// NAME
+	public WebElement pegarElementoPeloName(String name) {
+		return driver.findElement(By.name(name));
+	}
 
-    // RECARREGAR PÁGINA
-    public void recarregarPagina() {
-        driver.navigate().refresh();
-    }
-    
+	public void clicarBotaoPegandoPeloName(String name) {
+		pegarElementoPeloName(name).click();
+	}
+
+	public void escreverPegandoPeloName(String name, String texto) {
+		pegarElementoPeloName(name).sendKeys(texto);
+	}
+
+	// CLASS
+	public WebElement pegarElementoPelaClass(String classe) {
+		return driver.findElement(By.className(classe));
+	}
+
+	public void clicarBotaoPegandoPelaClass(String classe) {
+		pegarElementoPelaClass(classe).click();
+	}
+
+	public void escreverPegandoPelaClass(String classe, String texto) {
+		pegarElementoPelaClass(classe).sendKeys(texto);
+	}
+
+	// ESPERA - mls
+	public void esperar(int tempoEspera) { 
+		try {
+			Thread.sleep(tempoEspera);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			Log.registrar("Problema com a espera. Erro: " + e);
+		}
+	}
+
+	// RECARREGAR PÁGINA
+	public void recarregarPagina() {
+		driver.navigate().refresh();
+	}
 }
