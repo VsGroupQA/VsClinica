@@ -1,5 +1,4 @@
 package utils;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -68,18 +67,6 @@ public class Actions {
 		pegarElementoPeloName(name).sendKeys(texto);
 	}
 
-	// CLASS
-	public WebElement pegarElementoPelaClass(String classe) {
-		return driver.findElement(By.className(classe));
-	}
-
-	public void clicarBotaoPegandoPelaClass(String classe) {
-		pegarElementoPelaClass(classe).click();
-	}
-
-	public void escreverPegandoPelaClass(String classe, String texto) {
-		pegarElementoPelaClass(classe).sendKeys(texto);
-	}
 
 	// ESPERA - mls
 	public void esperar(int tempoEspera) { 

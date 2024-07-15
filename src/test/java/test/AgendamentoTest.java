@@ -18,112 +18,108 @@ import pages.AgendamentoPage;
 import pages.loginPage;
 
 public class AgendamentoTest {
-	
-    private static WebDriver driver;
-    private loginPage loginPage;
-    private Actions actions;
-    private AgendamentoPage agendamento;
 
-    static DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    static DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    
-    LocalDateTime agora = LocalDateTime.now();
-    LocalDateTime horaMaisUmMinuto = agora.plusMinutes(1);
-    
-    String horarioAtual = agora.format(horaFormatter);
-    String horarioMaisUmMinuto = horaMaisUmMinuto.format(horaFormatter);
-    String dia = agora.format(dataFormatter);
+	private static WebDriver driver;
+	private loginPage loginPage;
+	private Actions actions;
+	private AgendamentoPage agendamento;
 
-    @BeforeAll
-    public static void iniciarLog() {
-        Log.criarArquivoLog("Log.Agendamento");
-    }
+	static DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	static DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    @AfterAll
-    public static void encerrarLog() {
-        Log.encerrarLog();
-    }
+	LocalDateTime agora = LocalDateTime.now();
+	LocalDateTime horaMaisUmMinuto = agora.plusMinutes(1);
 
-    @BeforeEach
-    public void iniciaDriver() {
-        driver = Browser.iniciarNavegador(Access.navegador);
-        driver.get(Access.url);
-        loginPage = new loginPage(driver);
-        loginPage.signIn(Access.usuario, Access.senha);
-        actions = new Actions(driver);
-        agendamento = new AgendamentoPage(driver);
-    }
+	String horarioAtual = agora.format(horaFormatter);
+	String horarioMaisUmMinuto = horaMaisUmMinuto.format(horaFormatter);
+	String dia = agora.format(dataFormatter);
 
-    @AfterEach
-    public void encerrarDriver() {
-        Browser.fecharNavegador();
-    }
+	@BeforeAll
+	public static void iniciarLog() {
+		Log.criarArquivoLog("Log.Agendamento");
+	}
 
-    public void criarAgendamento() {
-        actions.esperar(1000);
-        agendamento.modalAgendamento();
-        System.out.println("Acessar modal de criação");
-        actions.esperar(100);
-        agendamento.procedimento(Access.procedimento);
-        System.out.println("procedimento");
-        actions.esperar(100);
-        agendamento.profissional(Access.medico);
-        agendamento.compromisso(Access.compromisso);
-        actions.esperar(100);
-        agendamento.paciente(Access.paciente);
-        agendamento.dataAgendamento(dia);
-        actions.esperar(100);
-        agendamento.horaAgendamento(horarioAtual,horarioMaisUmMinuto);
-        agendamento.observacao(horarioAtual, dia);
-        agendamento.criarAgendamento();
-    }
-    
-    @Test
-    public void agendamentoInicio() {
-    	criarAgendamento();
-    }
+	@AfterAll
+	public static void encerrarLog() {
+		Log.encerrarLog();
+	}
 
-    @Test
-    public void agendamentoSemCamposObrigatorios() {
-        // Implementação para teste sem campos obrigatórios
-    }
+	@BeforeEach
+	public void iniciaDriver() {
+		driver = Browser.iniciarNavegador(Access.navegador);
+		driver.get(Access.url);
+		loginPage = new loginPage(driver);
+		loginPage.signIn(Access.usuario, Access.senha);
+		actions = new Actions(driver);
+		agendamento = new AgendamentoPage(driver);
+	}
 
-    @Test
-    public void agendamentoEmMassa() {
-        for (int i = 0; i < 100; i++) {
-            criarAgendamento();
-        }
-    }
+	@AfterEach
+	public void encerrarDriver() {
+		Browser.fecharNavegador();
+	}
 
-    @Test
-    public void agendamentoDuplicado() {
-    	criarAgendamento();
+	@Test
+	public void criarNovoAgendamento() {
+		agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
 
-        actions.esperar(2000);
-        agendamento.modalAgendamento();
-        actions.esperar(800);
-        agendamento.procedimento(Access.procedimento);
-        actions.esperar(500);
-        agendamento.profissional(Access.medico);
-        agendamento.compromisso(Access.compromisso);
-        actions.esperar(100);
-        agendamento.paciente(Access.paciente);
-        agendamento.dataAgendamento(dia);
-        actions.esperar(100);
-        agendamento.horaAgendamento(horarioAtual,horarioMaisUmMinuto);
-        agendamento.observacao(horarioAtual, dia);
-        agendamento.criarAgendamentoDuplicado();
-    }
+	}
 
-    @Test
-    public void agendamentoPelaLista() {
-        actions.esperar(500);
-        agendamento.acessarListaAgendamentos();
-        System.out.println("lista");
-        criarAgendamento();
-    }
+	@Test
+	public void agendamentoSemCamposObrigatorios() {
+		actions.esperar(2000);
+		agendamento.modalAgendamento();
 
-    public void agendamentoPelaFicha() {
-        // Implementação para agendamento pela ficha
-    }
+		agendamento.criarAgendamentoDuplicado();
+		
+	}
+
+	@Test
+	public void agendamentoEmMassa() {
+	    LocalDateTime agora = LocalDateTime.now();
+
+	    for (int i = 0; i < 4; i++) {
+	        LocalDateTime horarioAtualizado = agora.plusMinutes(i); // Adiciona i minutos a cada iteração
+
+	        String horarioAtual = horarioAtualizado.format(horaFormatter);
+	        String horarioMaisUmMinuto = horarioAtualizado.plusMinutes(1).format(horaFormatter);
+	        String dia = agora.format(dataFormatter);
+
+	        agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
+	    }
+	}
+
+
+	@Test
+	public void agendamentoDuplicado() {
+		agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
+
+		actions.esperar(2000);
+		agendamento.modalAgendamento();
+		agendamento.procedimento(Access.procedimento);
+		agendamento.profissional(Access.medico);
+		agendamento.compromisso(Access.compromisso);
+
+		agendamento.paciente(Access.paciente);
+		agendamento.dataAgendamento(dia);
+
+		agendamento.horaAgendamento(horarioAtual, horarioMaisUmMinuto);
+		agendamento.observacao(horarioAtual, dia);
+		agendamento.criarAgendamentoDuplicado();
+	}
+
+	@Test
+	public void agendamentoPelaLista() {
+		
+	}
+
+	@Test
+	public void agendamentoPelaFicha() {
+		
+	}
+
+	@Test
+	public void agendaBloqueada() {
+
+	}
 }

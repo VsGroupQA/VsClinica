@@ -38,6 +38,7 @@ public class Log {
 	public static void registrar(String mensagem) {
 		if (writer != null) {
 			writer.println(mensagem + " - " + LocalDateTime.now().format(data));
+			System.out.println(mensagem);
 			writer.flush();
 		} else {
 			System.err.println("Pasta para adicionar log não criada");

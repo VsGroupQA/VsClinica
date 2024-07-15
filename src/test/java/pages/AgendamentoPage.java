@@ -7,7 +7,13 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.Access;
 import utils.Actions;
+
+import java.time.Duration;
 import java.util.List;
 
 public class AgendamentoPage {
@@ -89,7 +95,6 @@ public class AgendamentoPage {
 	public void validarNotificacao(String elemento) {
 		actions.esperar(500);
 
-
 		WebElement notf = driver.findElement(By.xpath(elemento));
 
 		String notfText = notf.getText();
@@ -100,7 +105,7 @@ public class AgendamentoPage {
 
 	}
 
-	public void criarAgendamento() {
+	public void botaoCriar() {
 		try {
 			actions.clicarBotaoPegandoPeloXpath(
 					"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
@@ -110,6 +115,7 @@ public class AgendamentoPage {
 		}
 	}
 
+	// Negativo
 	public void criarAgendamentoDuplicado() {
 		try {
 			actions.clicarBotaoPegandoPeloXpath(
@@ -120,7 +126,6 @@ public class AgendamentoPage {
 	}
 
 	public void observacao(String horaObs, String data) {
-
 		actions.escreverPegandoPeloXpath(
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea",
 				"TESTE DE AGENDAMENTO" + data + " - " + horaObs);
@@ -129,7 +134,33 @@ public class AgendamentoPage {
 	public void acessarListaAgendamentos() {
 		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
 	}
-	
-	// Listar Por cada tipo de botão
-	// Começar tela de integração
+
+	public void validarMensagemErro() {
+		actions.esperar(500);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement mensagemErro = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				"//div[contains(@class, 'error') and contains(text(), 'Existe um bloqueio nesse dia de 15:19h as 18:19h')]")));
+		String mensagemEsperada = "Existe um bloqueio nesse dia de 15:19h as 18:19h";
+		Assert.assertEquals("A mensagem de erro não é a esperada.", mensagemEsperada, mensagemErro.getText());
+	}
+
+	public void novoAgendamento(String data, String horaInicio, String horaFim) {
+		actions.esperar(2000);
+		modalAgendamento();
+		System.out.println("Acessar modal de criação");
+
+		procedimento(Access.procedimento);
+		System.out.println("Selecionar procedimento");
+
+		profissional(Access.medico);
+		compromisso(Access.compromisso);
+		paciente(Access.paciente);
+
+		dataAgendamento(data);
+		horaAgendamento(horaInicio, horaFim);
+		observacao(horaInicio, data);
+		botaoCriar();
+
+	}
+
 }
