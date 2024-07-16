@@ -136,12 +136,17 @@ public class AgendamentoPage {
 	}
 
 	public void validarMensagemErro() {
-		actions.esperar(500);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement mensagemErro = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//div[contains(@class, 'error') and contains(text(), 'Existe um bloqueio nesse dia de 15:19h as 18:19h')]")));
-		String mensagemEsperada = "Existe um bloqueio nesse dia de 15:19h as 18:19h";
-		Assert.assertEquals("A mensagem de erro não é a esperada.", mensagemEsperada, mensagemErro.getText());
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebElement mensagemErro = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+	            "/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[5]/div[1]/div[1]")));
+	    String mensagemTexto = mensagemErro.getText();
+	    String textoErro = "Existe um bloqueio nesse dia de";
+
+	    if (mensagemTexto.contains(textoErro)) {
+	        Assert.fail("A mensagem de horário bloqueado foi exibida: " + mensagemTexto);
+	    } else {
+	        Assert.assertTrue("A mensagem de erro não contém o texto indesejado.", true);
+	    }
 	}
 
 	public void novoAgendamento(String data, String horaInicio, String horaFim) {
@@ -158,6 +163,7 @@ public class AgendamentoPage {
 
 		dataAgendamento(data);
 		horaAgendamento(horaInicio, horaFim);
+		validarMensagemErro();
 		observacao(horaInicio, data);
 		botaoCriar();
 

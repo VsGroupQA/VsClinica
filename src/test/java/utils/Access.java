@@ -3,7 +3,7 @@ package utils;
 public class Access {
 	
 	// URL
-	public static String url = "https://homologacao-rejuvenesce.vsgestaoclinica.com.br/";
+	public static String url = "https://staging-rejuvensce.vsgestaoclinica.com.br/";
 	// https://staging-rejuvensce.vsgestaoclinica.com.br/
 	// https://rejuvenesce.vsgestaoclinica.com.br/
 	// https://homologacao-rejuvenesce.vsgestaoclinica.com.br/

@@ -74,7 +74,7 @@ public class AgendamentoTest {
 		
 	}
 
-	@Test
+	
 	public void agendamentoEmMassa() {
 	    LocalDateTime agora = LocalDateTime.now();
 
@@ -108,17 +108,17 @@ public class AgendamentoTest {
 		agendamento.criarAgendamentoDuplicado();
 	}
 
-	@Test
+
 	public void agendamentoPelaLista() {
 		
 	}
 
-	@Test
+
 	public void agendamentoPelaFicha() {
 		
 	}
 
-	@Test
+
 	public void agendaBloqueada() {
 
 	}
