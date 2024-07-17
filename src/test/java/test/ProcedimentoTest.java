@@ -43,13 +43,15 @@ public class ProcedimentoTest {
 
 	@AfterEach
 	public void encerrarDriver() {
-		Browser.fecharNavegador();
+//		Browser.fecharNavegador();
 	}
 
 	@Test
 	public void teste() {
 		actions.esperar(200);
-		procedimento.acessarProcediementos();
+		procedimento.acessarProcedimentos();
+		 System.out.println("Verificando procediemntos");
+		procedimento.validarProcedimentosEetapas();
 
 	}
 }
