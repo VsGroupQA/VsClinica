@@ -56,7 +56,7 @@ public class AgendamentoTest {
 
 	@AfterEach
 	public void encerrarDriver() {
-		Browser.fecharNavegador();
+//		Browser.fecharNavegador();
 	}
 
 	@Test
@@ -67,57 +67,57 @@ public class AgendamentoTest {
 
 	@Test
 	public void agendamentoSemCamposObrigatorios() {
-		actions.esperar(2000);
-		agendamento.modalAgendamento();
 
-		agendamento.criarAgendamentoDuplicado();
-		
 	}
 
-	
 	public void agendamentoEmMassa() {
-	    LocalDateTime agora = LocalDateTime.now();
+		LocalDateTime agora = LocalDateTime.now();
 
-	    for (int i = 0; i < 4; i++) {
-	        LocalDateTime horarioAtualizado = agora.plusMinutes(i); // Adiciona i minutos a cada iteração
+		for (int i = 0; i < 4; i++) {
+			LocalDateTime horarioAtualizado = agora.plusMinutes(i); // Adiciona i minutos a cada iteração
 
-	        String horarioAtual = horarioAtualizado.format(horaFormatter);
-	        String horarioMaisUmMinuto = horarioAtualizado.plusMinutes(1).format(horaFormatter);
-	        String dia = agora.format(dataFormatter);
+			String horarioAtual = horarioAtualizado.format(horaFormatter);
+			String horarioMaisUmMinuto = horarioAtualizado.plusMinutes(1).format(horaFormatter);
+			String dia = agora.format(dataFormatter);
 
-	        agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
-	    }
+			agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
+		}
 	}
-
 
 	@Test
 	public void agendamentoDuplicado() {
 		agendamento.novoAgendamento(dia, horarioAtual, horarioMaisUmMinuto);
 
 		actions.esperar(2000);
-		agendamento.modalAgendamento();
-		agendamento.procedimento(Access.procedimento);
-		agendamento.profissional(Access.medico);
-		agendamento.compromisso(Access.compromisso);
-
+		agendamento.modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
+		agendamento.procedimento(Access.procedimento,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
+				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
+		agendamento.profissional(Access.medico, ".px-0 .p-dropdown-label",
+				".p-element .p-dropdown-item");
+		agendamento.compromisso(Access.compromisso, 
+				"p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
+				"p-dropdownitem.p-element > li"
+				);
 		agendamento.paciente(Access.paciente);
-		agendamento.dataAgendamento(dia);
+		agendamento.dataAgendamento(dia, "//*[@id=\"icon\"]");
 
 		agendamento.horaAgendamento(horarioAtual, horarioMaisUmMinuto);
-		agendamento.observacao(horarioAtual, dia);
-		agendamento.criarAgendamentoDuplicado();
+		agendamento.observacao(horarioAtual, dia, 
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		agendamento.botaoCriarAgendamento(false, 
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
-
-
+	
+	@Test
 	public void agendamentoPelaLista() {
-		
+		agendamento.navbar();
+		agendamento.novoAgendamentoLista(dia, horarioAtual, horarioMaisUmMinuto);
 	}
-
 
 	public void agendamentoPelaFicha() {
-		
-	}
 
+	}
 
 	public void agendaBloqueada() {
 

@@ -32,6 +32,9 @@ public class ProcedimentoPage {
         for (int i = 1; i <= procedimentos.size(); i++) {
             // Acessa o procedimento
             WebElement procedimento = driver.findElement(By.xpath("//li[" + i + "]/div/div/input"));
+            String valor = procedimento.getText();
+            System.out.println(valor);
+            
             procedimento.click();
             actions.esperar(1000);
 
@@ -41,10 +44,10 @@ public class ProcedimentoPage {
             // Acessa as etapas
             WebElement etapas = driver.findElement(By.xpath("//li[" + i + "]/div/div[5]/details/summary[contains(.,'Etapas')]"));
             etapas.click();
-            actions.esperar(1000);
+            actions.esperar(500);
 
             // Verifica as etapas cadastradas
-            List<WebElement> listaEtapas = driver.findElements(By.cssSelector("#p-accordiontab-" + (10 + i) + " .col-8 > span"));
+            List<WebElement> listaEtapas = driver.findElements(By.cssSelector("#p-accordiontab-" + (10 + i) + " .col-8"));
             
             for (WebElement etapa : listaEtapas) {
                 String nomeEtapa = etapa.getText();

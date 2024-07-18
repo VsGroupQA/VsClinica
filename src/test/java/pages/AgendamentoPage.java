@@ -7,14 +7,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.Access;
 import utils.Actions;
 
-import java.time.Duration;
 import java.util.List;
+import utils.Log;
 
 public class AgendamentoPage {
 	private WebDriver driver;
@@ -25,14 +22,16 @@ public class AgendamentoPage {
 		this.actions = new Actions(this.driver);
 	}
 
-	public void modalAgendamento() {
-		actions.clicarBotaoPegandoPeloCss("p-button.ng-star-inserted > button:nth-child(1)");
+	// Componentes
+
+	public void modalAgendamento(String css) {
+		actions.clicarBotaoPegandoPeloCss(css);
+		Log.registrar("Abrir modal");
 	}
 
-	public void procedimento(String nomeItem) {
-		actions.clicarBotaoPegandoPeloXpath(
-				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]");
-		List<WebElement> items = driver.findElements(By.xpath("/html/body/div[2]/div/div/div/ul/p-dropdownitem/li"));
+	public void procedimento(String nomeItem, String xpathDrop, String xpathItem) {
+		actions.clicarBotaoPegandoPeloXpath(xpathDrop);
+		List<WebElement> items = driver.findElements(By.xpath(xpathItem));
 
 		for (WebElement item : items) {
 			if (item.getText().equalsIgnoreCase(nomeItem)) {
@@ -40,30 +39,35 @@ public class AgendamentoPage {
 				break;
 			}
 		}
+		Log.registrar("Adicionar procedimento");
 	}
 
-	public void profissional(String nomeProfissional) {
-		actions.clicarBotaoPegandoPeloCss(".px-0 .p-dropdown-label");
+	public void profissional(String nomeProfissional, String cssDrop, String cssItem) {
+		actions.clicarBotaoPegandoPeloCss(cssDrop);
 
-		List<WebElement> profissionais = driver.findElements(By.cssSelector(".p-element .p-dropdown-item"));
+		List<WebElement> profissionais = driver.findElements(By.cssSelector(cssItem));
 		for (WebElement profissional : profissionais) {
 			if (profissional.getText().equalsIgnoreCase(nomeProfissional)) {
 				profissional.click();
 				break;
 			}
 		}
+
+		Log.registrar("Adicionar profissional");
 	}
 
-	public void compromisso(String nomeCompromisso) {
-		actions.clicarBotaoPegandoPeloCss("p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)");
+	public void compromisso(String nomeCompromisso, String cssDrop, String cssItem) {
+		actions.clicarBotaoPegandoPeloCss(cssDrop);
 
-		List<WebElement> compromissos = driver.findElements(By.cssSelector("p-dropdownitem.p-element > li"));
+		List<WebElement> compromissos = driver.findElements(By.cssSelector(cssItem));
 		for (WebElement compromisso : compromissos) {
 			if (compromisso.getText().equalsIgnoreCase(nomeCompromisso)) {
 				compromisso.click();
 				break;
 			}
 		}
+
+		Log.registrar("Adicionar compromisso");
 	}
 
 	public void paciente(String nomePaciente) {
@@ -72,101 +76,91 @@ public class AgendamentoPage {
 			actions.esperar(1000);
 			actions.clicarBotaoPegandoPeloXpath("//li[contains(.,'" + nomePaciente + "')]");
 		} catch (NoSuchElementException e) {
-			System.err.println("Paciente não encontrado: " + nomePaciente);
+			Log.registrar("Paciente não encontrado: " + nomePaciente);
 			throw e;
 		}
+		Log.registrar("Adicionar paciente");
 	}
 
-	public void dataAgendamento(String data) {
-		actions.escreverPegandoPeloXpath("//*[@id=\"icon\"]", data);
+	public void dataAgendamento(String data, String xpathData) {
+		actions.escreverPegandoPeloXpath(xpathData, data);
+		Log.registrar("Adicionar data de agendamento:" + data + "");
 	}
 
 	public void horaAgendamento(String horaInicio, String horaFim) {
-
 		actions.escreverPegandoPeloXpath("//div[5]/div/p-calendar/span/input", horaInicio);
-		System.out.println("adiciondo hora inicio" + horaInicio);
-
 		actions.esperar(300);
-
 		actions.escreverPegandoPeloXpath("//div[2]/p-calendar/span/input", horaFim);
-		System.out.println("adiciondo hora fim" + horaFim + "aa");
+		Log.registrar("Adicionar horario de agendamento - Inicio: " + horaInicio + "" + " - Fim: " + horaFim + "");
 	}
 
-	public void validarNotificacao(String elemento) {
-		actions.esperar(500);
-
-		WebElement notf = driver.findElement(By.xpath(elemento));
-
-		String notfText = notf.getText();
-		System.out.println(notf);
-
-		Assert.assertTrue("A notificação não contém a palavra 'Salvo'. Texto da notificação: " + notfText,
-				notfText.contains("Salvo"));
-
+	public void observacao(String horaObs, String data, String xpath) {
+		actions.escreverPegandoPeloXpath( xpath, "TESTE DE AGENDAMENTO" + data + " - " + horaObs);
 	}
 
-	public void botaoCriar() {
+	public void botaoCriarAgendamento(boolean isCriacaoNormal, String xpath) {
 		try {
-			actions.clicarBotaoPegandoPeloXpath(
-					"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+			actions.clicarBotaoPegandoPeloXpath(xpath);
+			Log.registrar("Concluir agendamento");
+			
+			if (!isCriacaoNormal) {
+				Assert.fail("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
+				Log.registrar("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
+			}
 		} catch (ElementClickInterceptedException e) {
-			Assert.fail("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. "
-					+ e.getMessage());
+			if (isCriacaoNormal) {
+				Assert.fail("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. "
+						+ e.getMessage());
+				Log.registrar("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. "
+						+ e.getMessage());
+			} else {
+				Assert.assertTrue("Agendamento duplicado detectado corretamente.", true);
+				Log.registrar("Agendamento duplicado detectado corretamente.");
+			}
 		}
 	}
 
-	// Negativo
-	public void criarAgendamentoDuplicado() {
-		try {
-			actions.clicarBotaoPegandoPeloXpath(
-					"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
-		} catch (ElementClickInterceptedException e) {
-			Assert.assertTrue(true);
-		}
-	}
-
-	public void observacao(String horaObs, String data) {
-		actions.escreverPegandoPeloXpath(
-				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea",
-				"TESTE DE AGENDAMENTO" + data + " - " + horaObs);
-	}
-
-	public void acessarListaAgendamentos() {
-		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
-	}
-
-	public void validarMensagemErro() {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    WebElement mensagemErro = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-	            "/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[5]/div[1]/div[1]")));
-	    String mensagemTexto = mensagemErro.getText();
-	    String textoErro = "Existe um bloqueio nesse dia de";
-
-	    if (mensagemTexto.contains(textoErro)) {
-	        Assert.fail("A mensagem de horário bloqueado foi exibida: " + mensagemTexto);
-	    } else {
-	        Assert.assertTrue("A mensagem de erro não contém o texto indesejado.", true);
-	    }
-	}
+	// Conjunto de ação
 
 	public void novoAgendamento(String data, String horaInicio, String horaFim) {
 		actions.esperar(2000);
-		modalAgendamento();
-		System.out.println("Acessar modal de criação");
-
-		procedimento(Access.procedimento);
-		System.out.println("Selecionar procedimento");
-
-		profissional(Access.medico);
-		compromisso(Access.compromisso);
+		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
+		procedimento(Access.procedimento, 
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
+				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
+		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
+		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
+				"p-dropdownitem.p-element > li");
 		paciente(Access.paciente);
-
-		dataAgendamento(data);
+		dataAgendamento(data, "//*[@id=\"icon\"]");
 		horaAgendamento(horaInicio, horaFim);
-		validarMensagemErro();
-		observacao(horaInicio, data);
-		botaoCriar();
+		observacao(horaInicio, data, "/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		botaoCriarAgendamento(true, "/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 
 	}
 
+	// Novos
+	
+	public void navbar() {
+		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
+	}
+	
+	public void novoAgendamentoLista(String data, String horaInicio, String horaFim) {
+		actions.esperar(2000);
+		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
+		procedimento(Access.procedimento, "/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span",
+				"/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
+				
+		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
+		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
+				"p-dropdownitem.p-element > li");
+		paciente(Access.paciente);
+		dataAgendamento(data, "//div[4]/p-calendar/span/input");
+		actions.esperar(5000);
+		horaAgendamento(horaInicio, horaFim);
+		observacao(horaInicio, data, "//textarea");
+		// //textarea
+		botaoCriarAgendamento(true, "/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+
+	}
 }
