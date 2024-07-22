@@ -6,10 +6,13 @@ import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.Access;
 import utils.Actions;
 
+import java.time.Duration;
 import java.util.List;
 import utils.Log;
 
@@ -22,7 +25,8 @@ public class AgendamentoPage {
 		this.actions = new Actions(this.driver);
 	}
 
-	// Componentes
+	
+	// COMPONENTES
 
 	public void modalAgendamento(String css) {
 		actions.clicarBotaoPegandoPeloCss(css);
@@ -87,22 +91,23 @@ public class AgendamentoPage {
 		Log.registrar("Adicionar data de agendamento:" + data + "");
 	}
 
-	public void horaAgendamento(String horaInicio, String horaFim) {
-		actions.escreverPegandoPeloXpath("//div[5]/div/p-calendar/span/input", horaInicio);
+	public void horaAgendamento(String horaInicio, String horaFim, String elementoHoraInicio, String elementoHoraFim) {
+		actions.escreverPegandoPeloXpath(elementoHoraInicio, horaInicio);
+		Log.registrar("Adicionar horario de agendamento - Inicio: " + horaInicio + "");
 		actions.esperar(300);
-		actions.escreverPegandoPeloXpath("//div[2]/p-calendar/span/input", horaFim);
-		Log.registrar("Adicionar horario de agendamento - Inicio: " + horaInicio + "" + " - Fim: " + horaFim + "");
+		actions.escreverPegandoPeloXpath(elementoHoraFim, horaFim);
+		Log.registrar("Adicionar horario de agendamento - Fim: " + horaFim + "");
 	}
 
 	public void observacao(String horaObs, String data, String xpath) {
-		actions.escreverPegandoPeloXpath( xpath, "TESTE DE AGENDAMENTO" + data + " - " + horaObs);
+		actions.escreverPegandoPeloXpath(xpath, "TESTE DE AGENDAMENTO" + data + " - " + horaObs);
 	}
 
 	public void botaoCriarAgendamento(boolean isCriacaoNormal, String xpath) {
 		try {
 			actions.clicarBotaoPegandoPeloXpath(xpath);
 			Log.registrar("Concluir agendamento");
-			
+
 			if (!isCriacaoNormal) {
 				Assert.fail("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
 				Log.registrar("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
@@ -125,18 +130,37 @@ public class AgendamentoPage {
 				"/html/body/app-root/div/app-pacientes/div/app-filtro-pacientes/p-card/div/div/div/div/div[3]/input",
 				nomePaciente);
 	}
-	
+
 	public void selecionarPaciente() {
 		actions.esperar(500);
-		actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-pacientes/div/p-table/div/div/table/tbody/tr/td[3]");
+		actions.clicarBotaoPegandoPeloXpath(
+				"/html/body/app-root/div/app-pacientes/div/p-table/div/div/table/tbody/tr/td[3]");
+	}
+
+	public void navbar(String nomeId) {
+		actions.clicarBotaoPegandoPeloId(nomeId);
+	}
+
+	public void validarNotificacao() {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+	        WebElement notificacao = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-toast-detail")));
+	        String textoNotificacao = notificacao.getText();
+	        Assert.assertEquals("Agendamento cadastrado com sucesso.", textoNotificacao);
+	        Log.registrar("Notificação de sucesso exibida: "+ textoNotificacao +"");
+	    } catch (NoSuchElementException e) {
+	        Log.registrar("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
+	        Assert.fail("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
+	    }
 	}
 	
-	// Conjunto de ação
+	
+	// GRUPO
 
 	public void novoAgendamento(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(2000);
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
-		procedimento(Access.procedimento, 
+		procedimento(Access.procedimento,
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
 				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
@@ -144,50 +168,61 @@ public class AgendamentoPage {
 				"p-dropdownitem.p-element > li");
 		paciente(Access.paciente);
 		dataAgendamento(data, "//*[@id=\"icon\"]");
-		horaAgendamento(horaInicio, horaFim);
-		observacao(horaInicio, data, "/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
-		botaoCriarAgendamento(statusBotao, "/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
+		observacao(horaInicio, data,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		botaoCriarAgendamento(statusBotao,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
 
-	// Novos
-	
-	public void navbar(String nomeId) {
-		actions.clicarBotaoPegandoPeloId(nomeId);
-	}
-	
 	public void novoAgendamentoLista(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(2000);
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
-		procedimento(Access.procedimento, "/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span",
+		procedimento(Access.procedimento,
+				"/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span",
 				"/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
-				
+
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
 				"p-dropdownitem.p-element > li");
 		paciente(Access.paciente);
 		dataAgendamento(data, "//div[4]/p-calendar/span/input");
-		horaAgendamento(horaInicio, horaFim);
+		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
 		observacao(horaInicio, data, "//textarea");
-		botaoCriarAgendamento(statusBotao, "/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+		botaoCriarAgendamento(statusBotao,
+				"/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 
 	}
-	
-	// FICHA
-	
+
 	public void novoAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(1000);
 		modalAgendamento("button.p-ripple");
 		actions.esperar(1000);
-		procedimento(Access.procedimento, "/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span",
+		procedimento(Access.procedimento,
+				"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span",
 				"/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
-				
+
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
 				"p-dropdownitem.p-element > li");
 		dataAgendamento(data, "//div[4]/p-calendar/span/input");
-		horaAgendamento(horaInicio, horaFim);
+		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[5]/div[2]/p-calendar/span/input");
 		observacao(horaInicio, data, "//textarea");
-		botaoCriarAgendamento(statusBotao, "/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+		botaoCriarAgendamento(statusBotao,
+				"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 
+	}
+
+	public void novoAgendamentoSemCamposObg(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+		actions.esperar(2000);
+		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
+		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
+		paciente(Access.paciente);
+		dataAgendamento(data, "//*[@id=\"icon\"]");
+		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
+		observacao(horaInicio, data,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		botaoCriarAgendamento(statusBotao,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
 }

@@ -22,7 +22,7 @@ public class IntegracoesTest {
 
 	@BeforeAll
 	public static void iniciarLog() {
-		Log.criarArquivoLog("Log.Agendamento");
+		Log.criarArquivoLog("Log.Integracoes");
 	}
 
 	@AfterAll
@@ -45,10 +45,8 @@ public class IntegracoesTest {
 	}
 
 	@Test
-	public void criarIntegracao() {
-		integracao.acessarIntegracao();
-		integracao.xpto();
-
+	public void criarIntegracaoBuscarEquipes() {
+		integracao.criarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe);
 	}
 	
 	public void editarIntegracao() {
