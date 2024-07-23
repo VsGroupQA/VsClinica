@@ -43,7 +43,7 @@ public class ProcedimentoTest {
 
 	@AfterEach
 	public void encerrarDriver() {
-//		Browser.fecharNavegador();
+		Browser.fecharNavegador();
 	}
 
 	@Test

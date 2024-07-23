@@ -1,0 +1,112 @@
+informações - 22 07 2024 - 14.42.35
+Logar - 22 07 2024 - 14.42.36
+TESTE - criar agendamento inicio duplicado - 22 07 2024 - 14.42.36
+Abrir modal - 22 07 2024 - 14.42.38
+Adicionar procedimento - 22 07 2024 - 14.42.39
+Adicionar profissional - 22 07 2024 - 14.42.40
+Adicionar compromisso - 22 07 2024 - 14.42.40
+Adicionar paciente - 22 07 2024 - 14.42.42
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.42.42
+Adicionar horario de agendamento - Inicio: 14:42 - 22 07 2024 - 14.42.42
+Adicionar horario de agendamento - Fim: 14:43 - 22 07 2024 - 14.42.43
+Concluir agendamento - 22 07 2024 - 14.42.43
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.42.44
+Abrir modal - 22 07 2024 - 14.42.46
+Adicionar procedimento - 22 07 2024 - 14.42.47
+Adicionar profissional - 22 07 2024 - 14.42.47
+Adicionar compromisso - 22 07 2024 - 14.42.48
+Adicionar paciente - 22 07 2024 - 14.42.50
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.42.50
+Adicionar horario de agendamento - Inicio: 14:42 - 22 07 2024 - 14.42.50
+Adicionar horario de agendamento - Fim: 14:43 - 22 07 2024 - 14.42.50
+Agendamento duplicado detectado corretamente. - 22 07 2024 - 14.42.51
+informações - 22 07 2024 - 14.42.59
+Logar - 22 07 2024 - 14.43.01
+TESTE - criar agendamento duplicado pela lista - 22 07 2024 - 14.43.01
+Abrir modal - 22 07 2024 - 14.43.05
+Adicionar procedimento - 22 07 2024 - 14.43.06
+Adicionar profissional - 22 07 2024 - 14.43.06
+Adicionar compromisso - 22 07 2024 - 14.43.07
+Adicionar paciente - 22 07 2024 - 14.43.09
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.43.09
+Adicionar horario de agendamento - Inicio: 14:44 - 22 07 2024 - 14.43.09
+Adicionar horario de agendamento - Fim: 14:45 - 22 07 2024 - 14.43.10
+Concluir agendamento - 22 07 2024 - 14.43.11
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.43.11
+Abrir modal - 22 07 2024 - 14.43.14
+Adicionar procedimento - 22 07 2024 - 14.43.15
+Adicionar profissional - 22 07 2024 - 14.43.16
+Adicionar compromisso - 22 07 2024 - 14.43.16
+Adicionar paciente - 22 07 2024 - 14.43.18
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.43.18
+Adicionar horario de agendamento - Inicio: 14:44 - 22 07 2024 - 14.43.18
+Adicionar horario de agendamento - Fim: 14:45 - 22 07 2024 - 14.43.18
+Agendamento duplicado detectado corretamente. - 22 07 2024 - 14.43.18
+informações - 22 07 2024 - 14.43.26
+Logar - 22 07 2024 - 14.43.27
+TESTE - criar agendamento inicio - 22 07 2024 - 14.43.27
+Abrir modal - 22 07 2024 - 14.43.30
+Adicionar procedimento - 22 07 2024 - 14.43.30
+Adicionar profissional - 22 07 2024 - 14.43.31
+Adicionar compromisso - 22 07 2024 - 14.43.32
+Adicionar paciente - 22 07 2024 - 14.43.33
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.43.33
+Adicionar horario de agendamento - Inicio: 14:46 - 22 07 2024 - 14.43.33
+Adicionar horario de agendamento - Fim: 14:47 - 22 07 2024 - 14.43.34
+Concluir agendamento - 22 07 2024 - 14.43.34
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.43.35
+informações - 22 07 2024 - 14.43.43
+Logar - 22 07 2024 - 14.43.44
+TESTE - criar agendamento sem campos obrigatórios preenchidos - 22 07 2024 - 14.43.44
+Abrir modal - 22 07 2024 - 14.43.47
+Adicionar profissional - 22 07 2024 - 14.43.48
+Adicionar paciente - 22 07 2024 - 14.43.49
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.43.50
+Adicionar horario de agendamento - Inicio: 14:48 - 22 07 2024 - 14.43.50
+Adicionar horario de agendamento - Fim: 14:49 - 22 07 2024 - 14.43.50
+Agendamento duplicado detectado corretamente. - 22 07 2024 - 14.43.50
+informações - 22 07 2024 - 14.43.58
+Logar - 22 07 2024 - 14.43.59
+TESTE - criar agendamento duplicado pela ficha do paciente - 22 07 2024 - 14.43.59
+Abrir modal - 22 07 2024 - 14.44.03
+Adicionar procedimento - 22 07 2024 - 14.44.05
+Adicionar profissional - 22 07 2024 - 14.44.05
+Adicionar compromisso - 22 07 2024 - 14.44.06
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.44.06
+Adicionar horario de agendamento - Inicio: 14:50 - 22 07 2024 - 14.44.06
+Adicionar horario de agendamento - Fim: 14:51 - 22 07 2024 - 14.44.07
+Concluir agendamento - 22 07 2024 - 14.44.07
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.44.07
+Abrir modal - 22 07 2024 - 14.44.09
+Adicionar procedimento - 22 07 2024 - 14.44.10
+Adicionar profissional - 22 07 2024 - 14.44.11
+Adicionar compromisso - 22 07 2024 - 14.44.11
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.44.12
+Adicionar horario de agendamento - Inicio: 14:50 - 22 07 2024 - 14.44.12
+Adicionar horario de agendamento - Fim: 14:51 - 22 07 2024 - 14.44.12
+Agendamento duplicado detectado corretamente. - 22 07 2024 - 14.44.12
+informações - 22 07 2024 - 14.44.21
+Logar - 22 07 2024 - 14.44.23
+TESTE - criar agendamento pela ficha do paciente - 22 07 2024 - 14.44.23
+Abrir modal - 22 07 2024 - 14.44.25
+Adicionar procedimento - 22 07 2024 - 14.44.27
+Adicionar profissional - 22 07 2024 - 14.44.28
+Adicionar compromisso - 22 07 2024 - 14.44.28
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.44.28
+Adicionar horario de agendamento - Inicio: 14:52 - 22 07 2024 - 14.44.29
+Adicionar horario de agendamento - Fim: 14:53 - 22 07 2024 - 14.44.29
+Concluir agendamento - 22 07 2024 - 14.44.30
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.44.30
+informações - 22 07 2024 - 14.44.38
+Logar - 22 07 2024 - 14.44.39
+TESTE - criar agendamento pela lista - 22 07 2024 - 14.44.39
+Abrir modal - 22 07 2024 - 14.44.43
+Adicionar procedimento - 22 07 2024 - 14.44.44
+Adicionar profissional - 22 07 2024 - 14.44.45
+Adicionar compromisso - 22 07 2024 - 14.44.45
+Adicionar paciente - 22 07 2024 - 14.44.47
+Adicionar data de agendamento:22/07/2024 - 22 07 2024 - 14.44.47
+Adicionar horario de agendamento - Inicio: 14:54 - 22 07 2024 - 14.44.48
+Adicionar horario de agendamento - Fim: 14:55 - 22 07 2024 - 14.44.48
+Concluir agendamento - 22 07 2024 - 14.44.49
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 22 07 2024 - 14.44.49

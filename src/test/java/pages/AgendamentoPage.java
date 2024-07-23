@@ -148,6 +148,7 @@ public class AgendamentoPage {
 	        String textoNotificacao = notificacao.getText();
 	        Assert.assertEquals("Agendamento cadastrado com sucesso.", textoNotificacao);
 	        Log.registrar("Notificação de sucesso exibida: "+ textoNotificacao +"");
+	        
 	    } catch (NoSuchElementException e) {
 	        Log.registrar("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
 	        Assert.fail("Falha ao encontrar a notificação de sucesso: " + e.getMessage());

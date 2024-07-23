@@ -1,0 +1,7 @@
+informações - 23 07 2024 - 14.49.34
+Logar - 23 07 2024 - 14.49.36
+null - 23 07 2024 - 14.49.36
+Acessar integrações - 23 07 2024 - 14.49.39
+Nova integração - 23 07 2024 - 14.49.39
+Variável é null, método variaveis será ignorado. - 23 07 2024 - 14.49.40
+Variável é null, método variaveis será ignorado. - 23 07 2024 - 14.49.40

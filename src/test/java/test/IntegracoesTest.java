@@ -1,5 +1,6 @@
 package test;
 
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +20,9 @@ public class IntegracoesTest {
 	private static WebDriver driver;
 	private loginPage loginPage;
 	private IntegracoesPage integracao;
-
+	
+	static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+	
 	@BeforeAll
 	public static void iniciarLog() {
 		Log.criarArquivoLog("Log.Integracoes");
@@ -41,12 +44,17 @@ public class IntegracoesTest {
 
 	@AfterEach
 	public void encerrarDriver() {
-		Browser.fecharNavegador();
+//		Browser.fecharNavegador();
 	}
 
 	@Test
 	public void criarIntegracaoBuscarEquipes() {
-		integracao.criarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe);
+		Log.registrar("TESTE - Criar integração BUSCAR_EQUIPES");
+		String descricao = "BUSCAR EQUIPE";
+		
+		integracao.criarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe, 
+				Access.tokenOmnia, descricao, null, 3,"equipe X");
+		integracao.validarNotificacao("Integração cadastrada");
 	}
 	
 	public void editarIntegracao() {
