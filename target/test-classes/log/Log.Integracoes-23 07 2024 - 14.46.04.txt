@@ -1,8 +1,0 @@
-informações - 23 07 2024 - 14.46.12
-Logar - 23 07 2024 - 14.46.13
-null - 23 07 2024 - 14.46.13
-Acessar integrações - 23 07 2024 - 14.46.15
-Nova integração - 23 07 2024 - 14.46.16
-Variável é null, método variaveis será ignorado. - 23 07 2024 - 14.46.16
-Não abrir lead em integração - 23 07 2024 - 14.46.16
-Notificação de sucesso exibida: Integração cadastrada - 23 07 2024 - 14.46.17

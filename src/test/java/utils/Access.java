@@ -30,7 +30,9 @@ public class Access {
     public static String numeroDisparo = "553182952805";
     public static String nomeTemplate = "DisparoRejuHML";
     public static String variavel = "A=NOME_CLIENTE;B=PROCEDIMENTO;C=DIA;D=DIA_SEMANA;E=HORA;F=NASCIMENTO;G=COMPROMISSO;";
-
+    
+    public static String equipeOmnia = "Equipe Testes Gerais";
+    public static String usuarioOmnia = "Jhonata Vena";
 
     public static String setUrl(int number) {
         switch (number) {

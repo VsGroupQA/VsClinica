@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import utils.Log;
 import utils.Access;
 import utils.Browser;
+import pages.AgendamentoPage;
 import pages.IntegracoesPage;
 import pages.loginPage;
 
@@ -20,6 +21,7 @@ public class IntegracoesTest {
 	private static WebDriver driver;
 	private loginPage loginPage;
 	private IntegracoesPage integracao;
+	private AgendamentoPage agendamento;
 	
 	static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
 	
@@ -40,6 +42,7 @@ public class IntegracoesTest {
 		loginPage = new loginPage(driver);
 		loginPage.signIn(Access.usuario, Access.senha);
 		integracao = new IntegracoesPage(driver);
+		agendamento = new AgendamentoPage(driver);
 	}
 
 	@AfterEach
@@ -50,11 +53,48 @@ public class IntegracoesTest {
 	@Test
 	public void criarIntegracaoBuscarEquipes() {
 		Log.registrar("TESTE - Criar integração BUSCAR_EQUIPES");
-		String descricao = "BUSCAR EQUIPE";
-		
-		integracao.criarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe, 
-				Access.tokenOmnia, descricao, null, 3,"equipe X");
+
+		integracao.grupoCriarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe, 
+				Access.tokenOmnia, "BUSCAR EQUIPE - TESTE", null, 3, null);
+		integracao.botaoSalvarIntegração();
 		integracao.validarNotificacao("Integração cadastrada");
+	}
+	
+	@Test
+	public void criarIntegracaoBuscarUsuario() {
+		Log.registrar("TESTE - Criar integração BUSCAR_USUARIOS");
+
+		integracao.grupoCriarIntegracao("BUSCAR_USUARIOS", Access.urlBuscarUsuario, 
+				Access.tokenOmnia, "BUSCAR USUARIO - TESTE", null, 3, null);
+		integracao.botaoSalvarIntegração();
+		integracao.validarNotificacao("Integração cadastrada");
+	}
+	
+	@Test
+	public void criarIntegracaoAlertaAgendamento() {
+		Log.registrar("TESTE - Criar integração para alerta de agendamento");
+		integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTOS", Access.urlIntegracao, 
+				Access.tokenOmnia, "ALERTA DE AGENDAMENTO - TESTE", Access.variavel, 2, Access.usuarioOmnia);
+		integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
+		integracao.botaoSalvarIntegração();
+		integracao.validarNotificacao("Integração cadastrada");
+	}
+	
+	@Test
+	public void disparoAlertaAgendamento() {
+		Log.registrar("TESTE - Disparo para alerta de agendamento");
+//		integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTOS", Access.urlIntegracao, 
+//				Access.tokenOmnia, "ALERTA DE AGENDAMENTO - DISPARO", Access.variavel, 2, Access.usuarioOmnia);
+//		integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
+//		integracao.botaoSalvarIntegração();
+//		integracao.validarNotificacao("Integração cadastrada");
+		
+		// modal adicionado em agendamento - remover
+		
+		agendamento.acessarInicio();
+		agendamento.grupoNovoAgendamento("25/07/2024", "17:00", "17:01", true); // data, hora inicio, hora fim (hora atual)
+		
+		
 	}
 	
 	public void editarIntegracao() {

@@ -27,6 +27,11 @@ public class AgendamentoPage {
 
 	
 	// COMPONENTES
+	
+	public void acessarInicio () {
+		actions.clicarBotaoPegandoPeloId("ROLE_DASHBOARD");
+		actions.esperar(2000);
+	}
 
 	public void modalAgendamento(String css) {
 		actions.clicarBotaoPegandoPeloCss(css);
@@ -158,13 +163,16 @@ public class AgendamentoPage {
 	
 	// GRUPO
 
-	public void novoAgendamento(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+	public void grupoNovoAgendamento(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(2000);
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
 		procedimento(Access.procedimento,
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
 				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
+		// homologacao - modal
+		actions.clicarBotaoPegandoPeloXpath("/html/body/div[2]/div/div[4]/p-footer/button");
+		
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
 				"p-dropdownitem.p-element > li");
 		paciente(Access.paciente);
@@ -176,7 +184,7 @@ public class AgendamentoPage {
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
 
-	public void novoAgendamentoLista(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+	public void grupoNovoAgendamentoLista(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(2000);
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
 		procedimento(Access.procedimento,
@@ -195,7 +203,7 @@ public class AgendamentoPage {
 
 	}
 
-	public void novoAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+	public void grupoNovoAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(1000);
 		modalAgendamento("button.p-ripple");
 		actions.esperar(1000);
@@ -214,7 +222,7 @@ public class AgendamentoPage {
 
 	}
 
-	public void novoAgendamentoSemCamposObg(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+	public void grupoNovoAgendamentoSemCamposObg(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		actions.esperar(2000);
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");

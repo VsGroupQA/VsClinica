@@ -1,8 +1,0 @@
-informações - 23 07 2024 - 15.07.55
-Logar - 23 07 2024 - 15.07.56
-TESTE - Criar integração BUSCAR_EQUIPES - 23 07 2024 - 15.07.56
-Acessar integrações - 23 07 2024 - 15.08.00
-Nova integração - 23 07 2024 - 15.08.00
-Variável é null, método variaveis será ignorado. - 23 07 2024 - 15.08.02
-equipeOuUsuario é null, método será ignorado. - 23 07 2024 - 15.08.02
-Notificação de sucesso exibida: Integração cadastrada - 23 07 2024 - 15.08.02

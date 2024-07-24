@@ -1,7 +1,0 @@
-informações - 23 07 2024 - 14.47.07
-Logar - 23 07 2024 - 14.47.08
-null - 23 07 2024 - 14.47.08
-Acessar integrações - 23 07 2024 - 14.47.11
-Nova integração - 23 07 2024 - 14.47.11
-Variável é null, método variaveis será ignorado. - 23 07 2024 - 14.47.12
-Não abrir lead em integração - 23 07 2024 - 14.47.12

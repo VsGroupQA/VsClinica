@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import utils.Access;
 import utils.Actions;
 import utils.Log;
 
@@ -39,11 +38,6 @@ public class IntegracoesPage {
 		Log.registrar("Nova integração");
 	}
 
-	public void adicionarNovoAgendador() {
-		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
-		Log.registrar("Adicionar novo agendador");
-	}
-
 	public void selecionarTipoIntegracao(String nomeDoTipo) {
 		actions.clicarBotaoPegandoPeloXpath("//p-dropdown/div/span");
 		List<WebElement> tipoIntegracao = driver.findElements(By.xpath("//p-dropdownitem/li"));
@@ -64,7 +58,8 @@ public class IntegracoesPage {
 	}
 
 	public void adicionarTemplate() {
-		actions.clicarBotaoPegandoPeloCss("p-inputswitch.ng-dirty > div:nth-child(1) > span:nth-child(2)");
+		actions.clicarBotaoPegandoPeloCss(
+				"div.col-12:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p-inputswitch:nth-child(1) > div:nth-child(1) > span:nth-child(2)");
 	}
 
 	public void selecionarLead(int parametro, String equipeOuUsuario) {
@@ -84,6 +79,9 @@ public class IntegracoesPage {
 		case 2: // Usuário
 			selecionarEquipeOuUsuario(equipeOuUsuario, false);
 			Log.registrar("Criar lead e enviar para usuário: " + equipeOuUsuario + "");
+			break;
+		case 3:
+			Log.registrar("Parâmetro nulo.");
 			break;
 		default:
 			Log.registrar("Parâmetro inválido: " + parametro);
@@ -141,13 +139,19 @@ public class IntegracoesPage {
 		}
 	}
 
-	public void salvarIntegração() {
+	public void botaoSalvarIntegração() {
 		actions.clicarBotaoPegandoPeloXpath(
 				"/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
 	}
 
 	public void numeroDisparo(String numero) {
+		if (numero == null) {
+			Log.registrar("Parâmentro 'numero' é null, método ignorado.");
+			return;
+		}
+
 		actions.escreverPegandoPeloName("numeroDisparo", numero);
+		Log.registrar("Numero de template adicionado: " + numero);
 	}
 
 	public void nomeTemplateOmnia(String nomeTemplate) {
@@ -155,7 +159,7 @@ public class IntegracoesPage {
 	}
 
 	public void procedimento(String nomeProcedimento) {
-		actions.clicarBotaoPegandoPeloXpath("//div[2]/div/p-dropdown/div/span");
+		actions.clicarBotaoPegandoPeloXpath("//div[5]/div[2]/div[2]/div/p-dropdown/div/span");
 		List<WebElement> dropdownItems = driver.findElements(By.xpath("//p-dropdownitem/li"));
 		for (WebElement item : dropdownItems) {
 			if (item.getText().equalsIgnoreCase(nomeProcedimento)) {
@@ -163,12 +167,21 @@ public class IntegracoesPage {
 				break;
 			}
 		}
+		Log.registrar("Procurar pelo procediemento: "+ nomeProcedimento);
 	}
 
+	
+	public void adicionarNovoAgendador() {
+		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
+		Log.registrar("Adicionar novo agendador");
+	}
+
+	
+	
 	// GRUPO
 
-	public void criarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, String variavel,
-			int caseLead, String equipeUsuario) {
+	public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, 
+			String variavel, int caseLead, String equipeUsuario) {
 		acessarIntegracao();
 		adicionarNovaIntegracao();
 		selecionarTipoIntegracao(tipo);
@@ -177,10 +190,15 @@ public class IntegracoesPage {
 		nomeIntegracao(nomeIntegracao);
 		variaveis(variavel);
 		selecionarLead(caseLead, equipeUsuario);
-		adicionarTemplate();
-		numeroDisparo(Access.numeroDisparo);
-		nomeTemplateOmnia(Access.nomeTemplate);
-		procedimento(Access.procedimento);
-		salvarIntegração();
 	}
+
+	public void grupoAdicionarTemplate(String procedimento, String numero, String template) {
+		actions.esperar(1000);
+		adicionarTemplate();
+		actions.esperar(1000);
+		procedimento(procedimento);
+		numeroDisparo(numero);
+		nomeTemplateOmnia(template);
+	}
+
 }
