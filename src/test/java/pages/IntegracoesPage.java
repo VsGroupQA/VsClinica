@@ -27,6 +27,7 @@ public class IntegracoesPage {
 	// COMPONENTES
 
 	public void acessarIntegracao() {
+		actions.esperar(1000);
 		actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
 		actions.esperar(1000);
 		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='Integracoes']/div/div/div/div[2]/p[2]");
@@ -170,13 +171,34 @@ public class IntegracoesPage {
 		Log.registrar("Procurar pelo procediemento: "+ nomeProcedimento);
 	}
 
-	
 	public void adicionarNovoAgendador() {
 		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
 		Log.registrar("Adicionar novo agendador");
 	}
-
 	
+	public void descricaoAgendador(String nomeDescricao) {
+		actions.escreverPegandoPeloName("descricao", nomeDescricao);
+	}
+
+	public void selecionarTipoAlerta(String nomeDoTipo) {
+		actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-configuracoes/div/app-integracao/app-agendador-tarefas/p-dialog/div/div/div[3]/div/form/div[3]/div/p-dropdown/div/span");
+		List<WebElement> tipoAlerta = driver.findElements(By.xpath("//p-dropdownitem/li"));
+		for (WebElement alerta : tipoAlerta) {
+			if (alerta.getText().equalsIgnoreCase(nomeDoTipo)) {
+				alerta.click();
+				break;
+			}
+		}
+	}
+
+	public void horarioExecucao(String hora) {
+		actions.escreverPegandoPeloName("horarioExec", hora);
+	}
+	
+	public void deletarIntegracao() {
+		// validar texto e excluir integracao
+		actions.clicarBotaoPegandoPeloXpath("//*[@id=\"pr_id_33-table\"]/tbody/tr[5]/td[6]/div/button[2]/span");
+	}
 	
 	// GRUPO
 
@@ -199,6 +221,15 @@ public class IntegracoesPage {
 		procedimento(procedimento);
 		numeroDisparo(numero);
 		nomeTemplateOmnia(template);
+	}
+	
+	public void grupoAdicionarAgendador(String descricao) {
+		actions.esperar(4000);
+		acessarIntegracao();
+		adicionarNovoAgendador();
+		descricaoAgendador(descricao);
+		selecionarTipoAlerta("ALERTAR_AGENDAMENTOS");
+		
 	}
 
 }
