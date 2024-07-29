@@ -56,7 +56,7 @@ public class IntegracoesTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+//        Browser.fecharNavegador();
     }
     
     /*TESTE COMPONENTES*/
@@ -97,22 +97,30 @@ public class IntegracoesTest {
     public void disparoAlertaAgendamento() {
         Log.registrar("TESTE - Disparo para alerta de agendamento");
         
-        // validar integração de buscar antes
-//		integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTOS", Access.urlIntegracao, 
-//				Access.tokenOmnia, "ALERTA DE AGENDAMENTO - DISPARO", Access.variavel, 2, Access.usuarioOmnia);
-//		integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
-//		integracao.botaoSalvarIntegração();
-//		integracao.validarNotificacao("Integração cadastrada");
+        // validar integração de lead  (buscar) antes
+        // Criar integracao
+		integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTOS", Access.urlIntegracao, 
+				Access.tokenOmnia, "ALERTA DE AGENDAMENTO - DISPARO", Access.variavel, 2, Access.usuarioOmnia);
+		integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
+		integracao.botaoSalvarIntegração();
+		integracao.validarNotificacao("Integração cadastrada");
 		
-//		integracao.deletarIntegracao();
  		
- 		// modal adicionado em agendamento - remover
+ 		// modal adicionado em agendamento - remover (?)
 
         agendamento.acessarInicio();
         agendamento.grupoNovoAgendamento(dataFormatada, horaAtual, horaMaisUm, true); // data, hora inicio, hora fim (hora atual)
    
-        integracao.grupoAdicionarAgendador("Novo");
-        // abrir nova aba logado no omnia
+        integracao.grupoAdicionarAgendador("Novo"); // adicionar hora e concluir 
+        
+        // adicionar verificação no log
+        
     }
-   
+    
+    @Test
+    public void teste()
+    {	
+    	integracao.acessarIntegracao();
+    	integracao.deletarIntegracao("ALERTA DE AGENDAMENTO");
+    }   
 }

@@ -18,13 +18,15 @@ import java.util.List;
 public class IntegracoesPage {
 	private WebDriver driver;
 	private Actions actions;
+	private WebDriverWait wait;
 
 	public IntegracoesPage(WebDriver driver) {
 		this.driver = driver;
 		this.actions = new Actions(this.driver);
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	// COMPONENTES
+	// Componentes
 
 	public void acessarIntegracao() {
 		actions.esperar(1000);
@@ -195,11 +197,32 @@ public class IntegracoesPage {
 		actions.escreverPegandoPeloName("horarioExec", hora);
 	}
 	
-	public void deletarIntegracao() {
-		// validar texto e excluir integracao
-		actions.clicarBotaoPegandoPeloXpath("//*[@id=\"pr_id_33-table\"]/tbody/tr[5]/td[6]/div/button[2]/span");
-	}
-	
+	  public void deletarIntegracao(String nomeEsperado) {
+	        // Aguarda a tabela ser carregada
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
+
+	        // Encontra a quantidade de linhas na tabela
+	        List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
+
+	        // Itera sobre as linhas da tabela
+	        for (int i = 1; i <= linhas.size(); i++) {
+	            // Encontra o elemento da coluna de nome da linha atual
+	            WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
+
+	            // Verifica se o texto da coluna de nome é igual ao nome esperado
+	            if (nomeColuna.getText().equals(nomeEsperado)) {
+	                // Encontra e clica no botão de excluir da linha correspondente
+	                WebElement botaoExcluir = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/button[2]/span"));
+	                botaoExcluir.click();
+
+	                // Adiciona uma espera para a confirmação de exclusão, se necessário
+	                wait.until(ExpectedConditions.invisibilityOf(linhas.get(i - 1)));
+
+	                // Se a integração foi excluída, pode sair do loop
+	                break;
+	            }
+	        }
+	  }
 	// GRUPO
 
 	public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, 
