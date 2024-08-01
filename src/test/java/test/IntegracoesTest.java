@@ -59,7 +59,7 @@ public class IntegracoesTest {
 //        Browser.fecharNavegador();
     }
     
-    /*TESTE COMPONENTES*/
+    /*BUSCAR EQUIPES E USUÁRIOS*/
 
     @Test
     public void criarIntegracaoBuscarEquipes() {
@@ -81,6 +81,10 @@ public class IntegracoesTest {
         integracao.validarNotificacao("Integração cadastrada");
     }
     
+    
+    /*TESTE ALERTA DE AGENDAMENTO*/
+    
+    // Componente
     @Test
     public void criarIntegracaoAlertaAgendamento() {
         Log.registrar("TESTE - Criar integração para alerta de agendamento");
@@ -91,36 +95,43 @@ public class IntegracoesTest {
         integracao.validarNotificacao("Integração cadastrada");
     }
     
-    /*TESTE CENÁRIO*/
-    
+    // Cenário
     @Test
     public void disparoAlertaAgendamento() {
         Log.registrar("TESTE - Disparo para alerta de agendamento");
         
-        // validar integração de lead  (buscar) antes
-        // Criar integracao
 		integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTOS", Access.urlIntegracao, 
 				Access.tokenOmnia, "ALERTA DE AGENDAMENTO - DISPARO", Access.variavel, 2, Access.usuarioOmnia);
 		integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
 		integracao.botaoSalvarIntegração();
 		integracao.validarNotificacao("Integração cadastrada");
 		
- 		
  		// modal adicionado em agendamento - remover (?)
-
         agendamento.acessarInicio();
         agendamento.grupoNovoAgendamento(dataFormatada, horaAtual, horaMaisUm, true); // data, hora inicio, hora fim (hora atual)
    
-        integracao.grupoAdicionarAgendador("Novo"); // adicionar hora e concluir 
+        integracao.grupoAdicionarAgendador("DISPARO DE AGENDAMENTO - TESTE"); // adicionar hora e concluir 
         
-        // adicionar verificação no log
+        // ESPERA E VERIFICAÇÃO adicionar verificação no log
         
     }
     
+    
+    /*TESTE AGENDAMENTO CANCELADO*/
+    
+    // Componente
     @Test
-    public void teste()
+    public void criarDisparoAgendamentoCancelado()
     {	
-    	integracao.acessarIntegracao();
-    	integracao.deletarIntegracao("ALERTA DE AGENDAMENTO");
+    	  Log.registrar("TESTE - Criar integração para disparo de agendamento cancelado");
+          integracao.grupoCriarIntegracao("ALERTAR_AGENDAMENTO_CANCELADO",
+        		  Access.urlIntegracao, 
+                  Access.tokenOmnia,
+                  "ALERTA DE AGENDAMENTO CANCELADO - TESTE", 
+                  Access.variavel, 2, Access.usuarioOmnia);
+//          integracao.grupoAdicionarTemplate(Access.procedimento, Access.numeroDisparo, Access.nomeTemplate);
+//          integracao.botaoSalvarIntegração();
+//          integracao.validarNotificacao("Integração cadastrada");
     }   
+    
 }

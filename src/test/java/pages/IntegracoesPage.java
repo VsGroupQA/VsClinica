@@ -15,6 +15,7 @@ import utils.Log;
 import java.time.Duration;
 import java.util.List;
 
+
 public class IntegracoesPage {
 	private WebDriver driver;
 	private Actions actions;
@@ -26,7 +27,7 @@ public class IntegracoesPage {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	// Componentes
+	/*TESTE COMPONENTES*/
 
 	public void acessarIntegracao() {
 		actions.esperar(1000);
@@ -197,20 +198,22 @@ public class IntegracoesPage {
 		actions.escreverPegandoPeloName("horarioExec", hora);
 	}
 	
-	  public void deletarIntegracao(String nomeEsperado) {
+	public void deletarIntegracao(String nomeEsperado) {
 	        // Aguarda a tabela ser carregada
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
 
-	        // Encontra a quantidade de linhas na tabela
 	        List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
 
-	        // Itera sobre as linhas da tabela
 	        for (int i = 1; i <= linhas.size(); i++) {
 	            // Encontra o elemento da coluna de nome da linha atual
 	            WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
 
+	            String x = nomeColuna.getText();
+	            Log.registrar(x);
 	            // Verifica se o texto da coluna de nome é igual ao nome esperado
 	            if (nomeColuna.getText().equals(nomeEsperado)) {
+	            	
+	            	
 	                // Encontra e clica no botão de excluir da linha correspondente
 	                WebElement botaoExcluir = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/button[2]/span"));
 	                botaoExcluir.click();
@@ -223,8 +226,9 @@ public class IntegracoesPage {
 	            }
 	        }
 	  }
+	
 	// GRUPO
-
+	
 	public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, 
 			String variavel, int caseLead, String equipeUsuario) {
 		acessarIntegracao();

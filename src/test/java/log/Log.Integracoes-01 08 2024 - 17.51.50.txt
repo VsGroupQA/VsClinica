@@ -1,0 +1,5 @@
+informações - 01 08 2024 - 17.52.01
+Logar - 01 08 2024 - 17.52.03
+TESTE - Criar integração para disparo de agendamento cancelado - 01 08 2024 - 17.52.03
+Acessar integrações - 01 08 2024 - 17.52.05
+Nova integração - 01 08 2024 - 17.52.05
