@@ -171,7 +171,7 @@ public class AgendamentoPage {
 				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		// homologacao - modal
-//		actions.clicarBotaoPegandoPeloXpath("/html/body/div[2]/div/div[4]/p-footer/button");
+		//actions.clicarBotaoPegandoPeloXpath("/html/body/div[2]/div/div[4]/p-footer/button");
 		
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
 				"p-dropdownitem.p-element > li");
