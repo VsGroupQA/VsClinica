@@ -34,7 +34,11 @@ public class IntegracoesTest {
     private String horaMaisUm = agora.plusMinutes(1).format(HORA_FORMATTER);
     private String horaAtual = agora.format(HORA_FORMATTER);
     
-    private static final String DISPARO_CANCELADO = "AAA";
+    private static final String DISPARO_CANCELADO = "DISPARO";
+    private static final String DISPARO_AGENDAMENTOS = "DISPARO";
+    private static final String DISPARO_ANIVERSARIO = "DISPARO";
+    private static final String DISPARO_EMAIL = "DISPARO";
+    private static final String DISPARO_ALERTA_AGENDAMENTO = "DISPARO";
     
     @BeforeAll
     public static void iniciarLog() {
@@ -58,21 +62,11 @@ public class IntegracoesTest {
 
     @AfterEach
     public void encerrarDriver() {
-        desativarTodasIntegracoesCriadas();
         Browser.fecharNavegador();
     }
-
-    private void desativarTodasIntegracoesCriadas() {
-        Log.registrar("Desativando todas as integrações criadas...");
-        integracao.desativarIntegracao("BUSCAR_EQUIPES");
-        integracao.desativarIntegracao("BUSCAR_USUARIOS");
-        integracao.desativarIntegracao("ALERTAR_AGENDAMENTOS");
-        integracao.desativarIntegracao("DISPARO DE AGENDAMENTO - TESTE");
-        integracao.desativarIntegracao("ALERTA DE AGENDAMENTO - DISPARO");
-        integracao.desativarIntegracao(DISPARO_CANCELADO);
-        Log.registrar("Todas as integrações criadas foram desativadas.");
-    }
-
+    
+    // Partes
+    
     @Test
     public void criarIntegracaoBuscarEquipes() {
         Log.registrar("TESTE - Criar integração BUSCAR_EQUIPES");
@@ -103,6 +97,7 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        integracao.desativarIntegracao(DISPARO_CANCELADO);
     }
 
     @Test
@@ -112,10 +107,10 @@ public class IntegracoesTest {
                 "ALERTAR_AGENDAMENTOS", 
                 Access.urlIntegracao, 
                 Access.tokenOmnia, 
-                "ALERTA DE AGENDAMENTO - TESTE", 
+                DISPARO_ALERTA_AGENDAMENTO, 
                 Access.variavel,
-                2, 
-                Access.usuarioOmnia
+                3, 
+                null
         );
         integracao.grupoAdicionarTemplate(
                 Access.procedimento, 
@@ -125,37 +120,9 @@ public class IntegracoesTest {
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
     }
-
+ 
     @Test
-    public void disparoAlertaAgendamento() {
-        Log.registrar("TESTE - Disparo para alerta de agendamento");
-        integracao.grupoCriarIntegracao(
-                "ALERTAR_AGENDAMENTOS",
-                Access.urlIntegracao, 
-                Access.tokenOmnia, 
-                "ALERTA DE AGENDAMENTO - DISPARO",
-                Access.variavel,
-                2, 
-                Access.usuarioOmnia
-        );
-        integracao.grupoAdicionarTemplate(
-                Access.procedimento, 
-                Access.numeroDisparo, 
-                Access.nomeTemplate
-        );
-        integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
-        
-        agendamento.acessarInicio();
-        agendamento.grupoNovoAgendamento(dataFormatada, horaAtual, horaMaisUm, true);
-        integracao.grupoAdicionarAgendador("DISPARO DE AGENDAMENTO - TESTE");
-        
-        // ESPERA E VERIFICAÇÃO adicionar verificação no log
-        Log.registrar("Verificação de disparo de agendamento concluído.");
-    }
-
-    @Test
-    public void criarDisparoAgendamentoCancelado() {
+    public void criarIntegracaoAgendamentoCancelado() {
         Log.registrar("TESTE - Criar integração para disparo de agendamento cancelado");
         integracao.grupoCriarIntegracao(
                 "ALERTAR_AGENDAMENTO_CANCELADO",
@@ -168,7 +135,93 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        integracao.desativarIntegracao(DISPARO_CANCELADO);
        
     }
+    
+    @Test
+    public void criarIntegracaoAniversario() {
+    	 Log.registrar("TESTE - Criar integração para disparo de aniversariante");
+         integracao.grupoCriarIntegracao(
+                 "NOTIFICACAO_ANIVERSARIANTES_WHATSAPP",
+                 Access.urlIntegracao, 
+                 Access.tokenOmnia,
+                 DISPARO_ANIVERSARIO, 
+                 Access.variavel,
+                 3, 
+                 null
+         );
+         integracao.botaoSalvarIntegracao();
+         integracao.validarNotificacao("Integração cadastrada");
+         integracao.desativarIntegracao(DISPARO_ANIVERSARIO);
+        
+     }
+    
+    @Test
+    public void criarIntegracaoLembreteEmail() {
+   	 Log.registrar("TESTE - Criar integração para disparo de aniversariante");
+        integracao.grupoCriarIntegracao(
+                "NOTIFICACAO_VIA_EMAIL_LEMBRETE_AGENDAMENTO",
+                Access.urlIntegracao, 
+                Access.tokenOmnia,
+                DISPARO_EMAIL, 
+                Access.variavel,
+                3, 
+                null
+        );
+        integracao.botaoSalvarIntegracao();
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.desativarIntegracao(DISPARO_EMAIL);
+       
+    }
+    
+    @Test
+    public void criarAgendadorDisparo() {
+    	Log.registrar("TESTE - Criar novo agendador de disparo");
+    	integracao.acessarIntegracao();
+    	integracao.grupoAdicionarAgendador("AGENDADOR - TESTE");
+    	integracao.botaoSalvarAgendador();
+    	integracao.validarNotificacao("Tarefa agendada");
+
+    }
+    
+    // Cenário
+    
+    @Test
+    public void disparoAlertaAgendamento() {
+        Log.registrar("TESTE - Disparo para alerta de agendamento");
+        
+        agendamento.acessarInicio();
+        agendamento.grupoNovoAgendamento(
+        		dataFormatada,
+        		horaAtual,
+        		horaMaisUm,
+        		true
+        );
+        integracao.grupoCriarIntegracao(
+                "ALERTAR_AGENDAMENTOS",
+                Access.urlIntegracao, 
+                Access.tokenOmnia, 
+                DISPARO_AGENDAMENTOS,
+                Access.variavel,
+                3, 
+                null
+        );
+        integracao.grupoAdicionarTemplate(
+                Access.procedimento, 
+                Access.numeroDisparo, 
+                Access.nomeTemplate
+                
+        );
+        integracao.botaoSalvarIntegracao();
+        integracao.validarNotificacao("Integração cadastrada");
+        
+        integracao.grupoAdicionarAgendador(DISPARO_AGENDAMENTOS);
+        integracao.botaoSalvarAgendador();
+        integracao.validarNotificacao("Tarefa agendada");
+        
+    }
+ 
+    // 1. Desativar integracoes criadas 2. cenario adicionar equipes e usuario
 }
-// 1. Verificar desativação  2. Adicionar novos metodos 3. corrigir testes
+

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.Access;
 import utils.Actions;
 import utils.Log;
 
@@ -29,8 +30,8 @@ public class IntegracoesPage {
     /*TESTE COMPONENTES*/
 
     public void acessarIntegracao() {
-        actions.esperar(1000);
-        Log.registrar("Esperando 1 segundo");
+        actions.esperar(5000);
+        Log.registrar("Esperando 5 segundo");
         actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
         Log.registrar("Clicando no botão de configurações");
         actions.esperar(1000);
@@ -155,6 +156,11 @@ public class IntegracoesPage {
         actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         Log.registrar("Clicando no botão de salvar integração");
     }
+    
+    public void botaoSalvarAgendador() {
+    	actions.clicarBotaoPegandoPeloXpath("//p-button/button/span");
+    	Log.registrar("Clicando no botão de salvar agendador");
+    }
 
     public void numeroDisparo(String numero) {
         if (numero == null) {
@@ -244,33 +250,69 @@ public class IntegracoesPage {
 
     public void desativarIntegracao(String nomeEsperado) {
         Log.registrar("Tentando desativar integração com o nome: " + nomeEsperado);
-        actions.esperar(5000);
-        Log.registrar("Esperando 5 segundos");
+        actions.esperar(2000);
+        Log.registrar("Esperando");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
         Log.registrar("Tabela de integrações carregada");
 
         List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
 
         for (int i = 1; i <= linhas.size(); i++) {
-            WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
-            String x = nomeColuna.getText();
-            Log.registrar("Nome da integração na linha " + i + ": " + x);
+            try {
+                WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
+                String txt = nomeColuna.getText();
+                Log.registrar("Nome da integração na linha " + i + ": " + txt);
 
-            if (nomeColuna.getText().equals(nomeEsperado)) {
-                WebElement botaoExcluir = driver.findElement(By.xpath("//tr["+ i +"]/td[6]/div/p-inputswitch/div/span"));
-                botaoExcluir.click();
-                Log.registrar("Clicando no botão de desativar integração");
+                if (txt.equals(nomeEsperado)) {
+                    Log.registrar("Integração encontrada: " + txt);
+                    WebElement botaoDesativar = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/p-inputswitch/div/span"));
+                    botaoDesativar.click();
+                    Log.registrar("Clicando no botão de desativar integração");
 
-                break;
+                    break;
+                }
+            } catch (NoSuchElementException e) {
+                Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
             }
         }
     }
 
+    public void desativarAgendamento(String nomeEsperado) {
+        // Finalizar
+    	Log.registrar("Tentando desativar integração com o nome: " + nomeEsperado);
+        actions.esperar(2000);
+        Log.registrar("Esperando");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
+        Log.registrar("Tabela de integrações carregada");
+
+        List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
+
+        for (int i = 1; i <= linhas.size(); i++) {
+            try {
+                WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
+                String txt = nomeColuna.getText();
+                Log.registrar("Nome da integração na linha " + i + ": " + txt);
+
+                if (txt.equals(nomeEsperado)) {
+                    Log.registrar("Integração encontrada: " + txt);
+                    WebElement botaoDesativar = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/p-inputswitch/div/span"));
+                    botaoDesativar.click();
+                    Log.registrar("Clicando no botão de desativar integração");
+
+                    break;
+                }
+            } catch (NoSuchElementException e) {
+                Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
+            }
+        }
+    }
+    
     // GRUPO
 
     public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao,
                                      String variavel, int caseLead, String equipeUsuario) {
         Log.registrar("Iniciando criação de integração em grupo");
+        actions.esperar(2000);
         acessarIntegracao();
         adicionarNovaIntegracao();
         selecionarTipoIntegracao(tipo);
@@ -287,7 +329,6 @@ public class IntegracoesPage {
         actions.esperar(1000);
         Log.registrar("Esperando 1 segundo");
         adicionarTemplate();
-        actions.esperar(1000);
         Log.registrar("Esperando 1 segundo");
         procedimento(procedimento);
         numeroDisparo(numero);
@@ -297,12 +338,35 @@ public class IntegracoesPage {
 
     public void grupoAdicionarAgendador(String descricao) {
         Log.registrar("Iniciando adição de agendador em grupo");
-        actions.esperar(4000);
-        Log.registrar("Esperando 4 segundos");
         acessarIntegracao();
         adicionarNovoAgendador();
         descricaoAgendador(descricao);
         selecionarTipoAlerta("ALERTAR_AGENDAMENTOS");
+        actions.esperar(2000);
         Log.registrar("Adição de agendador em grupo concluída");
     }
+    
+    public void grupoLeadsOmnia() {
+    	grupoCriarIntegracao(
+                "BUSCAR_EQUIPES",
+                Access.urlBuscarEquipe, 
+                Access.tokenOmnia,
+                "BUSCAR EQUIPE - TESTE",
+                null,
+                3, 
+                null
+        );
+    	botaoSalvarIntegracao();
+    	grupoCriarIntegracao(
+                "BUSCAR_USUARIOS",
+                Access.urlBuscarUsuario, 
+                Access.tokenOmnia, 
+                "BUSCAR USUARIO - TESTE",
+                null, 
+                3, 
+                null
+        );
+    	botaoSalvarIntegracao();
+    }
+    
 }
