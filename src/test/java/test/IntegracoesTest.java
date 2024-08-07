@@ -34,11 +34,12 @@ public class IntegracoesTest {
     private String horaMaisUm = agora.plusMinutes(1).format(HORA_FORMATTER);
     private String horaAtual = agora.format(HORA_FORMATTER);
     
-    private static final String DISPARO_CANCELADO = "DISPARO";
-    private static final String DISPARO_AGENDAMENTOS = "DISPARO";
-    private static final String DISPARO_ANIVERSARIO = "DISPARO";
-    private static final String DISPARO_EMAIL = "DISPARO";
-    private static final String DISPARO_ALERTA_AGENDAMENTO = "DISPARO";
+    private static final String DISPARO_CANCELADO = "DISPARO CANCELAMENTO - TESTE";
+    private static final String DISPARO_ANIVERSARIO = "DISPARO ANIVERSARIO - TESTE";
+    private static final String DISPARO_EMAIL = "DISPARO EMAIL - TESTE";
+    private static final String DISPARO_ALERTA_AGENDAMENTO = "DISPARO AGENDAMENTO - TESTE";
+    private static final String BUSCAR_EQUIPES = "BUSCAR EQUIPES - TESTE";
+    private static final String BUSCAR_USUARIO = "BUSCAR USUARIO - TESTE";
     
     @BeforeAll
     public static void iniciarLog() {
@@ -62,7 +63,7 @@ public class IntegracoesTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+//        Browser.fecharNavegador();
     }
     
     // Partes
@@ -74,13 +75,14 @@ public class IntegracoesTest {
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
                 Access.tokenOmnia,
-                "BUSCAR EQUIPE - TESTE",
+                BUSCAR_EQUIPES,
                 null,
                 3, 
                 null
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        integracao.deletarIntegracao(BUSCAR_EQUIPES);
     }
 
     @Test
@@ -90,14 +92,14 @@ public class IntegracoesTest {
                 "BUSCAR_USUARIOS",
                 Access.urlBuscarUsuario, 
                 Access.tokenOmnia, 
-                "BUSCAR USUARIO - TESTE",
+                BUSCAR_USUARIO,
                 null, 
                 3, 
                 null
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.desativarIntegracao(DISPARO_CANCELADO);
+        integracao.deletarIntegracao(BUSCAR_USUARIO);
     }
 
     @Test
@@ -119,6 +121,7 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        integracao.deletarIntegracao(DISPARO_ALERTA_AGENDAMENTO);
     }
  
     @Test
@@ -135,7 +138,7 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.desativarIntegracao(DISPARO_CANCELADO);
+        integracao.deletarIntegracao(DISPARO_CANCELADO);
        
     }
     
@@ -153,7 +156,7 @@ public class IntegracoesTest {
          );
          integracao.botaoSalvarIntegracao();
          integracao.validarNotificacao("Integração cadastrada");
-         integracao.desativarIntegracao(DISPARO_ANIVERSARIO);
+         integracao.deletarIntegracao(DISPARO_ANIVERSARIO);
         
      }
     
@@ -171,7 +174,7 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.desativarIntegracao(DISPARO_EMAIL);
+        integracao.deletarIntegracao(DISPARO_EMAIL);
        
     }
     
@@ -187,10 +190,15 @@ public class IntegracoesTest {
     
     // Cenário
     
+    // Cenário
+    
     @Test
     public void disparoAlertaAgendamento() {
+    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
+    	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
+    	
         Log.registrar("TESTE - Disparo para alerta de agendamento");
-        
+        integracao.grupoBuscarEquipeUsuarioOmnia();
         agendamento.acessarInicio();
         agendamento.grupoNovoAgendamento(
         		dataFormatada,
@@ -198,14 +206,15 @@ public class IntegracoesTest {
         		horaMaisUm,
         		true
         );
+        integracao.fecharNotficacao();
         integracao.grupoCriarIntegracao(
                 "ALERTAR_AGENDAMENTOS",
                 Access.urlIntegracao, 
                 Access.tokenOmnia, 
-                DISPARO_AGENDAMENTOS,
+                nomeIntegracao,
                 Access.variavel,
-                3, 
-                null
+                2, 
+                "Jhonata Vena"
         );
         integracao.grupoAdicionarTemplate(
                 Access.procedimento, 
@@ -215,13 +224,54 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotficacao();
         
-        integracao.grupoAdicionarAgendador(DISPARO_AGENDAMENTOS);
+        integracao.grupoAdicionarAgendador(nomeAgendador);
         integracao.botaoSalvarAgendador();
         integracao.validarNotificacao("Tarefa agendada");
+        integracao.fecharModal();
         
+        integracao.desativarIntegracao(nomeIntegracao);
+        integracao.desativarAgendamento(nomeAgendador);
+        // cancelar todos os integ criados
     }
- 
-    // 1. Desativar integracoes criadas 2. cenario adicionar equipes e usuario
+    
+    @Test
+    public void disparoAgendamentoCancelado() {
+    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
+    	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
+    	
+        Log.registrar("TESTE - Disparo para agendamento cancelado");
+        integracao.grupoBuscarEquipeUsuarioOmnia();
+        integracao.fecharNotficacao();
+        integracao.grupoCriarIntegracao(
+                "ALERTAR_AGENDAMENTO_CANCELADO",
+                Access.urlIntegracao, 
+                Access.tokenOmnia, 
+                nomeIntegracao,
+                Access.variavel,
+                2, 
+                "Jhonata Vena"
+        );
+        integracao.grupoAdicionarTemplate(
+                Access.procedimento, 
+                Access.numeroDisparo, 
+                Access.nomeTemplate    
+        );
+        integracao.botaoSalvarIntegracao();
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotficacao();
+        
+        agendamento.acessarListaPaciente();
+        agendamento.pesquisarPaceinteAgendamento(Access.paciente);
+        agendamento.cancelarPrimeiroAgendamento();
+        // erro ao cancelar
+        
+        integracao.desativarIntegracao(nomeIntegracao);
+        integracao.desativarAgendamento(nomeAgendador);
+        
+    	
+    }
+    
 }
 

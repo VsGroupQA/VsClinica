@@ -27,11 +27,11 @@ public class IntegracoesPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    /*TESTE COMPONENTES*/
+    /* COMPONENTES */
 
     public void acessarIntegracao() {
-        actions.esperar(5000);
-        Log.registrar("Esperando 5 segundo");
+        actions.esperar(1000);
+        Log.registrar("Esperando");
         actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
         Log.registrar("Clicando no botão de configurações");
         actions.esperar(1000);
@@ -219,38 +219,31 @@ public class IntegracoesPage {
 
     public void deletarIntegracao(String nomeEsperado) {
         Log.registrar("Tentando deletar integração com o nome: " + nomeEsperado);
-        // Aguarda a tabela ser carregada
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
-        Log.registrar("Tabela de integrações carregada");
-
+        actions.esperar(1000);
         List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
 
         for (int i = 1; i <= linhas.size(); i++) {
-            // Encontra o elemento da coluna de nome da linha atual
+        	try {
             WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
-            String x = nomeColuna.getText();
-            Log.registrar("Nome da integração na linha " + i + ": " + x);
-
-            // Verifica se o texto da coluna de nome é igual ao nome esperado
-            if (nomeColuna.getText().equals(nomeEsperado)) {
-                // Encontra e clica no botão de excluir da linha correspondente
+            String item = nomeColuna.getText();
+            Log.registrar("Nome da integração na linha " + i + ": " + item);
+            if (item.equals(nomeEsperado)) {
                 WebElement botaoExcluir = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/button[2]/span"));
                 botaoExcluir.click();
-                Log.registrar("Clicando no botão de excluir integração");
-
-                // Adiciona uma espera para a confirmação de exclusão, se necessário
-                wait.until(ExpectedConditions.invisibilityOf(linhas.get(i - 1)));
                 Log.registrar("Integração excluída com sucesso");
-
-                // Se a integração foi excluída, pode sair do loop
                 break;
             }
+            
+        }catch (NoSuchElementException e) {
+            Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
+        }
+        
         }
     }
 
     public void desativarIntegracao(String nomeEsperado) {
         Log.registrar("Tentando desativar integração com o nome: " + nomeEsperado);
-        actions.esperar(2000);
+        actions.esperar(1000);
         Log.registrar("Esperando");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
         Log.registrar("Tabela de integrações carregada");
@@ -278,9 +271,8 @@ public class IntegracoesPage {
     }
 
     public void desativarAgendamento(String nomeEsperado) {
-        // Finalizar
     	Log.registrar("Tentando desativar integração com o nome: " + nomeEsperado);
-        actions.esperar(2000);
+        actions.esperar(1000);
         Log.registrar("Esperando");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
         Log.registrar("Tabela de integrações carregada");
@@ -289,13 +281,13 @@ public class IntegracoesPage {
 
         for (int i = 1; i <= linhas.size(); i++) {
             try {
-                WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
+                WebElement nomeColuna = driver.findElement(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr["+i+"]/td"));
                 String txt = nomeColuna.getText();
                 Log.registrar("Nome da integração na linha " + i + ": " + txt);
 
                 if (txt.equals(nomeEsperado)) {
                     Log.registrar("Integração encontrada: " + txt);
-                    WebElement botaoDesativar = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/p-inputswitch/div/span"));
+                    WebElement botaoDesativar = driver.findElement(By.xpath("//table[@id='pr_id_9-table']/tbody/tr["+i+"]/td[6]/div/p-inputswitch/div/span"));
                     botaoDesativar.click();
                     Log.registrar("Clicando no botão de desativar integração");
 
@@ -307,12 +299,20 @@ public class IntegracoesPage {
         }
     }
     
-    // GRUPO
+    public void fecharModal() {
+    	actions.clicarBotaoPegandoPeloXpath("//p-button[2]/button/span");
+    }
+    
+    public void fecharNotficacao() {
+    	actions.clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon > path");
+    }
+    
+    // GRUPO/* GRUPO */
 
     public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao,
                                      String variavel, int caseLead, String equipeUsuario) {
         Log.registrar("Iniciando criação de integração em grupo");
-        actions.esperar(2000);
+        actions.esperar(2200);
         acessarIntegracao();
         adicionarNovaIntegracao();
         selecionarTipoIntegracao(tipo);
@@ -346,7 +346,8 @@ public class IntegracoesPage {
         Log.registrar("Adição de agendador em grupo concluída");
     }
     
-    public void grupoLeadsOmnia() {
+    public void grupoBuscarEquipeUsuarioOmnia() {
+    	acessarIntegracao();
     	grupoCriarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
@@ -357,6 +358,7 @@ public class IntegracoesPage {
                 null
         );
     	botaoSalvarIntegracao();
+    	actions.esperar(500);
     	grupoCriarIntegracao(
                 "BUSCAR_USUARIOS",
                 Access.urlBuscarUsuario, 

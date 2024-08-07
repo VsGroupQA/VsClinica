@@ -27,8 +27,8 @@ public class Access {
     public static String urlBuscarUsuario = "https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/usuarios";
     public static String urlIntegracao = "https://omnia-dev.vsomnia.com.br:8443/disparoEmMassa/enviar";
     public static String tokenOmnia = "16082001";
-    public static String numeroDisparo = "553182952805";
-    public static String nomeTemplate = "DisparoRejuHML";
+    public static String numeroDisparo = "553140404963";
+    public static String nomeTemplate = "hotel_gup";
     public static String variavel = "A=NOME_CLIENTE;B=PROCEDIMENTO;C=DIA;D=DIA_SEMANA;E=HORA;F=NASCIMENTO;G=COMPROMISSO;";
     
     public static String equipeOmnia = "Equipe Testes Gerais";

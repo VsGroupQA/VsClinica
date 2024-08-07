@@ -160,6 +160,18 @@ public class AgendamentoPage {
 	    }
 	}
 	
+	public void pesquisarPaceinteAgendamento(String nome) {
+		actions.escreverPegandoPeloName("nomePaciente", nome);
+	}
+	
+	public void cancelarPrimeiroAgendamento() {
+		actions.clicarBotaoPegandoPeloXpath("//*[@id=\"pr_id_426-table\"]/tbody/tr[1]/td/div/p-card[1]/div/div/div/div/div[7]/div[3]/button/span");
+	}
+	
+	public void acessarListaPaciente() {
+		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
+		actions.esperar(500);
+	}
 	
 	// GRUPO
 
