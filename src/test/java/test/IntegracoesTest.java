@@ -99,8 +99,9 @@ public class IntegracoesTest {
         integracao.deletarIntegracao(nomeIntegracao);
     }
     
+    @Test
     public void desativarIntegracao() {
-    	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
+    	String nomeIntegracao = "DESATIVAR INTEGRACAO - TESTE";
         Log.registrar("TESTE - Criar integração");
         integracao.grupoCriarIntegracao(
                 "BUSCAR_EQUIPES",
@@ -112,11 +113,12 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
         integracao.deletarIntegracao(nomeIntegracao);
+        integracao.validarNotificacao("Integração cadastrada"); // Mudar essa not nessa versão
         // Validar integração desativada e em seguida excluir
     }
     
+    @Test
     public void excluirIntegracao() {
     	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
         Log.registrar("TESTE - Criar integração");
@@ -130,8 +132,8 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
         integracao.deletarIntegracao(nomeIntegracao);
+        integracao.validarNotificacao("Integração cadastrada");
         // trocar desativar por excluir
     }
     
