@@ -3,10 +3,18 @@ package utils;
 public class Access {
 
     // URL
-    public static String url = setUrl(1);
+    public static String url = setUrl(2);
     
     // NAVEGADOR
     public static String navegador = "firefox";
+    
+    // DEFINIR LEAD CRIADO
+    public static String leadUsuario = "Jhonata Vena";
+    public static int opcao = 3;
+    
+    /* 
+     * ANOTAÇOES 
+     */
     
     // ACESSO ADMIN
     public static String usuario = "admin.vs";
@@ -31,9 +39,11 @@ public class Access {
     public static String nomeTemplate = "hotel_gup";
     public static String variavel = "A=NOME_CLIENTE;B=PROCEDIMENTO;C=DIA;D=DIA_SEMANA;E=HORA;F=NASCIMENTO;G=COMPROMISSO;";
     
+    // OMNIA - CRIAR LEAD
     public static String equipeOmnia = "Equipe Testes Gerais";
     public static String usuarioOmnia = "Jhonata Vena";
 
+    
     public static String setUrl(int number) {
         switch (number) {
             case 1:

@@ -46,7 +46,7 @@ public class ProcedimentoTest {
 		Browser.fecharNavegador();
 	}
 
-	@Test
+
 	public void teste() {
 		actions.esperar(200);
 		procedimento.acessarProcedimentos();

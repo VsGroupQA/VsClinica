@@ -2,9 +2,11 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -309,19 +311,28 @@ public class IntegracoesPage {
     
     // GRUPO/* GRUPO */
 
-    public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao,
-                                     String variavel, int caseLead, String equipeUsuario) {
+    public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao,String variavel, int caseLead, String equipeUsuario) {
         Log.registrar("Iniciando criação de integração em grupo");
         actions.esperar(2200);
-        acessarIntegracao();
-        adicionarNovaIntegracao();
-        selecionarTipoIntegracao(tipo);
-        urlIntegracao(endpoint);
-        tokenFornecedor(token);
-        nomeIntegracao(nomeIntegracao);
-        variaveis(variavel);
-        selecionarLead(caseLead, equipeUsuario);
-        Log.registrar("Criação de integração em grupo concluída");
+        try {
+            acessarIntegracao();
+            adicionarNovaIntegracao();
+            selecionarTipoIntegracao(tipo);
+            urlIntegracao(endpoint);
+            tokenFornecedor(token);
+            nomeIntegracao(nomeIntegracao);
+            variaveis(variavel);
+            selecionarLead(caseLead, equipeUsuario);
+            Log.registrar("Criação de integração em grupo concluída");
+
+        } catch (ElementNotInteractableException e) {
+            Log.registrar("Erro ao interagir com o elemento: " + e.getMessage());
+            Assert.fail("Teste falhou devido à ElementNotInteractableException: " + e.getMessage());
+
+        } catch (WebDriverException e) {
+            Log.registrar("Erro inesperado no WebDriver: " + e.getMessage());
+            Assert.fail("Teste falhou devido a um erro no WebDriver: " + e.getMessage());
+        }
     }
 
     public void grupoAdicionarTemplate(String procedimento, String numero, String template) {

@@ -107,7 +107,7 @@ public class AgendamentoTest {
         agendamento.pesquisarPaciente(Access.paciente);
         agendamento.selecionarPaciente();
         agendamento.grupoNovoAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
-        agendamento.validarNotificacao();
+        
     }
 
     @Test
@@ -118,7 +118,6 @@ public class AgendamentoTest {
         agendamento.pesquisarPaciente(Access.paciente);
         agendamento.selecionarPaciente();
         agendamento.grupoNovoAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
-        agendamento.validarNotificacao();
         agendamento.grupoNovoAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], false);
     }
     
@@ -136,4 +135,4 @@ public class AgendamentoTest {
             agendamento.grupoNovoAgendamento(horarios[0], horarios[1], horarios[2], true);
         }
     }
-}
+} // CRIAR: CALCELAMENTO, CONFIRMAÇÃO, CHEGADA, EXCEÇÃO

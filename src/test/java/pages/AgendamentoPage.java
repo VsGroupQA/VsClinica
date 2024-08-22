@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -165,8 +166,24 @@ public class AgendamentoPage {
 	}
 	
 	public void cancelarPrimeiroAgendamento() {
-		actions.clicarBotaoPegandoPeloXpath("//*[@id=\"pr_id_426-table\"]/tbody/tr[1]/td/div/p-card[1]/div/div/div/div/div[7]/div[3]/button/span");
+	    int tentativas = 0;
+
+	    while (tentativas < 3) {
+	        try {
+	            // Tente localizar e clicar no botão
+	            actions.clicarBotaoPegandoPeloCss("#pr_id_14-table > tbody > tr:nth-child(1) > td > div > p-card > div > div > div > div > div.grid.col-4.justify-content-end.align-items-center > div.btn-secondary > button");
+	            break; // Sai do loop se a operação foi bem-sucedida
+	        } catch (StaleElementReferenceException e) {
+	            // Caso ocorra o erro, incrementa a contagem de tentativas e tenta novamente
+	            tentativas++;
+	            if (tentativas == 3) {
+	                throw e; // Se atingir o número máximo de tentativas, lança a exceção novamente
+	            }
+	        }
+	    }
 	}
+
+
 	
 	public void acessarListaPaciente() {
 		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
