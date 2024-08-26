@@ -3,7 +3,7 @@ package utils;
 public class Access {
 
     // URL
-    public static String url = setUrl(2);
+    public static String url = setUrl(1);
     
     // NAVEGADOR
     public static String navegador = "firefox";

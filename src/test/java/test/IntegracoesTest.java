@@ -56,8 +56,9 @@ public class IntegracoesTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+//        Browser.fecharNavegador();
     }
+    // TAREFA: Excluir todas as integrações / agendamentos criados 2. Verificar erro do cenario de teste 3. completar cenarios
     
     // Integração
     
@@ -76,11 +77,13 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.deletarIntegracao(nomeIntegracao);
+        integracao.excluirIntegracao(nomeIntegracao);
     }
     
+    @Test
     public void editarIntegracao() {
     	String nomeIntegracao = "EDITAR INTEGRACAO - TESTE";
+    	String nomeIntegracaoEditado = "(editado)";
         Log.registrar("TESTE - Criar integração");
         integracao.grupoCriarIntegracao(
                 "BUSCAR_EQUIPES",
@@ -94,9 +97,11 @@ public class IntegracoesTest {
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
         
-        // Iterar nas integracaoes criadas > alterar o nome > salvar novamente > validar not
+        integracao.editarIntegracao(nomeIntegracao);
+        integracao.nomeIntegracao(nomeIntegracaoEditado);
+        integracao.botaoSalvarIntegracao();
+        integracao.validarNotificacao("Integração cadastrada");
         
-        integracao.deletarIntegracao(nomeIntegracao);
     }
     
     @Test
@@ -113,15 +118,16 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvarIntegracao();
-        integracao.deletarIntegracao(nomeIntegracao);
-        integracao.validarNotificacao("Integração cadastrada"); // Mudar essa not nessa versão
-        // Validar integração desativada e em seguida excluir
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.desativarIntegracao(nomeIntegracao);
+        integracao.validarNotificacao("Integração desativada");
+        
     }
     
     @Test
     public void excluirIntegracao() {
-    	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
-        Log.registrar("TESTE - Criar integração");
+    	String nomeIntegracao = "EXCLUIR INTEGRACAO - TESTE";
+        Log.registrar("TESTE - Excluir integração");
         integracao.grupoCriarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
@@ -132,75 +138,70 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvarIntegracao();
-        integracao.deletarIntegracao(nomeIntegracao);
         integracao.validarNotificacao("Integração cadastrada");
-        // trocar desativar por excluir
+        
+        integracao.excluirIntegracao(nomeIntegracao);
+        integracao.validarNotificacao("Integração deletada");
+        
     }
     
     // Agendador
     
     @Test
     public void criarAgendador() {
+    	String nomeIntegracao = "AGENDADOR - TESTE";
     	Log.registrar("TESTE - Criar novo agendador de disparo");
     	integracao.acessarIntegracao();
-    	integracao.grupoAdicionarAgendador("AGENDADOR - TESTE");
+    	integracao.grupoAdicionarAgendador(nomeIntegracao);
     	integracao.botaoSalvarAgendador();
     	integracao.validarNotificacao("Tarefa agendada");
+    	
     	// validar se esta funcionando > Remover integração criada
     }
     
+    @Test
     public void editarAgendador() {
-    	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
-        Log.registrar("TESTE - Criar integração");
-        integracao.grupoCriarIntegracao(
-                "BUSCAR_EQUIPES",
-                Access.urlBuscarEquipe, 
-                Access.tokenOmnia,
-                nomeIntegracao,
-                null,
-                3, 
-                null
-        );
-        integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.deletarIntegracao(nomeIntegracao);
-        // editar agendamento
+    	String nomeIntegracao = "EDITAR AGENDADOR - TESTE";
+    	Log.registrar("TESTE - Editar agendador de disparo");
+    	integracao.grupoAdicionarAgendador(nomeIntegracao);
+    	integracao.botaoSalvarAgendador();
+    	integracao.validarNotificacao("Tarefa agendada");
+
+    	integracao.fecharAgendador();
+    	integracao.editarAgendador(nomeIntegracao);
+    	
+    	integracao.descricaoAgendador("(editado)");
+    	integracao.botaoSalvarAgendador();
+    	integracao.validarNotificacao("Tarefa editada");
+    	
     } 
     
+    @Test
     public void desativarAgendador() {
-    	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
-        Log.registrar("TESTE - Criar integração");
-        integracao.grupoCriarIntegracao(
-                "BUSCAR_EQUIPES",
-                Access.urlBuscarEquipe, 
-                Access.tokenOmnia,
-                nomeIntegracao,
-                null,
-                3, 
-                null
-        );
-        integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.deletarIntegracao(nomeIntegracao);
-        // desativar agendados
+    	String nomeIntegracao = "DESATIVAR AGENDADOR - TESTE";
+    	Log.registrar("TESTE - Desativar agendamento programado de disparo");
+    	integracao.grupoAdicionarAgendador(nomeIntegracao);
+    	integracao.botaoSalvarAgendador();
+    	integracao.validarNotificacao("Tarefa agendada");
+
+    	integracao.fecharAgendador();
+    	integracao.desativarAgendamento(nomeIntegracao);
+    	integracao.validarNotificacao("Tarefa desativada");
+    	// excluir agendador criado
     }
     
+    @Test
     public void excluirAgendado() {
-    	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
-        Log.registrar("TESTE - Criar integração");
-        integracao.grupoCriarIntegracao(
-                "BUSCAR_EQUIPES",
-                Access.urlBuscarEquipe, 
-                Access.tokenOmnia,
-                nomeIntegracao,
-                null,
-                3, 
-                null
-        );
-        integracao.botaoSalvarIntegracao();
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.deletarIntegracao(nomeIntegracao);
-        // excluir agendador
+    	String nomeIntegracao = "EXCLUIR AGENDADOR - TESTE";
+    	Log.registrar("TESTE - Excluir agendamento programado de disparo");
+    	integracao.grupoAdicionarAgendador(nomeIntegracao);
+    	integracao.botaoSalvarAgendador();
+    	integracao.validarNotificacao("Tarefa agendada");
+
+    	integracao.fecharAgendador();
+    	integracao.excluirAgendamento(nomeIntegracao);
+    	integracao.validarNotificacao("Tarefa deletada");
+    	
     }
     
     
@@ -254,8 +255,8 @@ public class IntegracoesTest {
         integracao.desativarAgendamento(nomeAgendador);
         // excluir todas integrações criadas
         
-        integracao.deletarIntegracao("BUSCAR EQUIPE - TESTE");
-        integracao.deletarIntegracao("BUSCAR USUARIO - TESTE");
+        integracao.excluirIntegracao("BUSCAR EQUIPE - TESTE");
+        integracao.excluirIntegracao("BUSCAR USUARIO - TESTE");
     }
     
     @Test
@@ -301,8 +302,8 @@ public class IntegracoesTest {
         // Excluir integrações criadas
         integracao.desativarIntegracao(nomeIntegracao);
         // excluir todas integrações criadas
-        integracao.deletarIntegracao("BUSCAR EQUIPE - TESTE");
-        integracao.deletarIntegracao("BUSCAR USUARIO - TESTE");
+        integracao.excluirIntegracao("BUSCAR EQUIPE - TESTE");
+        integracao.excluirIntegracao("BUSCAR USUARIO - TESTE");
     	
     }
     
