@@ -497,7 +497,6 @@ public class IntegracoesPage {
 		grupoCriarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe, Access.tokenOmnia, "BUSCAR EQUIPE - TESTE", null,
 				3, null);
 		botaoSalvarIntegracao();
-		actions.esperar(500);
 		grupoCriarIntegracao("BUSCAR_USUARIOS", Access.urlBuscarUsuario, Access.tokenOmnia, "BUSCAR USUARIO - TESTE",
 				null, 3, null);
 		botaoSalvarIntegracao();

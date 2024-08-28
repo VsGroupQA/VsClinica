@@ -128,6 +128,20 @@ public class AgendamentoTest {
         agendamento.grupoNovoAgendamentoSemCamposObg(horarios[0], horarios[1], horarios[2], false);
     }
     
+    @Test
+    public void criarAgendamentoComExcecaoBloqueio() {
+    	Log.registrar("TESTE - criar agendamento inicio");
+        String data = agora.format(dataFormatter);
+        String hora = agora.format(horaFormatter);
+        // validar
+        
+        agendamento.grupoNovoAgendamento(data, hora, hora, true);
+        agendamento.validarNotificacao();
+        agendamento.grupoNovoAgendamentoExcecao(data, hora, hora, true);
+        agendamento.validarNotificacao();
+    }
+    
+    
     public void agendamentoEmMassa() {
     	Log.registrar("TESTE - criar agendamento em massa");
         for (int i = 0; i < 10; i++) { 

@@ -1,0 +1,101 @@
+informações - 28 08 2024 - 17.05.41
+Logar - 28 08 2024 - 17.05.42
+TESTE - criar agendamento inicio duplicado - 28 08 2024 - 17.05.42
+Abrir modal - 28 08 2024 - 17.05.44
+Adicionar procedimento - 28 08 2024 - 17.05.45
+Adicionar profissional - 28 08 2024 - 17.05.46
+Adicionar compromisso - 28 08 2024 - 17.05.47
+Adicionar paciente - 28 08 2024 - 17.05.49
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.05.49
+Adicionar horario de agendamento - Inicio: 17:05 - 28 08 2024 - 17.05.49
+Adicionar horario de agendamento - Fim: 17:06 - 28 08 2024 - 17.05.50
+Concluir agendamento - 28 08 2024 - 17.05.51
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 28 08 2024 - 17.05.51
+Abrir modal - 28 08 2024 - 17.05.54
+Adicionar procedimento - 28 08 2024 - 17.05.55
+Adicionar profissional - 28 08 2024 - 17.05.55
+Adicionar compromisso - 28 08 2024 - 17.05.56
+Adicionar paciente - 28 08 2024 - 17.05.58
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.05.58
+Adicionar horario de agendamento - Inicio: 17:05 - 28 08 2024 - 17.05.58
+Adicionar horario de agendamento - Fim: 17:06 - 28 08 2024 - 17.05.58
+Agendamento duplicado detectado corretamente. - 28 08 2024 - 17.05.59
+informações - 28 08 2024 - 17.06.07
+Logar - 28 08 2024 - 17.06.09
+TESTE - criar agendamento duplicado pela lista - 28 08 2024 - 17.06.09
+Abrir modal - 28 08 2024 - 17.06.12
+Adicionar procedimento - 28 08 2024 - 17.06.13
+Adicionar profissional - 28 08 2024 - 17.06.14
+Adicionar compromisso - 28 08 2024 - 17.06.16
+Adicionar paciente - 28 08 2024 - 17.06.18
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.06.19
+Adicionar horario de agendamento - Inicio: 17:07 - 28 08 2024 - 17.06.19
+Adicionar horario de agendamento - Fim: 17:08 - 28 08 2024 - 17.06.20
+Concluir agendamento - 28 08 2024 - 17.06.22
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 28 08 2024 - 17.06.22
+informações - 28 08 2024 - 17.06.32
+Logar - 28 08 2024 - 17.06.34
+TESTE - criar agendamento inicio - 28 08 2024 - 17.06.34
+Abrir modal - 28 08 2024 - 17.06.36
+Adicionar procedimento - 28 08 2024 - 17.06.37
+Adicionar profissional - 28 08 2024 - 17.06.38
+Adicionar compromisso - 28 08 2024 - 17.06.39
+Adicionar paciente - 28 08 2024 - 17.06.40
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.06.40
+Adicionar horario de agendamento - Inicio: 17:09 - 28 08 2024 - 17.06.41
+Adicionar horario de agendamento - Fim: 17:10 - 28 08 2024 - 17.06.41
+Concluir agendamento - 28 08 2024 - 17.06.42
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 28 08 2024 - 17.06.42
+informações - 28 08 2024 - 17.06.51
+Logar - 28 08 2024 - 17.06.52
+TESTE - criar agendamento sem campos obrigatórios preenchidos - 28 08 2024 - 17.06.52
+Abrir modal - 28 08 2024 - 17.06.54
+Adicionar profissional - 28 08 2024 - 17.06.55
+Adicionar paciente - 28 08 2024 - 17.06.57
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.06.57
+Adicionar horario de agendamento - Inicio: 17:11 - 28 08 2024 - 17.06.57
+Adicionar horario de agendamento - Fim: 17:12 - 28 08 2024 - 17.06.58
+Agendamento duplicado detectado corretamente. - 28 08 2024 - 17.06.58
+informações - 28 08 2024 - 17.07.07
+Logar - 28 08 2024 - 17.07.08
+TESTE - criar agendamento duplicado pela ficha do paciente - 28 08 2024 - 17.07.08
+Abrir modal - 28 08 2024 - 17.07.11
+Adicionar procedimento - 28 08 2024 - 17.07.14
+Adicionar profissional - 28 08 2024 - 17.07.14
+Adicionar compromisso - 28 08 2024 - 17.07.15
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.07.15
+Adicionar horario de agendamento - Inicio: 17:13 - 28 08 2024 - 17.07.15
+Adicionar horario de agendamento - Fim: 17:14 - 28 08 2024 - 17.07.16
+Concluir agendamento - 28 08 2024 - 17.07.18
+Abrir modal - 28 08 2024 - 17.07.19
+Adicionar procedimento - 28 08 2024 - 17.07.21
+Adicionar profissional - 28 08 2024 - 17.07.22
+Adicionar compromisso - 28 08 2024 - 17.07.22
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.07.22
+Adicionar horario de agendamento - Inicio: 17:13 - 28 08 2024 - 17.07.23
+Adicionar horario de agendamento - Fim: 17:14 - 28 08 2024 - 17.07.23
+Agendamento duplicado detectado corretamente. - 28 08 2024 - 17.07.23
+informações - 28 08 2024 - 17.07.32
+Logar - 28 08 2024 - 17.07.33
+TESTE - criar agendamento pela ficha do paciente - 28 08 2024 - 17.07.33
+Abrir modal - 28 08 2024 - 17.07.37
+Adicionar procedimento - 28 08 2024 - 17.07.39
+Adicionar profissional - 28 08 2024 - 17.07.39
+Adicionar compromisso - 28 08 2024 - 17.07.40
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.07.40
+Adicionar horario de agendamento - Inicio: 17:15 - 28 08 2024 - 17.07.40
+Adicionar horario de agendamento - Fim: 17:16 - 28 08 2024 - 17.07.41
+Concluir agendamento - 28 08 2024 - 17.07.42
+informações - 28 08 2024 - 17.07.51
+Logar - 28 08 2024 - 17.07.52
+TESTE - criar agendamento pela lista - 28 08 2024 - 17.07.52
+Abrir modal - 28 08 2024 - 17.07.55
+Adicionar procedimento - 28 08 2024 - 17.07.56
+Adicionar profissional - 28 08 2024 - 17.07.56
+Adicionar compromisso - 28 08 2024 - 17.07.57
+Adicionar paciente - 28 08 2024 - 17.07.59
+Adicionar data de agendamento:28/08/2024 - 28 08 2024 - 17.07.59
+Adicionar horario de agendamento - Inicio: 17:17 - 28 08 2024 - 17.07.59
+Adicionar horario de agendamento - Fim: 17:18 - 28 08 2024 - 17.07.59
+Concluir agendamento - 28 08 2024 - 17.08.00
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 28 08 2024 - 17.08.00

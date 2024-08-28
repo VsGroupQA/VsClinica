@@ -263,4 +263,26 @@ public class AgendamentoPage {
 		botaoCriarAgendamento(statusBotao,
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
+	
+	public void grupoNovoAgendamentoExcecao(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+		actions.esperar(2000);
+		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
+		procedimento(Access.procedimento,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/div[2]",
+				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
+		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
+		
+		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
+				"p-dropdownitem.p-element > li");
+		paciente(Access.paciente);
+		dataAgendamento(data, "//*[@id=\"icon\"]");
+		
+		actions.clicarBotaoPegandoPeloCss("body > div > div > div.ng-tns-c19-91.p-dialog-content > app-modal-agendamento > form > div.container.mt-1.mb-1 > div:nth-child(3) > div > p-inputswitch > div > span");
+		
+		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
+		observacao(horaInicio, data,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		botaoCriarAgendamento(statusBotao,
+				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+	}
 }
