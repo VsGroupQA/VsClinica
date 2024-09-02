@@ -14,12 +14,12 @@ import utils.Log;
 import utils.Access;
 import utils.Browser;
 import pages.AgendamentoPage;
-import pages.loginPage;
+import pages.LoginPage;
 
 public class AgendamentoTest {
 
     private static WebDriver driver;
-    private loginPage loginPage;
+    private LoginPage loginPage;
     private AgendamentoPage agendamento;
 
     static DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -42,7 +42,7 @@ public class AgendamentoTest {
     public void iniciaDriver() {
         driver = Browser.iniciarNavegador(Access.navegador);
         driver.get(Access.url);
-        loginPage = new loginPage(driver);
+        loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
         agendamento = new AgendamentoPage(driver);
     }

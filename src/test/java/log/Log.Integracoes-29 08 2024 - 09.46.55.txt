@@ -1,0 +1,19 @@
+informações - 29 08 2024 - 09.47.07
+Logar - 29 08 2024 - 09.47.08
+TESTE - Criar novo agendador de disparo - 29 08 2024 - 09.47.08
+Esperando - 29 08 2024 - 09.47.09
+Clicando no botão de configurações - 29 08 2024 - 09.47.10
+Esperando 1 segundo - 29 08 2024 - 09.47.11
+Clicando na opção de integrações - 29 08 2024 - 09.47.11
+Iniciando adição de agendador em grupo - 29 08 2024 - 09.47.11
+Esperando - 29 08 2024 - 09.47.12
+Clicando no botão de configurações - 29 08 2024 - 09.47.12
+Esperando 1 segundo - 29 08 2024 - 09.47.13
+Clicando na opção de integrações - 29 08 2024 - 09.47.14
+Clicando no botão de adicionar novo agendador - 29 08 2024 - 09.47.14
+Inserindo descrição do agendador: AGENDADOR - TESTE - 29 08 2024 - 09.47.14
+Clicando no dropdown de tipo de alerta - 29 08 2024 - 09.47.14
+Tipo de alerta ALERTAR_AGENDAMENTOS selecionado - 29 08 2024 - 09.47.14
+Adição de agendador em grupo concluída - 29 08 2024 - 09.47.16
+Clicando no botão de salvar agendador - 29 08 2024 - 09.47.17
+Notificação de sucesso exibida: Tarefa agendada - 29 08 2024 - 09.47.17

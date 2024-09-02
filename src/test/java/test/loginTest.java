@@ -13,11 +13,11 @@ import utils.Log;
 import utils.Access;
 import utils.Actions;
 import utils.Browser;
-import pages.loginPage;
+import pages.LoginPage;
 
 public class loginTest {
     private static WebDriver driver;
-    private loginPage loginPage;
+    private LoginPage loginPage;
     private Actions actions;
 
     @BeforeAll
@@ -34,7 +34,7 @@ public class loginTest {
     public void iniciaDriver() {
         driver = Browser.iniciarNavegador(Access.navegador);
         driver.get(Access.url);
-        loginPage = new loginPage(driver);
+        loginPage = new LoginPage(driver);
         actions = new Actions(driver);
     }
 

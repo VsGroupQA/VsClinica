@@ -11,12 +11,12 @@ import org.openqa.selenium.WebElement;
 import utils.Actions;
 import utils.Log;
 
-public class loginPage {
+public class LoginPage {
 
     private WebDriver driver;
     private Actions actions;
 
-    public loginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(this.driver); 
     }

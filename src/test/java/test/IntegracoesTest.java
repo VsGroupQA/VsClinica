@@ -16,12 +16,12 @@ import utils.Access;
 import utils.Browser;
 import pages.AgendamentoPage;
 import pages.IntegracoesPage;
-import pages.loginPage;
+import pages.LoginPage;
 
 public class IntegracoesTest {
 
     private static WebDriver driver;
-    private loginPage loginPage;
+    private LoginPage loginPage;
     private IntegracoesPage integracao;
     private AgendamentoPage agendamento;
     
@@ -48,7 +48,7 @@ public class IntegracoesTest {
     public void iniciaDriver() {
         driver = Browser.iniciarNavegador(Access.navegador);
         driver.get(Access.url);
-        loginPage = new loginPage(driver);
+        loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
         integracao = new IntegracoesPage(driver);
         agendamento = new AgendamentoPage(driver);
@@ -56,7 +56,7 @@ public class IntegracoesTest {
 
     @AfterEach
     public void encerrarDriver() {
-//        Browser.fecharNavegador();
+        Browser.fecharNavegador();
     }
     // TAREFA: Excluir todas as integrações / agendamentos criados 2. Verificar erro do cenario de teste 3. completar cenarios
     

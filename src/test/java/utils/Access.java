@@ -6,7 +6,7 @@ public class Access {
     public static String url = setUrl(1);
     
     // NAVEGADOR
-    public static String navegador = "firefox";
+    public static String navegador = "Chrome";
     
     // DEFINIR LEAD CRIADO
     public static String leadUsuario = "Jhonata Vena";
