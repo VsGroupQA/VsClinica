@@ -492,14 +492,17 @@ public class IntegracoesPage {
 		Log.registrar("Adição de agendador em grupo concluída");
 	}
 
-	public void grupoBuscarEquipeUsuarioOmnia() {
+	public void grupoBuscarEquipeOmnia() {
 		acessarIntegracao();
-		grupoCriarIntegracao("BUSCAR_EQUIPES", Access.urlBuscarEquipe, Access.tokenOmnia, "BUSCAR EQUIPE - TESTE", null,
-				3, null);
+		grupoCriarIntegracao("BUSCAR_EQUIPES",
+				Access.urlBuscarEquipe, 
+				Access.tokenOmnia, 
+				"BUSCAR EQUIPE - TESTE",
+				null,
+				3,
+				null);
 		botaoSalvarIntegracao();
-		grupoCriarIntegracao("BUSCAR_USUARIOS", Access.urlBuscarUsuario, Access.tokenOmnia, "BUSCAR USUARIO - TESTE",
-				null, 3, null);
-		botaoSalvarIntegracao();
+		
 	}
 
 }

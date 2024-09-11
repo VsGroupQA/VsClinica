@@ -15,7 +15,7 @@ import utils.Actions;
 import utils.Browser;
 import pages.LoginPage;
 
-public class loginTest {
+public class LoginTest {
     private static WebDriver driver;
     private LoginPage loginPage;
     private Actions actions;

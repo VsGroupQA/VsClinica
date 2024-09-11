@@ -1,15 +1,19 @@
 package utils;
 
+
+
 public class Access {
 
     // URL
     public static String url = setUrl(1);
     
     // NAVEGADOR
-    public static String navegador = "Chrome";
+    public static String navegador = "FIREFOX";
+    
+   
     
     // DEFINIR LEAD CRIADO
-    public static String leadUsuario = "Jhonata Vena";
+    public static String leadUsuario = null;
     public static int opcao = 3;
     
     /* 
@@ -17,15 +21,15 @@ public class Access {
      */
     
     // ACESSO ADMIN
-    public static String usuario = "admin.vs";
-    public static String senha = "Luandabh001";
+    public static String usuario = "venateste"; //"admin.vs";
+    public static String senha = "123"; //"Luandabh001";
     
     // ACESSO CLINICO
     public static String usuarioMedico = "vena";
     public static String senhaMedico = "123";
     
     // AGENDAMENTO
-    public static String procedimento = "Transplante de Sombracelha";
+    public static String procedimento = "PROCEDIMENTO X";
     public static String compromisso = "FINALIZADO";
     public static String paciente = "Jhonata Venancio - VS GROUP";
     public static String medico = "VS GROUP";
