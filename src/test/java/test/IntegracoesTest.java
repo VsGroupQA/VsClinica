@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
+import utils.Actions;
 import utils.Browser;
 import pages.AgendamentoPage;
 import pages.IntegracoesPage;
@@ -24,11 +25,13 @@ public class IntegracoesTest {
     private LoginPage loginPage;
     private IntegracoesPage integracao;
     private AgendamentoPage agendamento;
+	private Actions actions;
     
     private static LocalDateTime agora = LocalDateTime.now();
     
     private static final DateTimeFormatter DATA_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter HORA_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:SS");
     private LocalDate dataAmanha = LocalDate.now().plusDays(1);
     private String dataFormatada = dataAmanha.format(DATA_FORMATTER);
     private String horaMaisUm = agora.plusMinutes(1).format(HORA_FORMATTER);
@@ -52,11 +55,12 @@ public class IntegracoesTest {
         loginPage.signIn(Access.usuario, Access.senha);
         integracao = new IntegracoesPage(driver);
         agendamento = new AgendamentoPage(driver);
+        actions = new Actions(driver);
     }
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+//        Browser.fecharNavegador();
     }
     // TAREFA: Excluir todas as integrações / agendamentos criados 2. Verificar erro do cenario de teste 3. completar cenarios
     
@@ -119,6 +123,7 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvarIntegracao();
         integracao.validarNotificacao("Integração cadastrada");
+        actions.esperar(1000);
         integracao.desativarIntegracao(nomeIntegracao);
         integracao.validarNotificacao("Integração desativada");
         
@@ -141,7 +146,7 @@ public class IntegracoesTest {
         integracao.validarNotificacao("Integração cadastrada");
         
         integracao.excluirIntegracao(nomeIntegracao);
-        integracao.validarNotificacao("Integração deletadao");
+        integracao.validarNotificacao("Integração deletado");
         
     }
     
@@ -178,16 +183,18 @@ public class IntegracoesTest {
     
     @Test
     public void desativarAgendador() {
-    	String nomeIntegracao = "DESATIVAR AGENDADOR - TESTE";
+    	String nomeIntegracao = "DESATIVAR - TESTE " + agora.format(hora);
     	Log.registrar("TESTE - Desativar agendamento programado de disparo");
     	integracao.grupoAdicionarAgendador(nomeIntegracao);
     	integracao.botaoSalvarAgendador();
     	integracao.validarNotificacao("Tarefa agendada");
-
     	integracao.fecharAgendador();
+    	actions.esperar(2000);
+    	
     	integracao.desativarAgendamento(nomeIntegracao);
+    	actions.esperar(500);
     	integracao.validarNotificacao("Tarefa desativada");
-    	// excluir agendador criado
+
     }
     
     @Test
@@ -306,15 +313,126 @@ public class IntegracoesTest {
     
     @Test
     public void cenarioDisparoAgendamentoCancelado() {
-    	
+    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
+        Log.registrar("TESTE - Disparo para alerta de agendamento");
+        
+        // Cria agendamento
+        agendamento.acessarInicio();
+        agendamento.grupoNovoAgendamento(
+        		dataFormatada,
+        		horaAtual,
+        		horaMaisUm,
+        		true
+        );
+        integracao.fecharNotficacao();
+        
+        // Criar integraçã
+        integracao.grupoCriarIntegracao(
+                "ALERTAR_AGENDAMENTOS",
+                Access.urlIntegracao, 
+                Access.tokenOmnia, 
+                nomeIntegracao,
+                Access.variavel,
+                3, 
+                null
+        );
+        integracao.grupoAdicionarTemplate(
+                Access.procedimento, 
+                Access.numeroDisparo, 
+                Access.nomeTemplate
+                
+        );
+        integracao.botaoSalvarIntegracao();
+        
+        // Validar
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotficacao();
+
+        // Cancelar agendamento
+
+
     }
     
     public void cenarioDisparoAlertaAgendamentoPorEmail() {
-    	
+    	String nomeIntegracao = "DISPARO EMAIL- TESTE";
+    	String nomeAgendador = "AGENDADOR EMAIL - TESTE";
+        Log.registrar("TESTE - Disparo para alerta de agendamento por EMAIL");
+        
+        // Cria agendamento
+        agendamento.acessarInicio();
+        agendamento.grupoNovoAgendamento(
+        		dataFormatada,
+        		horaAtual,
+        		horaMaisUm,
+        		true
+        );
+        integracao.fecharNotficacao();
+        
+        // Criar integração
+        integracao.grupoCriarIntegracao(
+                "NOTIFICACAO_VIA_EMAIL_LEMBRETE_AGENDAMENTO",
+                Access.urlIntegracao, 
+                Access.tokenOmnia, 
+                nomeIntegracao,
+                Access.variavel,
+                3, 
+                null
+        );
+        integracao.grupoAdicionarTemplate(
+                Access.procedimento, 
+                Access.numeroDisparo, 
+                Access.nomeTemplate
+                
+        );
+        integracao.botaoSalvarIntegracao();
+        
+        // Validar
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotficacao();
+        
+        // Criar agendador
+        integracao.grupoAdicionarAgendador(nomeAgendador);
+        integracao.botaoSalvarAgendador();
+        integracao.validarNotificacao("Tarefa agendada");
+        integracao.fecharModal();
+        // trocar agendador por email
     }
     
     public void cenarioDisparoAniversariantes() {
-    	
+    	String nomeIntegracao = "DISPARO ANIVERSARIO- TESTE";
+    	String nomeAgendador = "AGENDADOR ANIVERSARIO - TESTE";
+        Log.registrar("TESTE - Disparo para alerta ANIVERSARIANTE");
+        
+        // Criar um paciente com aniversario com dia de hoje
+        
+        // Criar integração
+        integracao.grupoCriarIntegracao(
+                "NOTIFICACAO_VIA_EMAIL_LEMBRETE_AGENDAMENTO",
+                Access.urlIntegracao, 
+                Access.tokenOmnia, 
+                nomeIntegracao,
+                Access.variavel,
+                3, 
+                null
+        );
+        integracao.grupoAdicionarTemplate(
+                Access.procedimento, 
+                Access.numeroDisparo, 
+                Access.nomeTemplate
+                
+        );
+        integracao.botaoSalvarIntegracao();
+        
+        // Validar
+        integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotficacao();
+        
+        // Criar agendador
+        integracao.grupoAdicionarAgendador(nomeAgendador);
+        integracao.botaoSalvarAgendador();
+        integracao.validarNotificacao("Tarefa agendada");
+        integracao.fecharModal();
+        // agendador para aniversariante
     }
 }
 

@@ -488,7 +488,7 @@ public class IntegracoesPage {
 		adicionarNovoAgendador();
 		descricaoAgendador(descricao);
 		selecionarTipoAlerta("ALERTAR_AGENDAMENTOS");
-		actions.esperar(2000);
+		actions.esperar(500);
 		Log.registrar("Adição de agendador em grupo concluída");
 	}
 

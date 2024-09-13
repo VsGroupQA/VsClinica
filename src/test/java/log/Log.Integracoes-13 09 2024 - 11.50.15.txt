@@ -1,0 +1,22 @@
+informações - 13 09 2024 - 11.50.23
+Logar - 13 09 2024 - 11.50.24
+TESTE - Desativar agendamento programado de disparo - 13 09 2024 - 11.50.24
+Iniciando adição de agendador em grupo - 13 09 2024 - 11.50.24
+Esperando - 13 09 2024 - 11.50.25
+Clicando no botão de configurações - 13 09 2024 - 11.50.25
+Esperando 1 segundo - 13 09 2024 - 11.50.26
+Clicando na opção de integrações - 13 09 2024 - 11.50.27
+Clicando no botão de adicionar novo agendador - 13 09 2024 - 11.50.27
+Inserindo descrição do agendador: DESATIVAR - TESTE 11:50:53 - 13 09 2024 - 11.50.27
+Clicando no dropdown de tipo de alerta - 13 09 2024 - 11.50.27
+Tipo de alerta ALERTAR_AGENDAMENTOS selecionado - 13 09 2024 - 11.50.27
+Adição de agendador em grupo concluída - 13 09 2024 - 11.50.29
+Clicando no botão de salvar agendador - 13 09 2024 - 11.50.30
+Notificação de sucesso exibida: Tarefa agendada - 13 09 2024 - 11.50.30
+Tentando desativar agendamento de disparo com o nome: DESATIVAR - TESTE 11:50:53 - 13 09 2024 - 11.50.32
+Esperando - 13 09 2024 - 11.50.33
+Tabela de integrações carregada - 13 09 2024 - 11.50.33
+Nome da integração na linha 1: DESATIVAR - TESTE 11:50:53 - 13 09 2024 - 11.50.33
+Integração encontrada: DESATIVAR - TESTE 11:50:53 - 13 09 2024 - 11.50.33
+Clicando no botão de desativar integração - 13 09 2024 - 11.50.33
+Notificação de sucesso exibida: Tarefa desativada - 13 09 2024 - 11.50.34
