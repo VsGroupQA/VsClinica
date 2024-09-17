@@ -17,7 +17,7 @@ import pages.AgendamentoPage;
 import pages.LoginPage;
 
 public class AgendamentoTest {
-
+	// agr vai
     private static WebDriver driver;
     private LoginPage loginPage;
     private AgendamentoPage agendamento;
