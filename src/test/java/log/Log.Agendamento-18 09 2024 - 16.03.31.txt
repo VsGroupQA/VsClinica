@@ -1,0 +1,28 @@
+informações - 18 09 2024 - 16.03.39
+Logar - 18 09 2024 - 16.03.40
+TESTE - criar agendamento inicio duplicado - 18 09 2024 - 16.03.40
+Abrir modal - 18 09 2024 - 16.03.42
+Adicionar procedimento - 18 09 2024 - 16.03.43
+Adicionar profissional - 18 09 2024 - 16.03.44
+Adicionar compromisso - 18 09 2024 - 16.03.45
+Adicionar paciente - 18 09 2024 - 16.03.46
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 16.03.46
+Adicionar horario de agendamento - Inicio: 16:03 - 18 09 2024 - 16.03.46
+Adicionar horario de agendamento - Fim: 16:04 - 18 09 2024 - 16.03.47
+informações - 18 09 2024 - 16.03.56
+Logar - 18 09 2024 - 16.03.57
+TESTE - criar agendamento duplicado pela lista - 18 09 2024 - 16.03.57
+Abrir modal - 18 09 2024 - 16.04.00
+Adicionar procedimento - 18 09 2024 - 16.04.01
+Adicionar profissional - 18 09 2024 - 16.04.01
+Adicionar compromisso - 18 09 2024 - 16.04.02
+Adicionar paciente - 18 09 2024 - 16.04.04
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 16.04.04
+Adicionar horario de agendamento - Inicio: 16:05 - 18 09 2024 - 16.04.04
+Adicionar horario de agendamento - Fim: 16:06 - 18 09 2024 - 16.04.04
+Concluir agendamento - 18 09 2024 - 16.04.05
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 18 09 2024 - 16.04.05
+Abrir modal - 18 09 2024 - 16.04.08
+Adicionar procedimento - 18 09 2024 - 16.04.08
+Adicionar profissional - 18 09 2024 - 16.04.09
+Adicionar compromisso - 18 09 2024 - 16.04.10

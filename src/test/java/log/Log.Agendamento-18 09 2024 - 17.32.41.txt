@@ -1,0 +1,121 @@
+informações - 18 09 2024 - 17.32.52
+Logar - 18 09 2024 - 17.32.53
+TESTE - criar agendamento inicio duplicado - 18 09 2024 - 17.32.53
+Abrir modal - 18 09 2024 - 17.32.56
+Adicionar procedimento - 18 09 2024 - 17.32.56
+Adicionar profissional - 18 09 2024 - 17.32.57
+Adicionar compromisso - 18 09 2024 - 17.32.58
+Adicionar paciente - 18 09 2024 - 17.32.59
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.32.59
+Adicionar horario de agendamento - Inicio: 17:32 - 18 09 2024 - 17.33.00
+Adicionar horario de agendamento - Fim: 17:33 - 18 09 2024 - 17.33.00
+Concluir agendamento - 18 09 2024 - 17.33.01
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 18 09 2024 - 17.33.01
+Abrir modal - 18 09 2024 - 17.33.03
+Adicionar procedimento - 18 09 2024 - 17.33.04
+Adicionar profissional - 18 09 2024 - 17.33.05
+Adicionar compromisso - 18 09 2024 - 17.33.05
+Adicionar paciente - 18 09 2024 - 17.33.07
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.33.07
+Adicionar horario de agendamento - Inicio: 17:32 - 18 09 2024 - 17.33.07
+Adicionar horario de agendamento - Fim: 17:33 - 18 09 2024 - 17.33.08
+Agendamento duplicado detectado corretamente. - 18 09 2024 - 17.33.08
+informações - 18 09 2024 - 17.33.17
+Logar - 18 09 2024 - 17.33.18
+TESTE - criar agendamento duplicado pela lista - 18 09 2024 - 17.33.18
+Abrir modal - 18 09 2024 - 17.33.21
+Adicionar procedimento - 18 09 2024 - 17.33.22
+Adicionar profissional - 18 09 2024 - 17.33.22
+Adicionar compromisso - 18 09 2024 - 17.33.23
+Adicionar paciente - 18 09 2024 - 17.33.24
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.33.25
+Adicionar horario de agendamento - Inicio: 17:34 - 18 09 2024 - 17.33.25
+Adicionar horario de agendamento - Fim: 17:35 - 18 09 2024 - 17.33.25
+Concluir agendamento - 18 09 2024 - 17.33.26
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 18 09 2024 - 17.33.26
+Abrir modal - 18 09 2024 - 17.33.28
+Adicionar procedimento - 18 09 2024 - 17.33.29
+Adicionar profissional - 18 09 2024 - 17.33.30
+Adicionar compromisso - 18 09 2024 - 17.33.30
+Adicionar paciente - 18 09 2024 - 17.33.32
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.33.32
+Adicionar horario de agendamento - Inicio: 17:34 - 18 09 2024 - 17.33.32
+Adicionar horario de agendamento - Fim: 17:35 - 18 09 2024 - 17.33.33
+Agendamento duplicado detectado corretamente. - 18 09 2024 - 17.33.33
+informações - 18 09 2024 - 17.33.42
+Logar - 18 09 2024 - 17.33.43
+TESTE - criar agendamento inicio - 18 09 2024 - 17.33.43
+Abrir modal - 18 09 2024 - 17.33.45
+Adicionar procedimento - 18 09 2024 - 17.33.46
+Adicionar profissional - 18 09 2024 - 17.33.47
+Adicionar compromisso - 18 09 2024 - 17.33.47
+Adicionar paciente - 18 09 2024 - 17.33.49
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.33.49
+Adicionar horario de agendamento - Inicio: 17:36 - 18 09 2024 - 17.33.49
+Adicionar horario de agendamento - Fim: 17:37 - 18 09 2024 - 17.33.50
+Concluir agendamento - 18 09 2024 - 17.33.50
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 18 09 2024 - 17.33.51
+informações - 18 09 2024 - 17.33.59
+Logar - 18 09 2024 - 17.34.00
+TESTE - criar agendamento inicio - 18 09 2024 - 17.34.00
+Abrir modal - 18 09 2024 - 17.34.02
+Adicionar procedimento - 18 09 2024 - 17.34.03
+Adicionar profissional - 18 09 2024 - 17.34.04
+Adicionar compromisso - 18 09 2024 - 17.34.04
+Adicionar paciente - 18 09 2024 - 17.34.06
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.34.06
+Adicionar horario de agendamento - Inicio: 17:32 - 18 09 2024 - 17.34.06
+Adicionar horario de agendamento - Fim: 17:32 - 18 09 2024 - 17.34.06
+informações - 18 09 2024 - 17.34.15
+Logar - 18 09 2024 - 17.34.16
+TESTE - criar agendamento sem campos obrigatórios preenchidos - 18 09 2024 - 17.34.16
+Abrir modal - 18 09 2024 - 17.34.18
+Adicionar profissional - 18 09 2024 - 17.34.19
+Adicionar paciente - 18 09 2024 - 17.34.21
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.34.21
+Adicionar horario de agendamento - Inicio: 17:38 - 18 09 2024 - 17.34.21
+Adicionar horario de agendamento - Fim: 17:39 - 18 09 2024 - 17.34.22
+Agendamento duplicado detectado corretamente. - 18 09 2024 - 17.34.22
+informações - 18 09 2024 - 17.34.30
+Logar - 18 09 2024 - 17.34.31
+TESTE - criar agendamento duplicado pela ficha do paciente - 18 09 2024 - 17.34.31
+Abrir modal - 18 09 2024 - 17.34.34
+Adicionar procedimento - 18 09 2024 - 17.34.36
+Adicionar profissional - 18 09 2024 - 17.34.36
+Adicionar compromisso - 18 09 2024 - 17.34.37
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.34.37
+Adicionar horario de agendamento - Inicio: 17:40 - 18 09 2024 - 17.34.38
+Adicionar horario de agendamento - Fim: 17:41 - 18 09 2024 - 17.34.38
+Concluir agendamento - 18 09 2024 - 17.34.40
+Abrir modal - 18 09 2024 - 17.34.41
+Adicionar procedimento - 18 09 2024 - 17.34.43
+Adicionar profissional - 18 09 2024 - 17.34.43
+Adicionar compromisso - 18 09 2024 - 17.34.44
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.34.44
+Adicionar horario de agendamento - Inicio: 17:40 - 18 09 2024 - 17.34.44
+Adicionar horario de agendamento - Fim: 17:41 - 18 09 2024 - 17.34.45
+Agendamento duplicado detectado corretamente. - 18 09 2024 - 17.34.45
+informações - 18 09 2024 - 17.34.54
+Logar - 18 09 2024 - 17.34.55
+TESTE - criar agendamento pela ficha do paciente - 18 09 2024 - 17.34.55
+Abrir modal - 18 09 2024 - 17.34.58
+Adicionar procedimento - 18 09 2024 - 17.34.59
+Adicionar profissional - 18 09 2024 - 17.35.00
+Adicionar compromisso - 18 09 2024 - 17.35.01
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.35.01
+Adicionar horario de agendamento - Inicio: 17:42 - 18 09 2024 - 17.35.01
+Adicionar horario de agendamento - Fim: 17:43 - 18 09 2024 - 17.35.02
+Concluir agendamento - 18 09 2024 - 17.35.03
+informações - 18 09 2024 - 17.35.12
+Logar - 18 09 2024 - 17.35.13
+TESTE - criar agendamento pela lista - 18 09 2024 - 17.35.13
+Abrir modal - 18 09 2024 - 17.35.16
+Adicionar procedimento - 18 09 2024 - 17.35.17
+Adicionar profissional - 18 09 2024 - 17.35.17
+Adicionar compromisso - 18 09 2024 - 17.35.18
+Adicionar paciente - 18 09 2024 - 17.35.19
+Adicionar data de agendamento:18/09/2024 - 18 09 2024 - 17.35.20
+Adicionar horario de agendamento - Inicio: 17:44 - 18 09 2024 - 17.35.20
+Adicionar horario de agendamento - Fim: 17:45 - 18 09 2024 - 17.35.20
+Concluir agendamento - 18 09 2024 - 17.35.21
+Notificação de sucesso exibida: Agendamento cadastrado com sucesso. - 18 09 2024 - 17.35.21

@@ -190,6 +190,10 @@ public class AgendamentoPage {
 		actions.esperar(500);
 	}
 	
+	public void excecaoAgenda() {
+		actions.clicarBotaoPegandoPeloCss(".p-inputswitch-slider");
+	}
+	
 	// GRUPO
 
 	public void grupoNovoAgendamento(String data, String horaInicio, String horaFim, Boolean statusBotao) {
@@ -272,13 +276,12 @@ public class AgendamentoPage {
 				"/html/body/div[2]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		
+		excecaoAgenda();
+		
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)",
 				"p-dropdownitem.p-element > li");
 		paciente(Access.paciente);
 		dataAgendamento(data, "//*[@id=\"icon\"]");
-		
-		actions.clicarBotaoPegandoPeloCss("body > div > div > div.ng-tns-c19-91.p-dialog-content > app-modal-agendamento > form > div.container.mt-1.mb-1 > div:nth-child(3) > div > p-inputswitch > div > span");
-		
 		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
 		observacao(horaInicio, data,
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");

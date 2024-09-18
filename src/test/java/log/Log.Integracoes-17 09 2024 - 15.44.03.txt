@@ -1,0 +1,24 @@
+informações - 17 09 2024 - 15.44.17
+Logar - 17 09 2024 - 15.44.19
+TESTE - Criar integração - 17 09 2024 - 15.44.19
+Iniciando criação de integração em grupo - 17 09 2024 - 15.44.19
+Esperando - 17 09 2024 - 15.44.22
+Clicando no botão de configurações - 17 09 2024 - 15.44.22
+Esperando 1 segundo - 17 09 2024 - 15.44.23
+Clicando na opção de integrações - 17 09 2024 - 15.44.23
+Clicando no botão de adicionar nova integração - 17 09 2024 - 15.44.24
+Selecionando tipo de integração: BUSCAR_EQUIPES - 17 09 2024 - 15.44.24
+Tipo de integração BUSCAR_EQUIPES encontrado e selecionado - 17 09 2024 - 15.44.24
+Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes - 17 09 2024 - 15.44.24
+Inserindo token do fornecedor - 17 09 2024 - 15.44.25
+Inserindo nome da integração: CRIAR INTEGRACAO - TESTE - 17 09 2024 - 15.44.25
+Variável é null, método variaveis será ignorado. - 17 09 2024 - 15.44.25
+equipeOuUsuario é null, método será ignorado. - 17 09 2024 - 15.44.25
+Criação de integração em grupo concluída - 17 09 2024 - 15.44.25
+Clicando no botão de salvar integração - 17 09 2024 - 15.44.25
+Notificação de sucesso exibida: Integração cadastrada - 17 09 2024 - 15.44.25
+Tentando excluir integração com o nome: CRIAR INTEGRACAO - TESTE - 17 09 2024 - 15.44.25
+Esperando - 17 09 2024 - 15.44.26
+Tabela de integrações carregada - 17 09 2024 - 15.44.26
+Nome da integração na linha 1: CRIAR INTEGRACAO - TESTE - 17 09 2024 - 15.44.26
+Integração excluída com sucesso - 17 09 2024 - 15.44.28
