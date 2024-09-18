@@ -26,10 +26,10 @@ public class Log {
 				}
 			}
 			
-			String nome = nomeArquivo + "-" + LocalDateTime.now().format(data) + ".txt";
+			String nome =  LocalDateTime.now().format(data) + ".txt" + "-" + nomeArquivo;
 			fileWriter = new FileWriter(caminhoCompleto + nome);
 			writer = new PrintWriter(fileWriter);
-			System.out.println("Arquivo de log criado: " + caminhoCompleto + nome);
+			System.out.println("ARQUIVO DE LOG CRIADO: " + caminhoCompleto + nome);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,11 +37,11 @@ public class Log {
 
 	public static void registrar(String mensagem) {
 		if (writer != null) {
-			writer.println(mensagem + " - " + LocalDateTime.now().format(data));
+			writer.println(LocalDateTime.now().format(data) + " - " + mensagem);
 			System.out.println(mensagem);
 			writer.flush();
 		} else {
-			System.err.println("Pasta para adicionar log não criada");
+			System.err.println("PASTA PARA ADICIONAR LOG NÃO CRIADA");
 		}
 	}
 

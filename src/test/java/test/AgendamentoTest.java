@@ -17,7 +17,6 @@ import pages.AgendamentoPage;
 import pages.LoginPage;
 
 public class AgendamentoTest {
-	// agr vai
     private static WebDriver driver;
     private LoginPage loginPage;
     private AgendamentoPage agendamento;
@@ -49,7 +48,7 @@ public class AgendamentoTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+//        Browser.fecharNavegador();
     }
 
     private String[] gerarHorariosAgendamento() {
@@ -130,18 +129,28 @@ public class AgendamentoTest {
     
     @Test
     public void criarAgendamentoComExcecaoBloqueio() {
-    	Log.registrar("TESTE - criar agendamento inicio");
-        String data = agora.format(dataFormatter);
-        String hora = agora.format(horaFormatter);
-        // validar
+    	Log.registrar("TESTE - criar agendamento com exceção no agendamento");
+    	String[] horarios = gerarHorariosAgendamento();
         
-        agendamento.grupoNovoAgendamento(data, hora, hora, true);
+        agendamento.grupoNovoAgendamento(horarios[0], horarios[1], horarios[2], true);
         agendamento.validarNotificacao();
-        agendamento.grupoNovoAgendamentoExcecao(data, hora, hora, true);
+        agendamento.grupoNovoAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         agendamento.validarNotificacao();
     }
     
+    public void confirmarAgendamento() {
+    	
+    }
     
+    public void cancelarAgendamento() {
+    	
+    }
+    
+    public void pacienteCompareceu() {
+    	
+    }
+    
+    // Criar varios agendamentos
     public void agendamentoEmMassa() {
     	Log.registrar("TESTE - criar agendamento em massa");
         for (int i = 0; i < 10; i++) { 
@@ -149,4 +158,4 @@ public class AgendamentoTest {
             agendamento.grupoNovoAgendamento(horarios[0], horarios[1], horarios[2], true);
         }
     }
-} // CRIAR: CALCELAMENTO, CONFIRMAÇÃO, CHEGADA, EXCEÇÃO
+} // CRIAR: CALCELAMENTO, CONFIRMAÇÃO, CHEGADA
