@@ -8,7 +8,7 @@ public class Access {
     public static String url = setUrl(1);
     
     // NAVEGADOR
-    public static String navegador = "FIREFOX";
+    public static String navegador = "chrome";
     
    
     

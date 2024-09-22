@@ -48,7 +48,7 @@ public class AgendamentoTest {
 
     @AfterEach
     public void encerrarDriver() {
-//        Browser.fecharNavegador();
+        Browser.fecharNavegador();
     }
 
     private String[] gerarHorariosAgendamento() {
