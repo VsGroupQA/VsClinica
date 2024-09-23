@@ -139,6 +139,7 @@ public class AgendamentoTest {
     }
     
     public void confirmarAgendamento() {
+    	agendamento.navbar("ROLE_AGENDAMENTOS");
     	
     }
     
@@ -153,7 +154,7 @@ public class AgendamentoTest {
     // Criar varios agendamentos
     public void agendamentoEmMassa() {
     	Log.registrar("TESTE - criar agendamento em massa");
-        for (int i = 0; i < 10; i++) { 
+        for (int i = 0; i < 10; i++) { // Define quantos agendamentos será realizado
             String[] horarios = gerarHorariosAgendamento();
             agendamento.grupoNovoAgendamento(horarios[0], horarios[1], horarios[2], true);
         }

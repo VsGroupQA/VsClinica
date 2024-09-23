@@ -194,6 +194,15 @@ public class AgendamentoPage {
 		actions.clicarBotaoPegandoPeloCss(".p-inputswitch-slider");
 	}
 	
+	public void filtrarStatusPendente() {
+		actions.clicarBotaoPegandoPeloCss(".col-1_5:nth-child(3) .p-dropdown-label");	
+		actions.clicarBotaoPegandoPeloCss(".p-element:nth-child(1) > .p-dropdown-item > .ng-star-inserted");
+	}
+	
+	public void statusPaciente () {
+        
+}
+	
 	// GRUPO
 
 	public void grupoNovoAgendamento(String data, String horaInicio, String horaFim, Boolean statusBotao) {
@@ -287,5 +296,12 @@ public class AgendamentoPage {
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
 		botaoCriarAgendamento(statusBotao,
 				"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+	}
+	
+	public void grupoAlterarStatus(String paciente) {
+		acessarListaPaciente();
+		pesquisarPaciente(paciente);
+		filtrarStatusPendente();
+		
 	}
 }
