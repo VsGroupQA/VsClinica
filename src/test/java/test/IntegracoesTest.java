@@ -221,8 +221,7 @@ public class IntegracoesTest {
         Log.registrar("TESTE - Disparo para alerta de agendamento");
         
         // Cria agendamento
-        agendamento.acessarInicio();
-        agendamento.grupoNovoAgendamento(
+        agendamento.criarAgendamento(
         		dataFormatada,
         		horaAtual,
         		horaMaisUm,
@@ -272,8 +271,8 @@ public class IntegracoesTest {
         integracao.grupoBuscarEquipeOmnia();
         
         // Cria agendamento
-        agendamento.acessarInicio();
-        agendamento.grupoNovoAgendamento(
+        agendamento.navbar("ROLE_DASHBOARDS");
+        agendamento.criarAgendamento(
         		dataFormatada,
         		horaAtual,
         		horaMaisUm,
@@ -317,8 +316,7 @@ public class IntegracoesTest {
         Log.registrar("TESTE - Disparo para alerta de agendamento");
         
         // Cria agendamento
-        agendamento.acessarInicio();
-        agendamento.grupoNovoAgendamento(
+        agendamento.criarAgendamento(
         		dataFormatada,
         		horaAtual,
         		horaMaisUm,
@@ -359,8 +357,7 @@ public class IntegracoesTest {
         Log.registrar("TESTE - Disparo para alerta de agendamento por EMAIL");
         
         // Cria agendamento
-        agendamento.acessarInicio();
-        agendamento.grupoNovoAgendamento(
+        agendamento.criarAgendamento(
         		dataFormatada,
         		horaAtual,
         		horaMaisUm,
