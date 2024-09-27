@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,6 +34,7 @@ public class AgendamentoPage {
 	 */
 	public void navbar(String id) {
 		actions.clicarBotaoPegandoPeloId(id);
+		actions.esperar(500);
 		Log.registrar("Acessar navbar: "+ id +"");
 	}
 
@@ -188,31 +188,33 @@ public class AgendamentoPage {
 		}
 	}
 
+	/**
+     * Método que pesquisa paciente na lista de agendamento
+     * @param nomePaciente Nome do paciente
+     */
 	public void pesquisarPaciente(String nomePaciente) {
-		actions.escreverPegandoPeloXpath(
-				"/html/body/app-root/div/app-pacientes/div/app-filtro-pacientes/p-card/div/div/div/div/div[3]/input",
+		actions.escreverPegandoPeloName("nomePaciente",
 				nomePaciente);
 	}
 
+	/**
+     * Método para selecionar paciente na lista de agendamento
+     */
 	public void selecionarPaciente() {
 		actions.esperar(500);
 		actions.clicarBotaoPegandoPeloXpath(
 				"/html/body/app-root/div/app-pacientes/div/p-table/div/div/table/tbody/tr/td[3]");
 	}
 
-//	public void navbar(String nomeId) {
-//		actions.clicarBotaoPegandoPeloId(nomeId);
-//	}
-
     /**
      * Método para validar a notificação de sucesso após criar um agendamento.
      */
-	public void validarNotificacao() {
+	public void validarNotificacao(String mensagem) {
 	    try {
 	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
 	        WebElement notificacao = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-toast-detail")));
 	        String textoNotificacao = notificacao.getText();
-	        Assert.assertEquals("Agendamento cadastrado com sucesso.", textoNotificacao);
+	        Assert.assertEquals(mensagem, textoNotificacao);
 	        Log.registrar("Notificação de sucesso exibida: "+ textoNotificacao +"");
 	        
 	    } catch (NoSuchElementException e) {
@@ -221,47 +223,75 @@ public class AgendamentoPage {
 	    }
 	}
 	
+    /**
+     * Método para pesquisar paciente pela lista de agendamentos
+     * @param nome Nome do paciente
+     */
 	public void pesquisarPaceinteAgendamento(String nome) {
 		actions.escreverPegandoPeloName("nomePaciente", nome);
+		Log.registrar("Pesquisando paciente: "+ nome +"");
 	}
 	
-	public void cancelarPrimeiroAgendamento() {
-	    int tentativas = 0;
 
-	    while (tentativas < 3) {
-	        try {
-	            // Tente localizar e clicar no botão
-	            actions.clicarBotaoPegandoPeloCss("#pr_id_14-table > tbody > tr:nth-child(1) > td > div > p-card > div > div > div > div > div.grid.col-4.justify-content-end.align-items-center > div.btn-secondary > button");
-	            break; // Sai do loop se a operação foi bem-sucedida
-	        } catch (StaleElementReferenceException e) {
-	            // Caso ocorra o erro, incrementa a contagem de tentativas e tenta novamente
-	            tentativas++;
-	            if (tentativas == 3) {
-	                throw e; // Se atingir o número máximo de tentativas, lança a exceção novamente
-	            }
+    /**
+     * Método para ativar botão de exceção
+     */
+	public void excecaoAgenda() {
+		actions.clicarBotaoPegandoPeloCss(".p-inputswitch-slider");
+		Log.registrar("Ativar botão de EXCEÇÃO");
+	}
+	
+	/**
+     * Método para filtrar status do agendamento
+     * @param status Selecionar status: Pendente, Confirmado e Cancelado
+     */
+	public void filtrarStatusAgendamento(String status) {
+	    // Abrir o dropdown
+		actions.clicarBotaoPegandoPeloXpath("//div[3]/p-dropdown/div/div[2]");
+
+	    // Listar todas as opções do dropdown
+	    List<WebElement> items = driver.findElements(By.xpath("//ul[@role='listbox']//li[@role='option']"));
+
+	    // Loop para encontrar e clicar na opção correta
+	    for (WebElement item : items) {
+	        if (item.getText().equalsIgnoreCase(status)) { // Comparar com o status passado como parâmetro
+	            item.click(); // Clicar na opção correspondente
+	            Log.registrar("Selecionado o status: " + status); // Registrar a ação no log
+	            break;
 	        }
 	    }
 	}
 
-
-	
-	public void acessarListaPaciente() {
-		actions.clicarBotaoPegandoPeloId("ROLE_AGENDAMENTOS");
+	/**
+     * Método para selecionar a ação da lista de agendamento
+     * @param  acao Seleciona a ação executada, 0: chegou? 1: Confirmar 2: Cancelar
+     */
+	public void acaoListaAgendamento (int acao) {
 		actions.esperar(500);
+		switch (acao) {
+		
+		case 0: // PACIENTE CHEGOU
+			actions.clicarBotaoPegandoPeloXpath("//p-togglebutton/div/span");
+			Log.registrar("Ação para 'Paciente chegou'");
+			break;
+			
+		case 1: // CONFIRMADO
+			actions.clicarBotaoPegandoPeloXpath("//div[2]/button/span");
+			Log.registrar("Ação para confirmar agendamento");
+			break;
+			
+		case 2: // CANCELADO
+			actions.clicarBotaoPegandoPeloXpath("//div[3]/button/span");
+			actions.esperar(500);
+			// escrever motivo de cancelamento
+			actions.escreverPegandoPeloXpath("(//input[@type='text'])[5]",
+					"TESTE DE CANCELAMENTO");
+			actions.clicarBotaoPegandoPeloCss(".col-6 .p-button-label");
+			Log.registrar("Ação para cancelar agendamento");
+			break;
+		}
 	}
 	
-	public void excecaoAgenda() {
-		actions.clicarBotaoPegandoPeloCss(".p-inputswitch-slider");
-	}
-	
-	public void filtrarStatusPendente() {
-		actions.clicarBotaoPegandoPeloCss(".col-1_5:nth-child(3) .p-dropdown-label");	
-		actions.clicarBotaoPegandoPeloCss(".p-element:nth-child(1) > .p-dropdown-item > .ng-star-inserted");
-	}
-	
-	public void statusPaciente () {
-        
-}
 	
 	// GRUPO
 
@@ -316,15 +346,17 @@ public class AgendamentoPage {
 	 * @param statusBotao Estado do botão de confirmação (true para clicar, false para não clicar).
 	 */
 	public void criarAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
-		modalAgendamento("button.p-ripple");
-		actions.esperar(500);
+		modalAgendamento("#btn-estudoCaso > button");
+		actions.esperar(600);
 		procedimento(Access.procedimento,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span","/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)","p-dropdownitem.p-element > li");
 		dataAgendamento(data, "//div[4]/p-calendar/span/input");
 		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[5]/div[2]/p-calendar/span/input");
-		observacao(horaInicio, data, "//textarea");
+		observacao(horaInicio, data, "/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		actions.esperar(500);
 		botaoCriarAgendamento(statusBotao,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
+		actions.esperar(500);
 	}
 
 	/**
@@ -352,7 +384,6 @@ public class AgendamentoPage {
 	 * @param data       Data do agendamento no formato "dd/MM/yyyy".
 	 * @param horaInicio Hora de início do agendamento no formato "HH:mm".
 	 * @param horaFim    Hora de fim do agendamento no formato "HH:mm".
-	 * @par
 	 */
 	public void criarAgendamentoExcecao(String data, String horaInicio, String horaFim, Boolean statusBotao) {
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
@@ -369,10 +400,16 @@ public class AgendamentoPage {
 		botaoCriarAgendamento(statusBotao,"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
 	
-	public void grupoAlterarStatus(String paciente) {
-		acessarListaPaciente();
-		pesquisarPaciente(paciente);
-		filtrarStatusPendente();
-		
+	/**
+	 * Alterar stats do agendamento
+	 *
+	 * @param paciente       Nome do paciente
+	 * @param acao Seleciona a ação no agendamento confirmar, cancelar, chegou?
+	 */
+	public void alterarStatus(String paciente, int acao) {
+    	navbar("ROLE_AGENDAMENTOS");
+    	filtrarStatusAgendamento("Pendente");
+        pesquisarPaciente(paciente);
+        acaoListaAgendamento(acao);
 	}
 }

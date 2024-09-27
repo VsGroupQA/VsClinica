@@ -1,0 +1,14 @@
+27 09 2024 - 15.23.35 - informações
+27 09 2024 - 15.23.36 - Logar
+27 09 2024 - 15.23.36 - TESTE - Editar criação de integração
+27 09 2024 - 15.23.36 - Iniciando criação de integração em grupo
+27 09 2024 - 15.23.40 - Clicando no botão de configurações
+27 09 2024 - 15.23.41 - Clicando na opção de integrações
+27 09 2024 - 15.23.41 - Clicando no botão de adicionar nova integração
+27 09 2024 - 15.23.41 - Selecionando tipo de integração: BUSCAR_USUARIOS
+27 09 2024 - 15.23.42 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+27 09 2024 - 15.23.42 - Inserindo token do fornecedor
+27 09 2024 - 15.23.42 - Inserindo nome da integração: EDITAR INTEGRACAO
+27 09 2024 - 15.23.42 - Variável é null, método variaveis será ignorado.
+27 09 2024 - 15.23.42 - equipeOuUsuario é null, método será ignorado.
+27 09 2024 - 15.23.42 - Criação de integração em grupo concluída
