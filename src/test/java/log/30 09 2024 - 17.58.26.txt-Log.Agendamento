@@ -1,0 +1,133 @@
+30 09 2024 - 17.58.34 - informações
+30 09 2024 - 17.58.35 - Logar
+30 09 2024 - 17.58.35 - TESTE REALIZADO - Criar agendamento duplicado
+30 09 2024 - 17.58.35 - Abrir modal
+30 09 2024 - 17.58.36 - Adicionar procedimento
+30 09 2024 - 17.58.37 - Adicionar profissional
+30 09 2024 - 17.58.37 - Adicionar compromisso
+30 09 2024 - 17.58.38 - Adicionar paciente
+30 09 2024 - 17.58.39 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.58.39 - Horario de agendamento adicionado - Inicio: 17:58
+30 09 2024 - 17.58.39 - Horario de agendamento adicionado - Fim: 17:59
+30 09 2024 - 17.58.40 - Concluir agendamento
+30 09 2024 - 17.58.41 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 17.58.41 - Abrir modal
+30 09 2024 - 17.58.42 - Adicionar procedimento
+30 09 2024 - 17.58.43 - Adicionar profissional
+30 09 2024 - 17.58.43 - Adicionar compromisso
+30 09 2024 - 17.58.44 - Adicionar paciente
+30 09 2024 - 17.58.45 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.58.45 - Horario de agendamento adicionado - Inicio: 17:58
+30 09 2024 - 17.58.45 - Horario de agendamento adicionado - Fim: 17:59
+30 09 2024 - 17.58.47 - Agendamento duplicado detectado corretamente.
+30 09 2024 - 17.58.54 - informações
+30 09 2024 - 17.58.55 - Logar
+30 09 2024 - 17.58.55 - TESTE REALIZADO - Paciente chegou?
+30 09 2024 - 17.58.55 - Abrir modal
+30 09 2024 - 17.58.56 - Adicionar procedimento
+30 09 2024 - 17.58.57 - Adicionar profissional
+30 09 2024 - 17.58.57 - Adicionar compromisso
+30 09 2024 - 17.58.58 - Adicionar paciente
+30 09 2024 - 17.58.59 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.58.59 - Horario de agendamento adicionado - Inicio: 18:00
+30 09 2024 - 17.58.59 - Horario de agendamento adicionado - Fim: 18:01
+30 09 2024 - 17.59.00 - Concluir agendamento
+30 09 2024 - 17.59.00 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 17.59.02 - Acessar navbar: ROLE_AGENDAMENTOS
+30 09 2024 - 17.59.03 - Selecionado o status: Pendente
+30 09 2024 - 17.59.03 - Ação para 'Paciente chegou'
+30 09 2024 - 17.59.04 - Notificação de sucesso exibida: Paciente chegou.
+30 09 2024 - 17.59.11 - informações
+30 09 2024 - 17.59.12 - Logar
+30 09 2024 - 17.59.12 - TESTE REALIZADO - Criar agendamento duplicado - Lista
+30 09 2024 - 17.59.13 - Acessar navbar: ROLE_AGENDAMENTOS
+30 09 2024 - 17.59.13 - Abrir modal
+30 09 2024 - 17.59.14 - Adicionar procedimento
+30 09 2024 - 17.59.15 - Adicionar profissional
+30 09 2024 - 17.59.15 - Adicionar compromisso
+30 09 2024 - 17.59.16 - Adicionar paciente
+30 09 2024 - 17.59.16 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.59.17 - Horario de agendamento adicionado - Inicio: 18:02
+30 09 2024 - 17.59.17 - Horario de agendamento adicionado - Fim: 18:03
+30 09 2024 - 17.59.18 - Concluir agendamento
+30 09 2024 - 17.59.18 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 17.59.18 - Abrir modal
+30 09 2024 - 17.59.19 - Adicionar procedimento
+30 09 2024 - 17.59.19 - Adicionar profissional
+30 09 2024 - 17.59.20 - Adicionar compromisso
+30 09 2024 - 17.59.21 - Adicionar paciente
+30 09 2024 - 17.59.21 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.59.21 - Horario de agendamento adicionado - Inicio: 18:02
+30 09 2024 - 17.59.21 - Horario de agendamento adicionado - Fim: 18:03
+30 09 2024 - 17.59.23 - Agendamento duplicado detectado corretamente.
+30 09 2024 - 17.59.29 - informações
+30 09 2024 - 17.59.30 - Logar
+30 09 2024 - 17.59.30 - TESTE REALIZADO - Criar agendamento
+30 09 2024 - 17.59.31 - Abrir modal
+30 09 2024 - 17.59.32 - Adicionar procedimento
+30 09 2024 - 17.59.32 - Adicionar profissional
+30 09 2024 - 17.59.33 - Adicionar compromisso
+30 09 2024 - 17.59.34 - Adicionar paciente
+30 09 2024 - 17.59.34 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.59.34 - Horario de agendamento adicionado - Inicio: 18:04
+30 09 2024 - 17.59.34 - Horario de agendamento adicionado - Fim: 18:05
+30 09 2024 - 17.59.35 - Concluir agendamento
+30 09 2024 - 17.59.35 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 17.59.42 - informações
+30 09 2024 - 17.59.43 - Logar
+30 09 2024 - 17.59.43 - TESTE REALIZADO - Criar agendamento - Com botão EXCEÇÃO
+30 09 2024 - 17.59.44 - Abrir modal
+30 09 2024 - 17.59.45 - Adicionar procedimento
+30 09 2024 - 17.59.45 - Adicionar profissional
+30 09 2024 - 17.59.46 - Adicionar compromisso
+30 09 2024 - 17.59.47 - Adicionar paciente
+30 09 2024 - 17.59.47 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.59.47 - Horario de agendamento adicionado - Inicio: 18:06
+30 09 2024 - 17.59.48 - Horario de agendamento adicionado - Fim: 18:07
+30 09 2024 - 17.59.48 - Concluir agendamento
+30 09 2024 - 17.59.48 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 17.59.49 - Abrir modal
+30 09 2024 - 17.59.50 - Adicionar procedimento
+30 09 2024 - 17.59.50 - Adicionar profissional
+30 09 2024 - 17.59.50 - Ativar botão de EXCEÇÃO
+30 09 2024 - 17.59.51 - Adicionar compromisso
+30 09 2024 - 17.59.52 - Adicionar paciente
+30 09 2024 - 17.59.52 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 17.59.52 - Horario de agendamento adicionado - Inicio: 18:06
+30 09 2024 - 17.59.53 - Horario de agendamento adicionado - Fim: 18:07
+30 09 2024 - 17.59.53 - Concluir agendamento
+30 09 2024 - 17.59.54 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 18.00.00 - informações
+30 09 2024 - 18.00.01 - Logar
+30 09 2024 - 18.00.01 - TESTE REALIZADO - Cancelar agendamento
+30 09 2024 - 18.00.02 - Abrir modal
+30 09 2024 - 18.00.03 - Adicionar procedimento
+30 09 2024 - 18.00.04 - Adicionar profissional
+30 09 2024 - 18.00.04 - Adicionar compromisso
+30 09 2024 - 18.00.05 - Adicionar paciente
+30 09 2024 - 18.00.05 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 18.00.06 - Horario de agendamento adicionado - Inicio: 18:08
+30 09 2024 - 18.00.06 - Horario de agendamento adicionado - Fim: 18:09
+30 09 2024 - 18.00.07 - Concluir agendamento
+30 09 2024 - 18.00.07 - Notificação de sucesso exibida: Agendamento cadastrado com sucesso.
+30 09 2024 - 18.00.10 - Acessar navbar: ROLE_AGENDAMENTOS
+30 09 2024 - 18.00.10 - Selecionado o status: Pendente
+30 09 2024 - 18.00.12 - Ação para cancelar agendamento
+30 09 2024 - 18.00.12 - Notificação de sucesso exibida: Agendamento cancelado com sucesso.
+30 09 2024 - 18.00.19 - informações
+30 09 2024 - 18.00.20 - Logar
+30 09 2024 - 18.00.20 - TESTE REALIZADO - Criar agendamento sem campos obrigatórios
+30 09 2024 - 18.00.21 - Abrir modal
+30 09 2024 - 18.00.22 - Adicionar profissional
+30 09 2024 - 18.00.23 - Adicionar paciente
+30 09 2024 - 18.00.23 - Adicionar data de agendamento:30/09/2024
+30 09 2024 - 18.00.23 - Horario de agendamento adicionado - Inicio: 18:10
+30 09 2024 - 18.00.24 - Horario de agendamento adicionado - Fim: 18:11
+30 09 2024 - 18.00.25 - Agendamento duplicado detectado corretamente.
+30 09 2024 - 18.00.33 - informações
+30 09 2024 - 18.00.34 - Logar
+30 09 2024 - 18.00.34 - TESTE REALIZADO - Criar agendamento duplicado - Ficha do paciente
+30 09 2024 - 18.00.35 - Acessar navbar: ROLE_PACIENTES
+30 09 2024 - 18.00.37 - Abrir modal
+30 09 2024 - 18.00.38 - Adicionar procedimento
+30 09 2024 - 18.00.38 - Adicionar profissional
