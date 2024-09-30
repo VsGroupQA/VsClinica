@@ -70,7 +70,7 @@ public class IntegracoesTest {
     public void criarIntegracao() {
     	String nomeIntegracao = "CRIAR INTEGRACAO - TESTE";
         Log.registrar("TESTE - Criar integração");
-        integracao.grupoCriarIntegracao(
+        integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
                 Access.tokenOmnia,
@@ -79,9 +79,8 @@ public class IntegracoesTest {
                 3, 
                 null
         );
-        integracao.botaoSalvarIntegracao();
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.excluirIntegracao(nomeIntegracao);
     }
     
     @Test
@@ -90,7 +89,7 @@ public class IntegracoesTest {
     	String nomeIntegracaoEditado = "(editado)";
     	
         Log.registrar("TESTE - Editar criação de integração");
-        integracao.grupoCriarIntegracao(
+        integracao.criarIntegracao(
                 "BUSCAR_USUARIOS",
                 Access.urlBuscarEquipe, 
                 Access.tokenOmnia,
@@ -99,11 +98,11 @@ public class IntegracoesTest {
                 3, 
                 null
         );
-        integracao.botaoSalvarIntegracao();
-        
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
+        actions.esperar(1000);
         integracao.editarIntegracao(nomeIntegracao);
         integracao.nomeIntegracao(nomeIntegracaoEditado);
-        integracao.botaoSalvarIntegracao();
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.validarNotificacao("Integração cadastrada");
         
     }
@@ -112,7 +111,7 @@ public class IntegracoesTest {
     public void desativarIntegracao() {
     	String nomeIntegracao = "DESATIVAR INTEGRACAO - TESTE";
         Log.registrar("TESTE - Criar integração");
-        integracao.grupoCriarIntegracao(
+        integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
                 Access.tokenOmnia,
@@ -121,7 +120,7 @@ public class IntegracoesTest {
                 3, 
                 null
         );
-        integracao.botaoSalvarIntegracao();
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.validarNotificacao("Integração cadastrada");
         actions.esperar(1000);
         integracao.desativarIntegracao(nomeIntegracao);
@@ -133,7 +132,7 @@ public class IntegracoesTest {
     public void excluirIntegracao() {
     	String nomeIntegracao = "EXCLUIR INTEGRACAO - TESTE";
         Log.registrar("TESTE - Excluir integração");
-        integracao.grupoCriarIntegracao(
+        integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
                 Access.tokenOmnia,
@@ -142,9 +141,10 @@ public class IntegracoesTest {
                 3, 
                 null
         );
-        integracao.botaoSalvarIntegracao();
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.validarNotificacao("Integração cadastrada");
         
+        actions.esperar(1000);
         integracao.excluirIntegracao(nomeIntegracao);
         integracao.validarNotificacao("Integração deletado");
         

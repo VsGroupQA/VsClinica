@@ -34,7 +34,7 @@ public class AgendamentoPage {
 	 */
 	public void navbar(String id) {
 		actions.clicarBotaoPegandoPeloId(id);
-		actions.esperar(500);
+		actions.esperar(3000);
 		Log.registrar("Acessar navbar: "+ id +"");
 	}
 
@@ -346,15 +346,18 @@ public class AgendamentoPage {
 	 * @param statusBotao Estado do botão de confirmação (true para clicar, false para não clicar).
 	 */
 	public void criarAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+		actions.esperar(200);
 		modalAgendamento("#btn-estudoCaso > button");
 		actions.esperar(600);
 		procedimento(Access.procedimento,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span","/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)","p-dropdownitem.p-element > li");
+		actions.esperar(500);
 		dataAgendamento(data, "//div[4]/p-calendar/span/input");
 		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[5]/div[2]/p-calendar/span/input");
 		observacao(horaInicio, data, "/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
 		actions.esperar(500);
+		Log.registrar("Botao");
 		botaoCriarAgendamento(statusBotao,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 		actions.esperar(500);
 	}
@@ -397,6 +400,7 @@ public class AgendamentoPage {
 		dataAgendamento(data, "//*[@id=\"icon\"]");
 		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[2]/p-calendar/span/input");
 		observacao(horaInicio, data,"/html/body/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
+		Log.registrar("Botao");
 		botaoCriarAgendamento(statusBotao,"/html/body/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
 	}
 	

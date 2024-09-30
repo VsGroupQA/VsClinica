@@ -119,6 +119,7 @@ public class AgendamentoTest {
         agendamento.pesquisarPaciente(Access.paciente);
         agendamento.selecionarPaciente();
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
+        actions.esperar(3000);
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], false);
     }
     
@@ -145,7 +146,7 @@ public class AgendamentoTest {
     	Log.registrar("TESTE REALIZADO - Confirmar agendamento");
     	String[] horarios = gerarHorariosAgendamento();
     	
-    	agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
+    	agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
         actions.esperar(1500);
     	agendamento.alterarStatus(Access.paciente, 1);
@@ -157,7 +158,7 @@ public class AgendamentoTest {
     	Log.registrar("TESTE REALIZADO - Cancelar agendamento");
     	String[] horarios = gerarHorariosAgendamento();
     	
-    	agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
+    	agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
         actions.esperar(1500);
     	agendamento.alterarStatus(Access.paciente, 2);
@@ -169,7 +170,7 @@ public class AgendamentoTest {
     	Log.registrar("TESTE REALIZADO - Paciente chegou?");
     	String[] horarios = gerarHorariosAgendamento();
     	
-    	agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
+    	agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
         actions.esperar(1500);
     	agendamento.alterarStatus(Access.paciente, 0);

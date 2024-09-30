@@ -30,19 +30,35 @@ public class IntegracoesPage {
 	}
 
 	// COMPONENTES
+	
+	 /**
+     * Acessa a Configurações.
+     */
+	public void acessarConfig() {
+		actions.esperar(3000);
+		actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
+		Log.registrar("Acessando Configuração");
+
+	}
 
 	 /**
-     * Acessa a Configurações > Integrações.
+     * Acessa a Integrações.
      */
 	public void acessarIntegracao() {
-		actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
-		Log.registrar("Clicando no botão de configurações");
 		actions.esperar(1000);
-		
 		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='Integracoes']/div/div/div/div[2]/p[2]");
 		Log.registrar("Clicando na opção de integrações");
 	}
 
+    /**
+     * Adiciona uma nova integração no sistema.
+     */
+	public void adicionarNovo(String xpath) {
+		actions.clicarBotaoPegandoPeloXpath(xpath);
+		Log.registrar("Botão de adicionar novo item");
+	}
+
+	
     /**
      * Adiciona uma nova integração no sistema.
      */
@@ -57,23 +73,32 @@ public class IntegracoesPage {
      * @param nomeDoTipo Nome do tipo de integração a ser selecionado.
      */
 	public void selecionarTipoIntegracao(String nomeDoTipo) {
-		Log.registrar("Selecionando tipo de integração: " + nomeDoTipo);
-		actions.clicarBotaoPegandoPeloXpath("//p-dropdown/div/span");
-		
-		List<WebElement> tipoIntegracao = driver.findElements(By.xpath("//p-dropdownitem/li"));
-		for (WebElement integracoes : tipoIntegracao) {
-			if (integracoes.getText().equalsIgnoreCase(nomeDoTipo)) {
-				integracoes.click();
-				Log.registrar("Tipo de integração " + nomeDoTipo + " encontrado e selecionado");
-				break;
-			}
-		}
+	    Log.registrar("Selecionando tipo de integração: " + nomeDoTipo);
+	    
+	    // Abrir o dropdown
+	    WebElement dropdown = driver.findElement(By.xpath("//p-dropdown/div/span"));
+	    dropdown.click();
+	    
+	    // Esperar até que os itens do dropdown estejam visíveis
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p-dropdownitem/li")));
+	    
+	    // Buscar e selecionar o item correto
+	    List<WebElement> tipoIntegracao = driver.findElements(By.xpath("//p-dropdownitem/li"));
+	    for (WebElement integracao : tipoIntegracao) {
+	        if (integracao.getText().equalsIgnoreCase(nomeDoTipo)) {
+	            integracao.click();
+	            Log.registrar("Tipo de integração " + nomeDoTipo + " encontrado e selecionado");
+	            break;
+	        }
+	    }
 	}
+
 
 	  /**
      * Insere a URL da integração.
      *
-     * @param url URL da integração a ser inserida.
+     * @param url URL do Endpoint do disparo do Omnia.
      */
 	public void urlIntegracao(String url) {
 		actions.escreverPegandoPeloName("nome", url);
@@ -83,15 +108,15 @@ public class IntegracoesPage {
 	/**
      * Insere o token do fornecedor na integração.
      *
-     * @param informarToken Token do fornecedor.
+     * @param informarToken Token do Omnia.
      */
 	public void tokenFornecedor(String informarToken) {
 		actions.escreverPegandoPeloName("token", informarToken);
-		Log.registrar("Inserindo token do fornecedor");
+		Log.registrar("Inserindo token do fornecedor (Omnia)");
 	}
 
 	/**
-     * Adiciona um template do Omnia à integração.
+     * Adiciona um template à integração.
      */
 	public void adicionarTemplate() {
 		actions.clicarBotaoPegandoPeloCss("div.col-12:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p-inputswitch:nth-child(1) > div:nth-child(1) > span:nth-child(2)");
@@ -99,17 +124,17 @@ public class IntegracoesPage {
 	}
 
     /**
-     * Seleciona uma criação de lead com base no parâmetro fornecido.
+     * Seleciona uma criação de lead - 0: Aquario, 1: Equipe, 2:Usuario, 3:null.
      *
-     * @param parametro      Parâmetro que define o tipo de lead a ser selecionado.
+     * @param opcao      Parâmetro que define o tipo de lead a ser selecionado.
      * @param equipeOuUsuario Nome da equipe ou usuário a ser selecionado.
      */
-	public void selecionarLead(int parametro, String equipeOuUsuario) {
+	public void selecionarLead(int opcao, String equipeOuUsuario) {
 		if (equipeOuUsuario == null) {
 			Log.registrar("equipeOuUsuario é null, método será ignorado.");
 			return;
 		}
-		switch (parametro) {
+		switch (opcao) {
 		
 		case 0: // Aquario
 			actions.clicarBotaoPegandoPeloCss("#active > div > span");
@@ -126,9 +151,6 @@ public class IntegracoesPage {
 		case 3:
 			Log.registrar("Parâmetro nulo.");
 			break;
-		default:
-			Log.registrar("Parâmetro inválido: " + parametro);
-			throw new IllegalArgumentException("Parâmetro inválido: " + parametro);
 		}
 	}
 
@@ -143,7 +165,6 @@ public class IntegracoesPage {
 		actions.clicarBotaoPegandoPeloXpath("//p-inputswitch/div/span");
 		Log.registrar("Criar lead em especifico");
 		actions.esperar(2000);
-		Log.registrar("Esperando 2 segundos");
 		actions.clicarBotaoPegandoPeloXpath(ehEquipe ? "//div[2]/p-radiobutton/div/div[2]" : "//p-radiobutton/div/div[2]");
 		Log.registrar(ehEquipe ? "Selecionar Equipe" : "Selecionar Usuário");
 
@@ -183,9 +204,9 @@ public class IntegracoesPage {
      *
      * @param descricao Nome da integração.
      */
-	public void nomeIntegracao(String descricao) {
-		actions.escreverPegandoPeloName("nomeIntegracao", descricao);
-		Log.registrar("Inserindo nome da integração: " + descricao);
+	public void nomeIntegracao(String nomeDescricao) {
+		actions.escreverPegandoPeloName("nomeIntegracao", nomeDescricao);
+		Log.registrar("Inserindo nome da integração: " + nomeDescricao);
 	}
 
 	 /**
@@ -198,6 +219,7 @@ public class IntegracoesPage {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			WebElement notificacao = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-toast-detail")));
 			String textoNotificacao = notificacao.getText();
+			
 			Assert.assertEquals(msg, textoNotificacao);
 			Log.registrar("Notificação de sucesso exibida: " + textoNotificacao);
 			
@@ -206,19 +228,27 @@ public class IntegracoesPage {
 			Assert.fail("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
 		}
 	}
-
+	
 	/**
      * Clica no botão de salvar agendador.
      */
-	public void botaoSalvarIntegracao() {
-		actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-		Log.registrar("Clicando no botão de salvar integração");
+	public void botaoSalvar(String xpath) {
+		actions.clicarBotaoPegandoPeloXpath(xpath);
+		Log.registrar("Clicando no botão de salvar");
 	}
 
-	public void botaoSalvarAgendador() {
-		actions.clicarBotaoPegandoPeloXpath("//p-button/button/span");
-		Log.registrar("Clicando no botão de salvar agendador");
-	}
+//	/**
+//     * Clica no botão de salvar agendador.
+//     */
+//	public void botaoSalvarIntegracao() {
+//		actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
+//		Log.registrar("Clicando no botão de salvar integração");
+//	}
+//
+//	public void botaoSalvarAgendador() {
+//		actions.clicarBotaoPegandoPeloXpath("//p-button/button/span");
+//		Log.registrar("Clicando no botão de salvar agendador");
+//	}
 
 	/**
      * Insere o número de disparo na integração.
@@ -263,13 +293,13 @@ public class IntegracoesPage {
 		}
 	}
 
-	/**
-	 * Adiciona um novo agendador.
-	 */
-	public void adicionarNovoAgendador() {
-		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
-		Log.registrar("Clicando no botão de adicionar novo agendador");
-	}
+//	/**
+//	 * Adiciona um novo agendador.
+//	 */
+//	public void adicionarNovoAgendador() {
+//		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
+//		Log.registrar("Clicando no botão de adicionar novo agendador");
+//	}
 
 	/**
 	 * Insere a descrição do agendador.
@@ -306,6 +336,7 @@ public class IntegracoesPage {
 	 * @param hora Horário a ser inserido.
 	 */
 	public void horarioExecucao(String hora) {
+		// Saindo null
 		actions.escreverPegandoPeloName("horarioExec", hora);
 		Log.registrar("Inserindo horário de execução: " + hora);
 	}
@@ -463,20 +494,19 @@ public class IntegracoesPage {
 	    }
 	}
 
-
 	/**
 	 * Fecha modal
 	 */
-	public void fecharModal() {
-		actions.clicarBotaoPegandoPeloXpath("//p-button[2]/button/span");
+	public void fecharModal(String xpath) {
+		actions.clicarBotaoPegandoPeloXpath(xpath);
 	}
 
-	/**
-	 * Fecha notificação
-	 */
-	public void fecharNotficacao() {
-		actions.clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon > path");
-	}
+//	/**
+//	 * Fecha modal
+//	 */
+//	public void fecharModal() {
+//		actions.clicarBotaoPegandoPeloXpath("//p-button[2]/button/span");
+//	}
 
 	/**
 	 * Edita integração
@@ -511,10 +541,10 @@ public class IntegracoesPage {
 	    }
 	}
 
-	// modal?
-	public void fecharAgendador() {
-		actions.clicarBotaoPegandoPeloCss(".p-dialog-header-close-icon > path");
-	}	
+//	// modal?
+//	public void fecharAgendador() {
+//		actions.clicarBotaoPegandoPeloCss(".p-dialog-header-close-icon > path");
+//	}	
 	
 	/**
 	 * Edita Agendador
@@ -571,11 +601,11 @@ public class IntegracoesPage {
 	 * @param caseLead Case lead a ser selecionado.
 	 * @param equipeUsuario Equipe de usuário.
 	 */
-	public void grupoCriarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, String variavel,
+	public void criarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, String variavel,
 			int caseLead, String equipeUsuario) {
-		Log.registrar("Iniciando criação de integração em grupo");
-		actions.esperar(2200);
+		Log.registrar("Iniciando criação de nova integração");
 		try {
+			acessarConfig();
 			acessarIntegracao();
 			adicionarNovaIntegracao();
 			selecionarTipoIntegracao(tipo);
@@ -584,6 +614,7 @@ public class IntegracoesPage {
 			nomeIntegracao(nomeIntegracao);
 			variaveis(variavel);
 			selecionarLead(caseLead, equipeUsuario);
+			
 			Log.registrar("Criação de integração em grupo concluída");
 
 		} catch (ElementNotInteractableException e) {

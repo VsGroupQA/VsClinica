@@ -1,0 +1,14 @@
+30 09 2024 - 20.18.39 - informações
+30 09 2024 - 20.18.40 - Logar
+30 09 2024 - 20.18.40 - TESTE - Criar integração
+30 09 2024 - 20.18.40 - Iniciando criação de nova integração
+30 09 2024 - 20.18.43 - Acessando Configuração
+30 09 2024 - 20.18.44 - Clicando na opção de integrações
+30 09 2024 - 20.18.45 - Clicando no botão de adicionar nova integração
+30 09 2024 - 20.18.45 - Selecionando tipo de integração: BUSCAR_EQUIPES
+30 09 2024 - 20.18.45 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+30 09 2024 - 20.18.45 - Inserindo token do fornecedor (Omnia)
+30 09 2024 - 20.18.46 - Inserindo nome da integração: CRIAR INTEGRACAO - TESTE
+30 09 2024 - 20.18.46 - Variável é null, método variaveis será ignorado.
+30 09 2024 - 20.18.46 - equipeOuUsuario é null, método será ignorado.
+30 09 2024 - 20.18.46 - Criação de integração em grupo concluída

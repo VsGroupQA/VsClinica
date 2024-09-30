@@ -1,0 +1,26 @@
+30 09 2024 - 20.27.23 - informações
+30 09 2024 - 20.27.24 - Logar
+30 09 2024 - 20.27.24 - TESTE - Editar criação de integração
+30 09 2024 - 20.27.24 - Iniciando criação de nova integração
+30 09 2024 - 20.27.28 - Acessando Configuração
+30 09 2024 - 20.27.29 - Clicando na opção de integrações
+30 09 2024 - 20.27.29 - Clicando no botão de adicionar nova integração
+30 09 2024 - 20.27.29 - Selecionando tipo de integração: BUSCAR_USUARIOS
+30 09 2024 - 20.27.30 - Tipo de integração BUSCAR_USUARIOS encontrado e selecionado
+30 09 2024 - 20.27.30 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+30 09 2024 - 20.27.31 - Inserindo token do fornecedor (Omnia)
+30 09 2024 - 20.27.31 - Inserindo nome da integração: EDITAR INTEGRACAO
+30 09 2024 - 20.27.31 - Variável é null, método variaveis será ignorado.
+30 09 2024 - 20.27.31 - equipeOuUsuario é null, método será ignorado.
+30 09 2024 - 20.27.31 - Criação de integração em grupo concluída
+30 09 2024 - 20.27.31 - Clicando no botão de salvar
+30 09 2024 - 20.27.32 - Tentando editar integração com o nome: EDITAR INTEGRACAO
+30 09 2024 - 20.27.33 - Esperando
+30 09 2024 - 20.27.33 - Tabela de integrações carregada
+30 09 2024 - 20.27.33 - Nome da integração na linha 1: Disparo
+30 09 2024 - 20.27.33 - Nome da integração na linha 2: EDITAR INTEGRACAO
+30 09 2024 - 20.27.33 - Integração encontrada: EDITAR INTEGRACAO
+30 09 2024 - 20.27.33 - Clicando no botão de editar integração
+30 09 2024 - 20.27.34 - Inserindo nome da integração: (editado)
+30 09 2024 - 20.27.34 - Clicando no botão de salvar
+30 09 2024 - 20.27.34 - Notificação de sucesso exibida: Integração cadastrada
