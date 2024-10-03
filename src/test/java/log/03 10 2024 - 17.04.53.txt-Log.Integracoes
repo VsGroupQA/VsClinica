@@ -1,0 +1,25 @@
+03 10 2024 - 17.05.05 - informações
+03 10 2024 - 17.05.06 - Logar
+03 10 2024 - 17.05.06 - TESTE - Desativar integração
+03 10 2024 - 17.05.06 - Iniciando criação de nova integração
+03 10 2024 - 17.05.10 - Acessando Configuração
+03 10 2024 - 17.05.11 - Clicando na opção de integrações
+03 10 2024 - 17.05.11 - Clicando no botão de adicionar nova integração
+03 10 2024 - 17.05.11 - Selecionando tipo de integração: BUSCAR_EQUIPES
+03 10 2024 - 17.05.13 - Tipo de integração BUSCAR_EQUIPES encontrado e selecionado
+03 10 2024 - 17.05.13 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+03 10 2024 - 17.05.13 - Inserindo token do fornecedor (Omnia)
+03 10 2024 - 17.05.14 - Inserindo nome da integração: DESATIVAR INTEGRACAO
+03 10 2024 - 17.05.14 - Variável é null, método variaveis será ignorado.
+03 10 2024 - 17.05.14 - equipeOuUsuario é null, método será ignorado.
+03 10 2024 - 17.05.14 - Criação de integração em grupo concluída
+03 10 2024 - 17.05.14 - Clicando no botão de salvar
+03 10 2024 - 17.05.15 - Notificação de sucesso exibida: Integração cadastrada
+03 10 2024 - 17.05.15 - Tentando desativar integração com o nome: DESATIVAR INTEGRACAO
+03 10 2024 - 17.05.16 - Esperando
+03 10 2024 - 17.05.16 - Tabela de integrações carregada
+03 10 2024 - 17.05.16 - Nome da integração na linha 1: EDITAR INTEGRACAO(editado)
+03 10 2024 - 17.05.16 - Nome da integração na linha 2: DESATIVAR INTEGRACAO
+03 10 2024 - 17.05.16 - Integração encontrada: DESATIVAR INTEGRACAO
+03 10 2024 - 17.05.18 - Clicando no botão de desativar integração
+03 10 2024 - 17.05.19 - Notificação de sucesso exibida: Integração desativada

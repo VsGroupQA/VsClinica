@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import utils.Access;
 import utils.Actions;
 import utils.Log;
 
@@ -55,17 +54,17 @@ public class IntegracoesPage {
      */
 	public void adicionarNovo(String xpath) {
 		actions.clicarBotaoPegandoPeloXpath(xpath);
-		Log.registrar("Botão de adicionar novo item");
+		Log.registrar("Selecionar botão de adicionar novo item. xpath: "+xpath+"");
 	}
 
 	
-    /**
-     * Adiciona uma nova integração no sistema.
-     */
-	public void adicionarNovaIntegracao() {
-		actions.clicarBotaoPegandoPeloXpath("//button/span");
-		Log.registrar("Clicando no botão de adicionar nova integração");
-	}
+//    /**
+//     * Adiciona uma nova integração no sistema.
+//     */
+//	public void adicionarNovo() {
+//		actions.clicarBotaoPegandoPeloXpath("//button/span");
+//		Log.registrar("Clicando no botão de adicionar nova integração");
+//	}
 
 	 /**
      * Seleciona o tipo de integração com base no nome fornecido.
@@ -227,6 +226,13 @@ public class IntegracoesPage {
 			Log.registrar("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
 			Assert.fail("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
 		}
+	}
+	
+	 /**
+     * Fechar notificação
+     */
+	public void fecharNotificacao () {
+		actions.clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon");
 	}
 	
 	/**
@@ -586,6 +592,8 @@ public class IntegracoesPage {
 	        Log.registrar("Nenhuma integração foi encontrada com o nome: " + nomeEsperado);
 	    }
 	}
+	
+	
 
 	
 	// GRUPO
@@ -601,13 +609,12 @@ public class IntegracoesPage {
 	 * @param caseLead Case lead a ser selecionado.
 	 * @param equipeUsuario Equipe de usuário.
 	 */
-	public void criarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, String variavel,
-			int caseLead, String equipeUsuario) {
+	public void criarIntegracao(String tipo, String endpoint, String token, String nomeIntegracao, String variavel, int caseLead, String equipeUsuario) {
 		Log.registrar("Iniciando criação de nova integração");
 		try {
 			acessarConfig();
 			acessarIntegracao();
-			adicionarNovaIntegracao();
+			adicionarNovo("//button/span");
 			selecionarTipoIntegracao(tipo);
 			urlIntegracao(endpoint);
 			tokenFornecedor(token);
@@ -615,7 +622,7 @@ public class IntegracoesPage {
 			variaveis(variavel);
 			selecionarLead(caseLead, equipeUsuario);
 			
-			Log.registrar("Criação de integração em grupo concluída");
+			Log.registrar("Criação de integração concluída");
 
 		} catch (ElementNotInteractableException e) {
 			Log.registrar("Erro ao interagir com o elemento: " + e.getMessage());
@@ -651,30 +658,15 @@ public class IntegracoesPage {
 	 *
 	 * @param descricao Descrição do agendador.
 	 */
-	public void grupoAdicionarAgendador(String descricao) {
+	public void adicionarAgendador(String descricao) {
 		Log.registrar("Iniciando adição de agendador em grupo");
-		acessarIntegracao();
-		adicionarNovoAgendador();
+
+		adicionarNovo("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
 		descricaoAgendador(descricao);
 		selecionarTipoAlerta("ALERTAR_AGENDAMENTOS");
-		actions.esperar(500);
 		Log.registrar("Adição de agendador em grupo concluída");
 	}
 
-	/**
-	 * Busca a equipe Omnia em grupo.
-	 */
-	public void grupoBuscarEquipeOmnia() {
-		acessarIntegracao();
-		grupoCriarIntegracao("BUSCAR_EQUIPES",
-				Access.urlBuscarEquipe, 
-				Access.tokenOmnia, 
-				"BUSCAR EQUIPE - TESTE",
-				null,
-				3,
-				null);
-		botaoSalvarIntegracao();
-		
-	}
+	
 
 }

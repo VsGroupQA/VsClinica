@@ -1,0 +1,17 @@
+03 10 2024 - 15.39.53 - informações
+03 10 2024 - 15.39.54 - Logar
+03 10 2024 - 15.39.54 - TESTE - Criar integração
+03 10 2024 - 15.39.54 - Iniciando criação de nova integração
+03 10 2024 - 15.39.57 - Acessando Configuração
+03 10 2024 - 15.39.58 - Clicando na opção de integrações
+03 10 2024 - 15.39.59 - Clicando no botão de adicionar nova integração
+03 10 2024 - 15.39.59 - Selecionando tipo de integração: BUSCAR_EQUIPES
+03 10 2024 - 15.40.00 - Tipo de integração BUSCAR_EQUIPES encontrado e selecionado
+03 10 2024 - 15.40.00 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+03 10 2024 - 15.40.00 - Inserindo token do fornecedor (Omnia)
+03 10 2024 - 15.40.00 - Inserindo nome da integração: CRIAR INTEGRACAO
+03 10 2024 - 15.40.01 - Inserindo variáveis adicionais: INTEGRAÇÃO CRIADA DE BUSCAR EQUIPES
+03 10 2024 - 15.40.01 - equipeOuUsuario é null, método será ignorado.
+03 10 2024 - 15.40.01 - Criação de integração em grupo concluída
+03 10 2024 - 15.40.01 - Clicando no botão de salvar
+03 10 2024 - 15.40.01 - Notificação de sucesso exibida: Integração cadastrada
