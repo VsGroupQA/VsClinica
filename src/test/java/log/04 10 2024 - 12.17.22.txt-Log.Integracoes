@@ -1,0 +1,15 @@
+04 10 2024 - 12.17.28 - informações
+04 10 2024 - 12.17.29 - Logar
+04 10 2024 - 12.17.29 - TESTE - Editar agendador de disparo
+04 10 2024 - 12.17.33 - Acessando Configuração
+04 10 2024 - 12.17.34 - Clicando na opção de integrações
+04 10 2024 - 12.17.34 - Iniciando adição de agendador em grupo
+04 10 2024 - 12.17.34 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+04 10 2024 - 12.17.34 - Inserindo descrição do agendador: EDITAR AGENDADOR - TESTE
+04 10 2024 - 12.17.34 - Clicando no dropdown de tipo de alerta
+04 10 2024 - 12.17.35 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+04 10 2024 - 12.17.35 - Adição de agendador em grupo concluída
+04 10 2024 - 12.17.35 - Clicando no botão de salvar
+04 10 2024 - 12.17.35 - Notificação de sucesso exibida: Tarefa agendada
+04 10 2024 - 12.17.35 - Tentando editar agendamento de disparo com o nome: EDITAR AGENDADOR - TESTE
+04 10 2024 - 12.17.36 - Esperando

@@ -57,14 +57,6 @@ public class IntegracoesPage {
 		Log.registrar("Selecionar botão de adicionar novo item. xpath: "+xpath+"");
 	}
 
-	
-//    /**
-//     * Adiciona uma nova integração no sistema.
-//     */
-//	public void adicionarNovo() {
-//		actions.clicarBotaoPegandoPeloXpath("//button/span");
-//		Log.registrar("Clicando no botão de adicionar nova integração");
-//	}
 
 	 /**
      * Seleciona o tipo de integração com base no nome fornecido.
@@ -243,19 +235,7 @@ public class IntegracoesPage {
 		Log.registrar("Clicando no botão de salvar");
 	}
 
-//	/**
-//     * Clica no botão de salvar agendador.
-//     */
-//	public void botaoSalvarIntegracao() {
-//		actions.clicarBotaoPegandoPeloXpath("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-//		Log.registrar("Clicando no botão de salvar integração");
-//	}
-//
-//	public void botaoSalvarAgendador() {
-//		actions.clicarBotaoPegandoPeloXpath("//p-button/button/span");
-//		Log.registrar("Clicando no botão de salvar agendador");
-//	}
-
+	
 	/**
      * Insere o número de disparo na integração.
      *
@@ -298,14 +278,7 @@ public class IntegracoesPage {
 			}
 		}
 	}
-
-//	/**
-//	 * Adiciona um novo agendador.
-//	 */
-//	public void adicionarNovoAgendador() {
-//		actions.clicarBotaoPegandoPeloXpath("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
-//		Log.registrar("Clicando no botão de adicionar novo agendador");
-//	}
+	
 
 	/**
 	 * Insere a descrição do agendador.
@@ -459,70 +432,53 @@ public class IntegracoesPage {
 
 	/**
 	 * Exclui um agendamento de disparo com base no nome fornecido.
-	 *
-	 * @param nomeEsperado Nome do agendamento a ser excluído.
+	 * @param nomeBuscado Nome do agendamento a ser excluído.
 	 */
-	public void excluirAgendamento(String nomeEsperado) {
-	    Log.registrar("Tentando excluir agendamento de disparo com o nome: " + nomeEsperado);
-	    actions.esperar(2000);  // Espera inicial
-	    Log.registrar("Esperando");
+	public void excluirAgendamento(String nomeBuscado) {
+	    Log.registrar("Tentando excluir agendamento com o nome: " + nomeBuscado);
 
-	    // Espera até que a tabela esteja visível
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='pr_id_22-table']")));
-	    Log.registrar("Tabela de agendamento carregada");
-
-	    List<WebElement> linhas = driver.findElements(By.xpath("//table[@id='pr_id_22-table']/tbody/tr"));
-
-	    boolean encontrado = false;
+	    actions.esperar(1000);
+	    List<WebElement> linhas = driver.findElements(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr"));
 
 	    for (int i = 1; i <= linhas.size(); i++) {
-	        try {
-	            WebElement linha = linhas.get(i - 1);
-	            WebElement nomeColuna = linha.findElement(By.xpath("./td[1]"));
-	            String txt = nomeColuna.getText();
-	            Log.registrar("Nome do agendador na linha " + i + ": " + txt);
+	        WebElement nomeAgendador = driver.findElement(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr[" + i + "]/td[1]"));
 
-	            if (txt.equals(nomeEsperado)) {
-	                Log.registrar("Agendamento programado encontrado: " + txt);
-	                WebElement botaoExcluir = linha.findElement(By.xpath("./td[6]/div/button[2]"));
-	                botaoExcluir.click();
-	                Log.registrar("Clicando no botão de desativar integração");
-	                encontrado = true;
-	                break;
-	            }
-	        } catch (NoSuchElementException e) {
-	            Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
+	        if (nomeAgendador.getText().equals(nomeBuscado)) {
+	            Log.registrar("Encontrado: " + nomeAgendador.getText());
+
+	            // XPath mais genérico para o botão de exclusão
+	            WebElement btnExcluir = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	                By.xpath("//app-agendador-tarefas/p-table//tr[" + i + "]//button[contains(@class, 'p-element p-button-rounded p-button-danger btn-acao p-button p-component p-button-icon-only')]")));
+
+	            // Certificar que o botão é clicável
+	            wait.until(ExpectedConditions.elementToBeClickable(btnExcluir));
+	            btnExcluir.click();
+
+	            Log.registrar("Agendamento excluído: " + nomeAgendador.getText());
+	            break;
 	        }
 	    }
-
-	    if (!encontrado) {
-	        Log.registrar("Nenhum agendamento de disparo foi encontrado com o nome: " + nomeEsperado);
-	    }
 	}
+
 
 	/**
 	 * Fecha modal
 	 */
 	public void fecharModal(String xpath) {
 		actions.clicarBotaoPegandoPeloXpath(xpath);
+		Log.registrar("Fechar modal");
 	}
 
-//	/**
-//	 * Fecha modal
-//	 */
-//	public void fecharModal() {
-//		actions.clicarBotaoPegandoPeloXpath("//p-button[2]/button/span");
-//	}
 
 	/**
 	 * Edita integração
+	 * @param nomeEsperado nome buscado na iteração
 	 */
 	public void editarIntegracao(String nomeEsperado) {
 	    Log.registrar("Tentando editar integração com o nome: " + nomeEsperado);
 	    actions.esperar(1000);
 	    Log.registrar("Esperando");
 
-	    // Espera até que a tabela esteja visível
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
 	    Log.registrar("Tabela de integrações carregada");
 
@@ -546,54 +502,56 @@ public class IntegracoesPage {
 	        }
 	    }
 	}
-
-//	// modal?
-//	public void fecharAgendador() {
-//		actions.clicarBotaoPegandoPeloCss(".p-dialog-header-close-icon > path");
-//	}	
 	
 	/**
 	 * Edita Agendador
+	 * @param nomeBuscado Nome pesquisado na iteração
 	 */
-	public void editarAgendador(String nomeEsperado) {
-	    Log.registrar("Tentando editar agendamento de disparo com o nome: " + nomeEsperado);
-	    actions.esperar(1000);  // Espera inicial
-	    Log.registrar("Esperando");
+	public void editarAgendador(String nomeBuscado) {
+	    Log.registrar("Tentando editar agendamento de disparo com o nome: " + nomeBuscado);
+	    actions.esperar(1000);
+	    List<WebElement> linhas = driver.findElements(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr"));
 
-	    // Espera até que a tabela esteja visível
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='pr_id_22-table']")));
-	    Log.registrar("Tabela de integrações carregada");
+        for (int i = 1; i <= linhas.size(); i++) {
+            WebElement nomeAgendador = driver.findElement(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr[" + i + "]/td[1]"));
 
-	    List<WebElement> linhas = driver.findElements(By.xpath("//table[@id='pr_id_22-table']/tbody/tr"));
+            if (nomeAgendador.getText().equals(nomeBuscado)) {
+            	Log.registrar("Encontrado: " + nomeAgendador.getText());
+                WebElement botaoEditar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='pr_id_23-table']/tbody/tr[" + i + "]/td[6]/div/button/span[@class='p-button-icon pi pi-pencil']")));
+                botaoEditar.click();
+                Log.registrar("Agendador encontrado e editado");
+                break;
+            }
+        }
+    }
 
-	    boolean encontrado = false;
+	
+	/**
+	 * Desativar Agendador
+	 * @param nomeBuscado Nome pesquisado na iteração
+	 */
+	public void desativarAgendador(String nomeBuscado) {
+	    Log.registrar("Tentando desativar agendamento com o nome: " + nomeBuscado);
+	    
+	    actions.esperar(1000);  // Espera adicional para garantir o carregamento da página
+	    List<WebElement> linhas = driver.findElements(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr"));
 
 	    for (int i = 1; i <= linhas.size(); i++) {
-	        try {
-	            WebElement linha = linhas.get(i - 1);
-	            WebElement nomeColuna = linha.findElement(By.xpath("./td[1]"));
-	            String txt = nomeColuna.getText();
-	            Log.registrar("Nome da integração na linha " + i + ": " + txt);
+	        WebElement nomeAgendador = driver.findElement(By.xpath("//app-agendador-tarefas/p-table/div/div/table/tbody/tr[" + i + "]/td[1]"));
 
-	            if (txt.equals(nomeEsperado)) {
-	                Log.registrar("Integração encontrada: " + txt);
-	                WebElement botaoEditar = linha.findElement(By.xpath("./td[6]/div/button"));
-	                botaoEditar.click();
-	                Log.registrar("Clicando no botão de editar integração");
-	                encontrado = true;
-	                break;
-	            }
-	        } catch (NoSuchElementException e) {
-	            Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
+	        if (nomeAgendador.getText().equals(nomeBuscado)) {
+	            Log.registrar("Encontrado: " + nomeAgendador.getText());
+	            
+	            WebElement switchDesativar = wait.until(ExpectedConditions.elementToBeClickable(
+	                By.xpath("//app-agendador-tarefas/p-table//tr[" + i + "]//p-inputswitch")));
+
+	            switchDesativar.click();
+	            Log.registrar("Agendador desativado: " + nomeAgendador.getText());
+	            break;
 	        }
 	    }
-
-	    if (!encontrado) {
-	        Log.registrar("Nenhuma integração foi encontrada com o nome: " + nomeEsperado);
-	    }
 	}
-	
-	
+
 
 	
 	// GRUPO

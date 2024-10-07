@@ -1,0 +1,20 @@
+07 10 2024 - 18.13.53 - informações
+07 10 2024 - 18.13.54 - Logar
+07 10 2024 - 18.13.54 - TESTE - Editar agendador de disparo
+07 10 2024 - 18.13.57 - Acessando Configuração
+07 10 2024 - 18.13.58 - Clicando na opção de integrações
+07 10 2024 - 18.13.58 - Iniciando adição de agendador em grupo
+07 10 2024 - 18.13.59 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+07 10 2024 - 18.13.59 - Inserindo descrição do agendador: EDITAR AGENDADOR
+07 10 2024 - 18.13.59 - Clicando no dropdown de tipo de alerta
+07 10 2024 - 18.13.59 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+07 10 2024 - 18.13.59 - Adição de agendador em grupo concluída
+07 10 2024 - 18.13.59 - Clicando no botão de salvar
+07 10 2024 - 18.14.00 - Notificação de sucesso exibida: Tarefa agendada
+07 10 2024 - 18.14.00 - Fechar modal
+07 10 2024 - 18.14.00 - Tentando editar agendamento de disparo com o nome: EDITAR AGENDADOR
+07 10 2024 - 18.14.00 - encontrado: EDITAR AGENDADOR
+07 10 2024 - 18.14.01 - Agendador encontrado e editado
+07 10 2024 - 18.14.01 - Inserindo descrição do agendador: (editado)
+07 10 2024 - 18.14.01 - Clicando no botão de salvar
+07 10 2024 - 18.14.01 - Notificação de sucesso exibida: Tarefa agendada

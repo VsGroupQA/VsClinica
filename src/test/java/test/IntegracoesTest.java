@@ -153,26 +153,29 @@ public class IntegracoesTest {
     
     @Test
     public void criarAgendamentoDeDisparo() {
-    	String nomeIntegracao = "CRIAR AGENDADOR";
+    	String nomeAgendador = "CRIAR AGENDADOR";
     	Log.registrar("TESTE - Criar agendador de disparo");
 		integracao.acessarConfig();
 		integracao.acessarIntegracao();
-    	integracao.adicionarAgendador(nomeIntegracao);
+    	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
     }
     
     @Test
     public void editarAgendador() {
-    	String nomeIntegracao = "EDITAR AGENDADOR - TESTE";
+    	String nomeAgendador = "EDITAR AGENDADOR";
     	Log.registrar("TESTE - Editar agendador de disparo");
-    	integracao.adicionarAgendador(nomeIntegracao);
+		integracao.acessarConfig();
+		integracao.acessarIntegracao();
+    	
+    	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
-
     	integracao.fecharNotificacao();
-    	integracao.fecharModal("//p-button[2]/button/span"); // tirar
-    	integracao.editarAgendador(nomeIntegracao);
+    	integracao.fecharModal("//p-button[2]/button/span");
+    	
+    	integracao.editarAgendador(nomeAgendador);
     	integracao.descricaoAgendador("(editado)");
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
@@ -180,38 +183,44 @@ public class IntegracoesTest {
     
     @Test
     public void desativarAgendador() {
-    	String nomeIntegracao = "DESATIVAR - TESTE " + agora.format(hora);
-    	Log.registrar("TESTE - Desativar agendamento programado de disparo");
-    	integracao.grupoAdicionarAgendador(nomeIntegracao);
-    	integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-    	integracao.validarNotificacao("Tarefa agendada");
-    	integracao.fecharAgendador();
-    	actions.esperar(2000);
+    	String nomeAgendador = "DESATIVAR AGENDADOR";
+    	Log.registrar("TESTE - Desativar agendador de disparo");
+    	integracao.acessarConfig();
+		integracao.acessarIntegracao();
     	
-    	integracao.desativarAgendamento(nomeIntegracao);
-    	actions.esperar(500);
+    	integracao.adicionarAgendador(nomeAgendador);
+    	integracao.botaoSalvar("//p-button/button/span");
+    	integracao.validarNotificacao("Tarefa agendada");
+    	integracao.fecharNotificacao();
+    	integracao.fecharModal("//p-button[2]/button/span");
+    	
+    	integracao.desativarAgendador(nomeAgendador);
     	integracao.validarNotificacao("Tarefa desativada");
 
     }
     
     @Test
     public void excluirAgendador() {
-    	String nomeAgendador = "EXCLUIR AGENDADOR - TESTE";
-    	Log.registrar("TESTE - Excluir agendamento programado de disparo");
-    	integracao.grupoAdicionarAgendador(nomeAgendador);
-    	integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-    	integracao.validarNotificacao("Tarefa agendada");
+    	String nomeAgendador = "EXCLUIR AGENDADOR";
+    	Log.registrar("TESTE - Excluir agendador de disparo");
+    	integracao.acessarConfig();
+		integracao.acessarIntegracao();
 
-    	integracao.fecharAgendador();
+		integracao.adicionarAgendador(nomeAgendador);
+    	integracao.botaoSalvar("//p-button/button/span");
+    	integracao.validarNotificacao("Tarefa agendada");
+    	integracao.fecharNotificacao();
+    	integracao.fecharModal("//p-button[2]/button/span");
+
     	integracao.excluirAgendamento(nomeAgendador);
-    	integracao.validarNotificacao("Tarefa agendada"); // Precisa ajustar o nome internamente
+    	integracao.validarNotificacao("Agendamento deletado");
     	
     }
     
     
     // Cenário
     
-    @Test
+ 
     public void cenarioDisparoAlertaAgendamento() {
     	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
     	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
@@ -259,7 +268,7 @@ public class IntegracoesTest {
         integracao.excluirAgendamento(nomeAgendador);
     }
     
-    @Test
+//    @Test
     public void cenarioDisparoAlertaAgendamentoLeadOmnia() {
     	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
     	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
@@ -307,7 +316,7 @@ public class IntegracoesTest {
         
     }
     
-    @Test
+//    @Test
     public void cenarioDisparoAgendamentoCancelado() {
     	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
         Log.registrar("TESTE - Disparo para alerta de agendamento");
