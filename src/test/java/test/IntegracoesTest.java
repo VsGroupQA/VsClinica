@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
-import utils.Actions;
 import utils.Browser;
 import pages.AgendamentoPage;
 import pages.IntegracoesPage;
@@ -25,13 +24,12 @@ public class IntegracoesTest {
     private LoginPage loginPage;
     private IntegracoesPage integracao;
     private AgendamentoPage agendamento;
-	private Actions actions;
     
     private static LocalDateTime agora = LocalDateTime.now();
     
     private static final DateTimeFormatter DATA_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter HORA_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-    private static final DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:SS");
+//    private static final DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:SS");
     private LocalDate dataAmanha = LocalDate.now().plusDays(1);
     private String dataFormatada = dataAmanha.format(DATA_FORMATTER);
     private String horaMaisUm = agora.plusMinutes(1).format(HORA_FORMATTER);
@@ -49,18 +47,17 @@ public class IntegracoesTest {
 
     @BeforeEach
     public void iniciaDriver() {
-        driver = Browser.iniciarNavegador(Access.navegador);
+        driver = Browser.iniciarNavegador(Access.navegador, Access.headless);
         driver.get(Access.url);
         loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
         integracao = new IntegracoesPage(driver);
         agendamento = new AgendamentoPage(driver);
-        actions = new Actions(driver);
     }
 
     @AfterEach
     public void encerrarDriver() {
-//        Browser.fecharNavegador();
+        Browser.fecharNavegador(Access.quit);
     }
     // TAREFA: Excluir todas as integrações / agendamentos criados 2. Verificar erro do cenario de teste 3. completar cenarios
     
@@ -143,10 +140,6 @@ public class IntegracoesTest {
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.validarNotificacao("Integração cadastrada");
-
-        integracao.fecharNotificacao();
-        integracao.excluirIntegracao(nomeIntegracao);
-        integracao.validarNotificacao("Integração deletado");
     }
     
     // Agendador
@@ -160,6 +153,11 @@ public class IntegracoesTest {
     	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
+    	
+    	integracao.fecharNotificacao();
+    	integracao.fecharModal("//p-button[2]/button/span");
+    	integracao.excluirAgendamento(nomeAgendador);
+    	integracao.validarNotificacao("Agendamento deletado");
     }
     
     @Test
@@ -179,6 +177,9 @@ public class IntegracoesTest {
     	integracao.descricaoAgendador("(editado)");
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
+    	
+    	integracao.fecharNotificacao();
+    	integracao.fecharModal("//p-button[2]/button/span");
     } 
     
     @Test
@@ -191,12 +192,16 @@ public class IntegracoesTest {
     	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
+    	
     	integracao.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	
     	integracao.desativarAgendador(nomeAgendador);
     	integracao.validarNotificacao("Tarefa desativada");
-
+    	
+    	integracao.fecharNotificacao();
+    	integracao.excluirAgendamento(nomeAgendador);
+    	integracao.validarNotificacao("Agendamento deletado");
     }
     
     @Test
@@ -210,8 +215,8 @@ public class IntegracoesTest {
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
     	integracao.fecharNotificacao();
+    	
     	integracao.fecharModal("//p-button[2]/button/span");
-
     	integracao.excluirAgendamento(nomeAgendador);
     	integracao.validarNotificacao("Agendamento deletado");
     	
@@ -219,12 +224,12 @@ public class IntegracoesTest {
     
     
     // Cenário
+    // Fazer com BDD CUCUMBER
     
- 
-    public void cenarioDisparoAlertaAgendamento() {
-    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
-    	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
-        Log.registrar("TESTE - Disparo para alerta de agendamento");
+    public void disparoAlertaAgendamento() {
+    	String nomeIntegracao = "DISPARO AGENDAMENTO";
+    	String nomeAgendador = "AGENDADOR ALERTA";
+        Log.registrar("TESTE - Disparo para alertar de agendamento próximo");
         
         // Cria agendamento
         agendamento.criarAgendamento(
@@ -233,102 +238,7 @@ public class IntegracoesTest {
         		horaMaisUm,
         		true
         );
-        integracao.fecharNotficacao();
-        
-        // Criar integraçã
-        integracao.grupoCriarIntegracao(
-                "ALERTAR_AGENDAMENTOS",
-                Access.urlIntegracao, 
-                Access.tokenOmnia, 
-                nomeIntegracao,
-                Access.variavel,
-                3, 
-                null
-        );
-        integracao.grupoAdicionarTemplate(
-                Access.procedimento, 
-                Access.numeroDisparo, 
-                Access.nomeTemplate
-                
-        );
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        
-        // Validar
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotficacao();
-        
-        // Criar agendador
-        integracao.grupoAdicionarAgendador(nomeAgendador);
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.validarNotificacao("Tarefa agendada");
-        integracao.fecharModal();
-        
-        // Excluir
-        integracao.excluirIntegracao(nomeIntegracao);
-        integracao.excluirAgendamento(nomeAgendador);
-    }
-    
-//    @Test
-    public void cenarioDisparoAlertaAgendamentoLeadOmnia() {
-    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
-    	String nomeAgendador = "AGENDADOR ALERTA - TESTE";
-        Log.registrar("TESTE - Disparo para alerta de agendamento (Criar Lead Omnia)");
-        
-        integracao.grupoBuscarEquipeOmnia();
-        
-        // Cria agendamento
-        agendamento.navbar("ROLE_DASHBOARDS");
-        agendamento.criarAgendamento(
-        		dataFormatada,
-        		horaAtual,
-        		horaMaisUm,
-        		true
-        );
-        integracao.fecharNotficacao();
-        
-        // Criar integração
-        integracao.grupoCriarIntegracao(
-                "ALERTAR_AGENDAMENTOS",
-                Access.urlIntegracao, 
-                Access.tokenOmnia, 
-                nomeIntegracao,
-                Access.variavel,
-                1, 
-                "Equipe Testes Gerais"
-        );
-        integracao.grupoAdicionarTemplate(
-                Access.procedimento, 
-                Access.numeroDisparo, 
-                Access.nomeTemplate
-                
-        );
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        
-        // Validar
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotficacao();
-        
-        // Criar agendador
-        integracao.grupoAdicionarAgendador(nomeAgendador);
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.validarNotificacao("Tarefa agendada");
-//        integracao.fecharModal();
-        
-    }
-    
-//    @Test
-    public void cenarioDisparoAgendamentoCancelado() {
-    	String nomeIntegracao = "DISPARO AGENDAMENTO - TESTE";
-        Log.registrar("TESTE - Disparo para alerta de agendamento");
-        
-        // Cria agendamento
-        agendamento.criarAgendamento(
-        		dataFormatada,
-        		horaAtual,
-        		horaMaisUm,
-        		true
-        );
-        integracao.fecharNotficacao();
+        integracao.fecharNotificacao();
         
         // Criar integraçã
         integracao.criarIntegracao(
@@ -340,7 +250,7 @@ public class IntegracoesTest {
                 3, 
                 null
         );
-        integracao.grupoAdicionarTemplate(
+        integracao.adicionarTemplate(
                 Access.procedimento, 
                 Access.numeroDisparo, 
                 Access.nomeTemplate
@@ -350,90 +260,33 @@ public class IntegracoesTest {
         
         // Validar
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotficacao();
+        integracao.fecharNotificacao();
+        
+        // Criar agendador
+        integracao.adicionarAgendador(nomeAgendador);
+        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
+        integracao.validarNotificacao("Tarefa agendada");
+        integracao.fecharModal("//p-button[2]/button/span");
 
-        // Cancelar agendamento
-
+    }
+    
+//    @Test
+    public void cenarioDisparoAlertaAgendamentoLeadOmnia() {
+    	
+    }
+    
+//    @Test
+    public void cenarioDisparoAgendamentoCancelado() {
+    	
 
     }
     
     public void cenarioDisparoAlertaAgendamentoPorEmail() {
-    	String nomeIntegracao = "DISPARO EMAIL- TESTE";
-    	String nomeAgendador = "AGENDADOR EMAIL - TESTE";
-        Log.registrar("TESTE - Disparo para alerta de agendamento por EMAIL");
-        
-        // Cria agendamento
-        agendamento.criarAgendamento(
-        		dataFormatada,
-        		horaAtual,
-        		horaMaisUm,
-        		true
-        );
-        integracao.fecharNotficacao();
-        
-        // Criar integração
-        integracao.grupoCriarIntegracao(
-                "NOTIFICACAO_VIA_EMAIL_LEMBRETE_AGENDAMENTO",
-                Access.urlIntegracao, 
-                Access.tokenOmnia, 
-                nomeIntegracao,
-                Access.variavel,
-                3, 
-                null
-        );
-        integracao.grupoAdicionarTemplate(
-                Access.procedimento, 
-                Access.numeroDisparo, 
-                Access.nomeTemplate
-                
-        );
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        
-        // Validar
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotficacao();
-        
-        // Criar agendador
-        integracao.grupoAdicionarAgendador(nomeAgendador);
-        integracao.botaoSalvarAgendador();
-        integracao.validarNotificacao("Tarefa agendada");
-        integracao.fecharModal();
-        // trocar agendador por email
+    	
     }
     
     public void cenarioDisparoAniversariantes() {
-    	String nomeIntegracao = "DISPARO ANIVERSARIO- TESTE";
-    	String nomeAgendador = "AGENDADOR ANIVERSARIO - TESTE";
-        Log.registrar("TESTE - Disparo para alerta ANIVERSARIANTE");
-        
-        // Criar um paciente com aniversario com dia de hoje
-        
-        // Criar integração
-        integracao.grupoCriarIntegracao(
-                "NOTIFICACAO_VIA_EMAIL_LEMBRETE_AGENDAMENTO",
-                Access.urlIntegracao, 
-                Access.tokenOmnia, 
-                nomeIntegracao,
-                Access.variavel,
-                3, 
-                null
-        );
-        integracao.grupoAdicionarTemplate(
-                Access.procedimento, 
-                Access.numeroDisparo, 
-                Access.nomeTemplate
-                
-        );
-        integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        
-        // Validar
-        integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotficacao();
-        
-        // Criar agendador
-        integracao.grupoAdicionarAgendador(nomeAgendador);
-        integracao.botaoSalvar("//p-button/button/span");
-        integracao.validarNotificacao("Tarefa agendada");
+    	
     }
 }
 

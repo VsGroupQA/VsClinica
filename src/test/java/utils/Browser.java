@@ -14,8 +14,13 @@ public class Browser {
 
     private static WebDriver driver;
 
-    public static WebDriver iniciarNavegador(String navegadorDesejado) {
-        switch (navegadorDesejado.toUpperCase()) {
+    /** 
+     * Seleciona o navegador a ser executado
+     * @param navegador Seleciona qual navegador será utilizado
+     * @param headless Define se executará com interface grafica
+     */
+    public static WebDriver iniciarNavegador(String navegador, boolean headless) {
+        switch (navegador.toUpperCase()) {
         
             case "FIREFOX":
                 FirefoxProfile profileFirefox = new FirefoxProfile();
@@ -23,6 +28,9 @@ public class Browser {
 
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
                 optionsFirefox.setProfile(profileFirefox);
+                if (headless) {
+                    optionsFirefox.addArguments("--headless");
+                }
 
                 driver = new FirefoxDriver(optionsFirefox);
                 break;
@@ -30,6 +38,9 @@ public class Browser {
             case "EDGE":
                 EdgeOptions optionsEdge = new EdgeOptions();
                 optionsEdge.addArguments("force-device-scale-factor=1.35");
+                if (headless) {
+                    optionsEdge.addArguments("--headless");
+                }
 
                 driver = new EdgeDriver(optionsEdge);
                 break;
@@ -38,23 +49,37 @@ public class Browser {
             default:
                 ChromeOptions optionsChrome = new ChromeOptions();
                 optionsChrome.addArguments("force-device-scale-factor=1.35");
+                if (headless) {
+                    optionsChrome.addArguments("--headless");
+                }
 
                 driver = new ChromeDriver(optionsChrome);
                 break;
         }
 
-        maximize();
+        maximize(headless);
         return driver;
     }
 
-    private static void maximize() {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+    /** 
+     * Maximiza a janela do navegador
+     * @param opcao Se for false maximiza tela
+     */
+    private static void maximize(boolean opcao) {
+        if (!opcao) {
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        }
     }
 
-    public static void fecharNavegador() {
-        if (driver != null) {
+
+    /** 
+     * Fecha o navegador utilizado
+     * @param opcao Seleciona se navegador fechara
+     */
+    public static void fecharNavegador(boolean opcao) {
+        if (opcao) {
             driver.quit();
             driver = null;
         }

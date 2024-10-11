@@ -224,6 +224,7 @@ public class IntegracoesPage {
      * Fechar notificação
      */
 	public void fecharNotificacao () {
+		actions.esperar(1000);
 		actions.clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon");
 	}
 	
@@ -593,22 +594,19 @@ public class IntegracoesPage {
 	}
 
 	/**
-	 * Adiciona um template em grupo.
-	 *
+	 * Adiciona um template na integracao.
 	 * @param procedimento Nome do procedimento.
 	 * @param numero Número do disparo.
 	 * @param template Nome do template.
 	 */
-	public void grupoAdicionarTemplate(String procedimento, String numero, String template) {
-		Log.registrar("Iniciando adição de template em grupo");
-		actions.esperar(1000);
-		Log.registrar("Esperando 1 segundo");
+	public void adicionarTemplate(String procedimento, String numero, String template) {
+		Log.registrar("Adicionar template");
+		actions.esperar(500);
 		adicionarTemplate();
-		Log.registrar("Esperando 1 segundo");
 		procedimento(procedimento);
 		numeroDisparo(numero);
 		nomeTemplateOmnia(template);
-		Log.registrar("Adição de template em grupo concluída");
+		Log.registrar("Adição de template na integraçãoconcluída");
 	}
 
 	/**

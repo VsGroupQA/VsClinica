@@ -32,7 +32,7 @@ public class LoginTest {
 
     @BeforeEach
     public void iniciaDriver() {
-        driver = Browser.iniciarNavegador(Access.navegador);
+        driver = Browser.iniciarNavegador(Access.navegador, Access.headless);
         driver.get(Access.url);
         loginPage = new LoginPage(driver);
         actions = new Actions(driver);
@@ -40,7 +40,7 @@ public class LoginTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+        Browser.fecharNavegador(Access.quit);
     }
     
 

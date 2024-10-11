@@ -10,7 +10,11 @@ public class Access {
     // NAVEGADOR
     public static String navegador = "chrome";
     
-   
+   // HEADLESS
+    public static boolean headless = true;
+    
+    // QUIT NAVEGADOR
+    public static boolean quit = true; // 
     
     // DEFINIR LEAD CRIADO
     public static String leadUsuario = null;

@@ -41,7 +41,7 @@ public class AgendamentoTest {
 
     @BeforeEach
     public void iniciaDriver() {
-        driver = Browser.iniciarNavegador(Access.navegador);
+        driver = Browser.iniciarNavegador(Access.navegador, Access.headless);
         driver.get(Access.url);
         loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
@@ -51,7 +51,7 @@ public class AgendamentoTest {
 
     @AfterEach
     public void encerrarDriver() {
-        Browser.fecharNavegador();
+        Browser.fecharNavegador(Access.quit);
     }
 
     private String[] gerarHorariosAgendamento() {
