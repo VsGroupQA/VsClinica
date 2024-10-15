@@ -11,7 +11,7 @@ public class Access {
     public static String navegador = "chrome";
     
    // HEADLESS
-    public static boolean headless = true;
+    public static boolean headless = false;
     
     // QUIT NAVEGADOR
     public static boolean quit = true; // 

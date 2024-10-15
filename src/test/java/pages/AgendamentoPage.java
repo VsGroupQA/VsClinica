@@ -33,8 +33,10 @@ public class AgendamentoPage {
 	 * @param id O ID para localizar item da navbar
 	 */
 	public void navbar(String id) {
-		actions.clicarBotaoPegandoPeloId(id);
-		actions.esperar(3000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement elemento = wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
+		elemento.click();
+		
 		Log.registrar("Acessar navbar: "+ id +"");
 	}
 
@@ -43,8 +45,12 @@ public class AgendamentoPage {
 	 * @param css O CSS para localizar botão
 	 */
 	public void modalAgendamento(String css) {
-		actions.clicarBotaoPegandoPeloCss(css);
-		Log.registrar("Abrir modal");
+		actions.esperar(300);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement elemento = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(css)));
+		elemento.click();
+		
+		Log.registrar("Abrindo modal");
 	}
 
 	/**
@@ -55,6 +61,7 @@ public class AgendamentoPage {
      * @param xpathItem XPath dos itens no dropdown.
      */
 	public void procedimento(String nome, String xpathDrop, String xpathItem) {
+		Log.registrar("Abrindo dropdown de procedimento");
 		actions.clicarBotaoPegandoPeloXpath(xpathDrop);
 		List<WebElement> items = driver.findElements(By.xpath(xpathItem));
 
@@ -167,6 +174,7 @@ public class AgendamentoPage {
      * @param xpath XPath do botão de criação.
      */
 	public void botaoCriarAgendamento(boolean isCriacaoNormal, String xpath) {
+		actions.esperar(200);
 		try {
 			actions.clicarBotaoPegandoPeloXpath(xpath);
 			Log.registrar("Concluir agendamento");
@@ -325,8 +333,9 @@ public class AgendamentoPage {
 	 * @param statusBotao Estado do botão de confirmação (true para clicar, false para não clicar).
 	 */
 	public void criarAgendamentoLista(String data, String horaInicio, String horaFim, Boolean statusBotao) {
+		navbar("ROLE_AGENDAMENTOS");
 		modalAgendamento("p-button.ng-star-inserted > button:nth-child(1)");
-		actions.esperar(500);
+		actions.esperar(600);
 		procedimento(Access.procedimento,"/html/body/app-root/div/app-agendamentos/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span","/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)","p-dropdownitem.p-element > li");
@@ -346,20 +355,17 @@ public class AgendamentoPage {
 	 * @param statusBotao Estado do botão de confirmação (true para clicar, false para não clicar).
 	 */
 	public void criarAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
-		actions.esperar(200);
+		navbar("ROLE_AGENDAMENTOS");
 		modalAgendamento("#btn-estudoCaso > button");
 		actions.esperar(600);
 		procedimento(Access.procedimento,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span","/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");
 		profissional(Access.medico, ".px-0 .p-dropdown-label", ".p-element .p-dropdown-item");
 		compromisso(Access.compromisso, "p-dropdown.ng-pristine:nth-child(2) > div:nth-child(1) > div:nth-child(3)","p-dropdownitem.p-element > li");
-		actions.esperar(500);
 		dataAgendamento(data, "//div[4]/p-calendar/span/input");
 		horaAgendamento(horaInicio, horaFim, "//div[5]/div/p-calendar/span/input", "//div[5]/div[2]/p-calendar/span/input");
 		observacao(horaInicio, data, "/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[10]/span/textarea");
 		actions.esperar(500);
-		Log.registrar("Botao");
 		botaoCriarAgendamento(statusBotao,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[3]/p-button/button");
-		actions.esperar(500);
 	}
 
 	/**

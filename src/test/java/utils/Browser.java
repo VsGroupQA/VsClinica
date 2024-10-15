@@ -57,20 +57,17 @@ public class Browser {
                 break;
         }
 
-        maximize(headless);
+        maximize();
         return driver;
     }
 
     /** 
      * Maximiza a janela do navegador
-     * @param opcao Se for false maximiza tela
      */
-    private static void maximize(boolean opcao) {
-        if (!opcao) {
+    private static void maximize() {
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-        }
     }
 
 

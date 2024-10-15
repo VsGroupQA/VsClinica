@@ -11,7 +11,7 @@ public class Log {
 
 	private static FileWriter fileWriter;
 	private static PrintWriter writer;
-	static DateTimeFormatter data = DateTimeFormatter.ofPattern("dd MM yyyy - HH.mm.ss");
+	static DateTimeFormatter data = DateTimeFormatter.ofPattern(" dd MM yyyy - HH.mm.ss");
 
 	public static void criarArquivoLog(String nomeArquivo) {
 		try {

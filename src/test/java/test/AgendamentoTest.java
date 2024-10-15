@@ -69,7 +69,9 @@ public class AgendamentoTest {
     public void criarNovoAgendamento() {
     	Log.registrar("TESTE REALIZADO - Criar agendamento");
         String[] horarios = gerarHorariosAgendamento();
+        // Criar
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
+        // Validar
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
@@ -77,8 +79,11 @@ public class AgendamentoTest {
     public void agendamentoDuplicado() {
     	Log.registrar("TESTE REALIZADO - Criar agendamento duplicado");
         String[] horarios = gerarHorariosAgendamento();
+        // Criar
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
+        // Validar
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        // Criar Duplicado
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], false);
     }
 
@@ -86,8 +91,9 @@ public class AgendamentoTest {
     public void agendamentoPelaLista() {
     	Log.registrar("TESTE REALIZADO - Criar agendamento - Lista");
         String[] horarios = gerarHorariosAgendamento();
-        agendamento.navbar("ROLE_AGENDAMENTOS");
+        // Criar
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], true);
+        // Validar
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
@@ -95,9 +101,11 @@ public class AgendamentoTest {
     public void agendamentoPelaListaDuplicado() {
     	Log.registrar("TESTE REALIZADO - Criar agendamento duplicado - Lista");
         String[] horarios = gerarHorariosAgendamento();
-        agendamento.navbar("ROLE_AGENDAMENTOS");
+        // Criar
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], true);
+        // Validar
         agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        // Criar Duplicado
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], false);
     }
 
@@ -105,10 +113,14 @@ public class AgendamentoTest {
     public void agendamentoPelaFicha() {
     	Log.registrar("TESTE REALIZADO - Criar agendamento - Ficha do paciente");
         String[] horarios = gerarHorariosAgendamento();
-        agendamento.navbar("ROLE_PACIENTES");
+        // Acessar lista agendamento
+        agendamento.navbar("ROLE_AGENDAMENTOS");
         agendamento.pesquisarPaciente(Access.paciente);
         agendamento.selecionarPaciente();
+        // Criar
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
+        // Validar
+        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
     @Test

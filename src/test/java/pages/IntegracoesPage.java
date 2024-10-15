@@ -34,8 +34,10 @@ public class IntegracoesPage {
      * Acessa a Configurações.
      */
 	public void acessarConfig() {
-		actions.esperar(3000);
-		actions.clicarBotaoPegandoPeloId("ROLE_CONFIGURACOES");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement elemento = wait.until(ExpectedConditions.elementToBeClickable(By.id("ROLE_CONFIGURACOES")));
+		elemento.click();
+
 		Log.registrar("Acessando Configuração");
 
 	}
@@ -574,6 +576,7 @@ public class IntegracoesPage {
 			acessarConfig();
 			acessarIntegracao();
 			adicionarNovo("//button/span");
+			actions.esperar(300);
 			selecionarTipoIntegracao(tipo);
 			urlIntegracao(endpoint);
 			tokenFornecedor(token);
@@ -617,6 +620,9 @@ public class IntegracoesPage {
 	public void adicionarAgendador(String descricao) {
 		Log.registrar("Iniciando adição de agendador em grupo");
 
+		acessarConfig();
+		acessarIntegracao();
+		
 		adicionarNovo("//p-card[@id='agendadorTarefas']/div/div/div/div[2]/p");
 		descricaoAgendador(descricao);
 		selecionarTipoAlerta("ALERTAR_AGENDAMENTOS");

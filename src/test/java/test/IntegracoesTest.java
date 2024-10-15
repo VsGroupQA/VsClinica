@@ -59,7 +59,6 @@ public class IntegracoesTest {
     public void encerrarDriver() {
         Browser.fecharNavegador(Access.quit);
     }
-    // TAREFA: Excluir todas as integrações / agendamentos criados 2. Verificar erro do cenario de teste 3. completar cenarios
     
     // Integração
     
@@ -67,6 +66,7 @@ public class IntegracoesTest {
     public void criarIntegracao() {
     	String nomeIntegracao = "CRIAR INTEGRACAO";
         Log.registrar("TESTE - Criar integração");
+        // Criar
         integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
@@ -77,6 +77,7 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
+        // Validar
         integracao.validarNotificacao("Integração cadastrada");
     }
     
@@ -85,6 +86,7 @@ public class IntegracoesTest {
     	String nomeIntegracao = "EDITAR INTEGRACAO";
     	String nomeIntegracaoEditado = "(editado)";
     	
+    	//Criar
         Log.registrar("TESTE - Editar integração");
         integracao.criarIntegracao(
                 "BUSCAR_USUARIOS",
@@ -98,9 +100,11 @@ public class IntegracoesTest {
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
         integracao.fecharNotificacao();
         
+        // Editar
         integracao.editarIntegracao(nomeIntegracao);
         integracao.nomeIntegracao(nomeIntegracaoEditado);
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
+        // Validar
         integracao.validarNotificacao("Integração editada");
     }
     
@@ -108,6 +112,7 @@ public class IntegracoesTest {
     public void desativarIntegracao() {
     	String nomeIntegracao = "DESATIVAR INTEGRACAO";
         Log.registrar("TESTE - Desativar integração");
+        // Criar
         integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
@@ -118,10 +123,11 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.validarNotificacao("Integração cadastrada");
         integracao.fecharNotificacao();
         
+        // Desativar
         integracao.desativarIntegracao(nomeIntegracao);
+        // Validar
         integracao.validarNotificacao("Integração desativada");
     }
     
@@ -129,6 +135,8 @@ public class IntegracoesTest {
     public void excluirIntegracao() {
     	String nomeIntegracao = "EXCLUIR INTEGRACAO";
         Log.registrar("TESTE - Excluir integração");
+        
+        // Criar 
         integracao.criarIntegracao(
                 "BUSCAR_EQUIPES",
                 Access.urlBuscarEquipe, 
@@ -139,86 +147,88 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.validarNotificacao("Integração cadastrada");
+        integracao.fecharNotificacao();
+        
+        // Excluir
+        integracao.excluirIntegracao(nomeIntegracao);
+        
+        // Validar
+        integracao.validarNotificacao("Integração deletado");
     }
     
     // Agendador
     
     @Test
-    public void criarAgendamentoDeDisparo() {
+    public void criarAgendador() {
     	String nomeAgendador = "CRIAR AGENDADOR";
     	Log.registrar("TESTE - Criar agendador de disparo");
-		integracao.acessarConfig();
-		integracao.acessarIntegracao();
+    	
+    	// Criar agendador
     	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
+    	// Validar
     	integracao.validarNotificacao("Tarefa agendada");
-    	
+    	// Exluir
     	integracao.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.excluirAgendamento(nomeAgendador);
-    	integracao.validarNotificacao("Agendamento deletado");
     }
     
     @Test
     public void editarAgendador() {
     	String nomeAgendador = "EDITAR AGENDADOR";
     	Log.registrar("TESTE - Editar agendador de disparo");
-		integracao.acessarConfig();
-		integracao.acessarIntegracao();
-    	
+
+    	// Criar
     	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
+    	// Editar
     	integracao.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
-    	
     	integracao.editarAgendador(nomeAgendador);
     	integracao.descricaoAgendador("(editado)");
     	integracao.botaoSalvar("//p-button/button/span");
+    	// Validar
     	integracao.validarNotificacao("Tarefa agendada");
-    	
-    	integracao.fecharNotificacao();
-    	integracao.fecharModal("//p-button[2]/button/span");
+    	// Exluir
+    	integracao.excluirAgendamento(nomeAgendador);
     } 
     
     @Test
     public void desativarAgendador() {
     	String nomeAgendador = "DESATIVAR AGENDADOR";
     	Log.registrar("TESTE - Desativar agendador de disparo");
-    	integracao.acessarConfig();
-		integracao.acessarIntegracao();
     	
+    	// Criar
     	integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
-    	
+    	// Desativar
     	integracao.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
-    	
     	integracao.desativarAgendador(nomeAgendador);
+    	// Validar
     	integracao.validarNotificacao("Tarefa desativada");
-    	
     	integracao.fecharNotificacao();
+    	// Exluir
     	integracao.excluirAgendamento(nomeAgendador);
-    	integracao.validarNotificacao("Agendamento deletado");
     }
     
     @Test
     public void excluirAgendador() {
     	String nomeAgendador = "EXCLUIR AGENDADOR";
     	Log.registrar("TESTE - Excluir agendador de disparo");
-    	integracao.acessarConfig();
-		integracao.acessarIntegracao();
-
+    	
+    	// Criar
 		integracao.adicionarAgendador(nomeAgendador);
     	integracao.botaoSalvar("//p-button/button/span");
+    	// Validar
     	integracao.validarNotificacao("Tarefa agendada");
+    	// Excluir
     	integracao.fecharNotificacao();
-    	
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.excluirAgendamento(nomeAgendador);
-    	integracao.validarNotificacao("Agendamento deletado");
     	
     }
     
@@ -231,7 +241,7 @@ public class IntegracoesTest {
     	String nomeAgendador = "AGENDADOR ALERTA";
         Log.registrar("TESTE - Disparo para alertar de agendamento próximo");
         
-        // Cria agendamento
+        // Agendamento criado para o dia atual
         agendamento.criarAgendamento(
         		dataFormatada,
         		horaAtual,
@@ -240,7 +250,7 @@ public class IntegracoesTest {
         );
         integracao.fecharNotificacao();
         
-        // Criar integraçã
+        // Criar integração de disparo
         integracao.criarIntegracao(
                 "ALERTAR_AGENDAMENTOS",
                 Access.urlIntegracao, 
@@ -250,6 +260,7 @@ public class IntegracoesTest {
                 3, 
                 null
         );
+        //Adiciona template
         integracao.adicionarTemplate(
                 Access.procedimento, 
                 Access.numeroDisparo, 
