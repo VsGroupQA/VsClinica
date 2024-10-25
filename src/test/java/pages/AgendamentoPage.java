@@ -173,27 +173,37 @@ public class AgendamentoPage {
      * @param isCriacaoNormal Booleano que indica se é uma criação normal ou uma duplicada.
      * @param xpath XPath do botão de criação.
      */
-	public void botaoCriarAgendamento(boolean isCriacaoNormal, String xpath) {
-		actions.esperar(200);
-		try {
-			actions.clicarBotaoPegandoPeloXpath(xpath);
-			Log.registrar("Concluir agendamento");
+	public void botaoCriarAgendamento(boolean ehCriacaoNormal, String xpath) {
+	    int tentativas = 0;
+	    int maxTentativas = 3;
+	    
+	    while (tentativas < maxTentativas) {
+	        try {
+	            actions.clicarBotaoPegandoPeloXpath(xpath);
+	            Log.registrar("Concluir agendamento");
 
-			if (!isCriacaoNormal) {
-				Assert.fail("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
-				Log.registrar("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
-			}
-		} catch (ElementClickInterceptedException e) {
-			if (isCriacaoNormal) {
-				Assert.fail("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. "
-						+ e.getMessage());
-				Log.registrar("Falha ao clicar no botão de agendamento: o botão não está disponível no momento. "
-						+ e.getMessage());
-			} else {
-				Assert.assertTrue("Agendamento duplicado detectado corretamente.", true);
-				Log.registrar("Agendamento duplicado detectado corretamente.");
-			}
-		}
+	            if (!ehCriacaoNormal) {
+	                Assert.fail("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
+	                Log.registrar("O botão de criação foi clicado, mas não deveria permitir agendamento duplicado.");
+	            }
+	            return; // Encerra o método caso o clique tenha sido bem-sucedido
+	        } catch (ElementClickInterceptedException e) {
+	            tentativas++;
+	            if (tentativas >= maxTentativas) {
+	                if (ehCriacaoNormal) {
+	                    Assert.fail("Falha ao clicar no botão de agendamento após " + maxTentativas 
+	                        + " tentativas: o botão não está disponível no momento. " + e.getMessage());
+	                    Log.registrar("Falha ao clicar no botão de agendamento após " + maxTentativas 
+	                        + " tentativas: o botão não está disponível no momento. " + e.getMessage());
+	                } else {
+	                    Assert.assertTrue("Agendamento duplicado detectado corretamente.", true);
+	                    Log.registrar("Agendamento duplicado detectado corretamente.");
+	                }
+	            } else {
+	                actions.esperar(1000);
+	            }
+	        }
+	    }
 	}
 
 	/**
@@ -201,6 +211,7 @@ public class AgendamentoPage {
      * @param nomePaciente Nome do paciente
      */
 	public void pesquisarPaciente(String nomePaciente) {
+		actions.esperar(300);
 		actions.escreverPegandoPeloName("nomePaciente",
 				nomePaciente);
 	}
@@ -254,6 +265,8 @@ public class AgendamentoPage {
      * @param status Selecionar status: Pendente, Confirmado e Cancelado
      */
 	public void filtrarStatusAgendamento(String status) {
+		Log.registrar("Abrir dropdown");
+		actions.esperar(500);
 	    // Abrir o dropdown
 		actions.clicarBotaoPegandoPeloXpath("//div[3]/p-dropdown/div/div[2]");
 
@@ -268,6 +281,7 @@ public class AgendamentoPage {
 	            break;
 	        }
 	    }
+	    Log.registrar("Dropdown de status finalizado");
 	}
 
 	/**
@@ -355,7 +369,6 @@ public class AgendamentoPage {
 	 * @param statusBotao Estado do botão de confirmação (true para clicar, false para não clicar).
 	 */
 	public void criarAgendamentoFichaPaciente(String data, String horaInicio, String horaFim, Boolean statusBotao) {
-		navbar("ROLE_AGENDAMENTOS");
 		modalAgendamento("#btn-estudoCaso > button");
 		actions.esperar(600);
 		procedimento(Access.procedimento,"/html/body/app-root/div/app-detalhes-do-paciente/p-dialog[1]/div/div/div[2]/app-modal-agendamento/form/div[2]/div[1]/p-dropdown/div/span","/html/body/div[1]/div/div/div/ul/p-dropdownitem/li");

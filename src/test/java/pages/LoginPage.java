@@ -20,7 +20,13 @@ public class LoginPage {
         this.driver = driver;
         this.actions = new Actions(this.driver); 
     }
-
+    
+    /**
+     * Realiza o login no sistema.
+     * 
+     * @param login O nome de usuário a ser utilizado para o login.
+     * @param senha A senha a ser utilizada para o login.
+     */
     public void signIn(String login, String senha) {
         actions.escreverPegandoPeloName("login", login);
         actions.escreverPegandoPeloName("senha", senha);
@@ -31,6 +37,9 @@ public class LoginPage {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
     }
     
+    /**
+     * Realiza o logout do sistema.
+     */
     public void logout() {
     	actions.clicarBotaoPegandoPeloId("img-usuario");
     	actions.esperar(500);
@@ -38,6 +47,12 @@ public class LoginPage {
        
     }
 
+    /**
+     * Valida se o texto presente em um elemento da página é igual ao texto esperado.
+     * 
+     * @param css O seletor CSS que identifica o elemento.
+     * @param mensagem O texto esperado a ser comparado.
+     */
     public void validarTextoIgual(String css, String mensagem) {
     	WebElement mensagemAtual = driver.findElement(By.cssSelector(css));
     	

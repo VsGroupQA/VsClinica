@@ -1,7 +1,11 @@
 package utils;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Actions {
 
@@ -68,7 +72,7 @@ public class Actions {
 	}
 
 
-	// ESPERA - mls
+	// ESPERA
 	public void esperar(int tempoEspera) { 
 		try {
 			Thread.sleep(tempoEspera);
@@ -82,4 +86,11 @@ public class Actions {
 	public void recarregarPagina() {
 		driver.navigate().refresh();
 	}
+	
+	// Método de espera explícita
+	public void esperarElementoVisivel(By by, int tempoEspera) {
+	    new WebDriverWait(driver, Duration.ofSeconds(tempoEspera))
+	        .until(ExpectedConditions.visibilityOfElementLocated(by));
+	}
+
 }

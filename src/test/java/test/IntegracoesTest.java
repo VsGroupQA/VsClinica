@@ -236,6 +236,7 @@ public class IntegracoesTest {
     // Cenário
     // Fazer com BDD CUCUMBER
     
+    @Test
     public void disparoAlertaAgendamento() {
     	String nomeIntegracao = "DISPARO AGENDAMENTO";
     	String nomeAgendador = "AGENDADOR ALERTA";
