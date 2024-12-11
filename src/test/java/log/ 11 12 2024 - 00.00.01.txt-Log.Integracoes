@@ -1,0 +1,175 @@
+ 11 12 2024 - 00.00.04 - informações
+ 11 12 2024 - 00.00.05 - Logar
+ 11 12 2024 - 00.00.05 - TESTE - Excluir agendador de disparo
+ 11 12 2024 - 00.00.05 - Iniciando adição de agendador em grupo
+ 11 12 2024 - 00.00.05 - Acessando Configuração
+ 11 12 2024 - 00.00.06 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.07 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+ 11 12 2024 - 00.00.07 - Inserindo descrição do agendador: EXCLUIR AGENDADOR
+ 11 12 2024 - 00.00.07 - Clicando no dropdown de tipo de alerta
+ 11 12 2024 - 00.00.07 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+ 11 12 2024 - 00.00.07 - Adição de agendador em grupo concluída
+ 11 12 2024 - 00.00.07 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.08 - Notificação de sucesso exibida: Tarefa agendada
+ 11 12 2024 - 00.00.09 - Fechar modal
+ 11 12 2024 - 00.00.09 - Tentando excluir agendamento com o nome: EXCLUIR AGENDADOR
+ 11 12 2024 - 00.00.10 - Encontrado: EXCLUIR AGENDADOR
+ 11 12 2024 - 00.00.10 - Agendamento excluído: EXCLUIR AGENDADOR
+ 11 12 2024 - 00.00.12 - informações
+ 11 12 2024 - 00.00.13 - Logar
+ 11 12 2024 - 00.00.13 - TESTE - Desativar agendador de disparo
+ 11 12 2024 - 00.00.13 - Iniciando adição de agendador em grupo
+ 11 12 2024 - 00.00.13 - Acessando Configuração
+ 11 12 2024 - 00.00.15 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.15 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+ 11 12 2024 - 00.00.15 - Inserindo descrição do agendador: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.15 - Clicando no dropdown de tipo de alerta
+ 11 12 2024 - 00.00.15 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+ 11 12 2024 - 00.00.15 - Adição de agendador em grupo concluída
+ 11 12 2024 - 00.00.15 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.16 - Notificação de sucesso exibida: Tarefa agendada
+ 11 12 2024 - 00.00.17 - Fechar modal
+ 11 12 2024 - 00.00.17 - Tentando desativar agendamento com o nome: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.18 - Encontrado: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.18 - Agendador desativado: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.18 - Notificação de sucesso exibida: Tarefa desativada
+ 11 12 2024 - 00.00.19 - Tentando excluir agendamento com o nome: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.20 - Encontrado: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.20 - Agendamento excluído: DESATIVAR AGENDADOR
+ 11 12 2024 - 00.00.22 - informações
+ 11 12 2024 - 00.00.23 - Logar
+ 11 12 2024 - 00.00.23 - TESTE - Criar agendador de disparo
+ 11 12 2024 - 00.00.23 - Iniciando adição de agendador em grupo
+ 11 12 2024 - 00.00.23 - Acessando Configuração
+ 11 12 2024 - 00.00.25 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.25 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+ 11 12 2024 - 00.00.25 - Inserindo descrição do agendador: CRIAR AGENDADOR
+ 11 12 2024 - 00.00.25 - Clicando no dropdown de tipo de alerta
+ 11 12 2024 - 00.00.25 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+ 11 12 2024 - 00.00.25 - Adição de agendador em grupo concluída
+ 11 12 2024 - 00.00.25 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.25 - Notificação de sucesso exibida: Tarefa agendada
+ 11 12 2024 - 00.00.27 - Fechar modal
+ 11 12 2024 - 00.00.27 - Tentando excluir agendamento com o nome: CRIAR AGENDADOR
+ 11 12 2024 - 00.00.28 - Encontrado: CRIAR AGENDADOR
+ 11 12 2024 - 00.00.28 - Agendamento excluído: CRIAR AGENDADOR
+ 11 12 2024 - 00.00.31 - informações
+ 11 12 2024 - 00.00.32 - Logar
+ 11 12 2024 - 00.00.32 - TESTE - Editar integração
+ 11 12 2024 - 00.00.32 - Iniciando criação de nova integração
+ 11 12 2024 - 00.00.32 - Acessando Configuração
+ 11 12 2024 - 00.00.33 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.33 - Selecionar botão de adicionar novo item. xpath: //button/span
+ 11 12 2024 - 00.00.33 - Selecionando tipo de integração: BUSCAR_USUARIOS
+ 11 12 2024 - 00.00.34 - Tipo de integração BUSCAR_USUARIOS encontrado e selecionado
+ 11 12 2024 - 00.00.34 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+ 11 12 2024 - 00.00.34 - Inserindo token do fornecedor (Omnia)
+ 11 12 2024 - 00.00.34 - Inserindo nome da integração: EDITAR INTEGRACAO
+ 11 12 2024 - 00.00.34 - Variável é null, método variaveis será ignorado.
+ 11 12 2024 - 00.00.34 - equipeOuUsuario é null, método será ignorado.
+ 11 12 2024 - 00.00.34 - Criação de integração concluída
+ 11 12 2024 - 00.00.34 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.35 - Tentando editar integração com o nome: EDITAR INTEGRACAO
+ 11 12 2024 - 00.00.36 - Esperando
+ 11 12 2024 - 00.00.36 - Tabela de integrações carregada
+ 11 12 2024 - 00.00.36 - Nome da integração na linha 1: CRIAR INTEGRACAO
+ 11 12 2024 - 00.00.36 - Nome da integração na linha 2: DISPARO AGENDAMENTO
+ 11 12 2024 - 00.00.36 - Nome da integração na linha 3: EDITAR INTEGRACAO(editado)
+ 11 12 2024 - 00.00.36 - Nome da integração na linha 4: EDITAR INTEGRACAO(editado)
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 5: DISPARO AGENDAMENTO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 6: EDITAR INTEGRACAO(editado)
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 7: EDITAR INTEGRACAO(editado)
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 8: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 9: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 10: CRIAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 11: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 12: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 13: CRIAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Nome da integração na linha 14: EDITAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Integração encontrada: EDITAR INTEGRACAO
+ 11 12 2024 - 00.00.37 - Clicando no botão de editar integração
+ 11 12 2024 - 00.00.37 - Inserindo nome da integração: (editado)
+ 11 12 2024 - 00.00.37 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.38 - Notificação de sucesso exibida: Integração editada
+ 11 12 2024 - 00.00.40 - informações
+ 11 12 2024 - 00.00.41 - Logar
+ 11 12 2024 - 00.00.41 - TESTE - Excluir integração
+ 11 12 2024 - 00.00.41 - Iniciando criação de nova integração
+ 11 12 2024 - 00.00.41 - Acessando Configuração
+ 11 12 2024 - 00.00.42 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.42 - Selecionar botão de adicionar novo item. xpath: //button/span
+ 11 12 2024 - 00.00.43 - Selecionando tipo de integração: BUSCAR_EQUIPES
+ 11 12 2024 - 00.00.43 - Tipo de integração BUSCAR_EQUIPES encontrado e selecionado
+ 11 12 2024 - 00.00.43 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+ 11 12 2024 - 00.00.43 - Inserindo token do fornecedor (Omnia)
+ 11 12 2024 - 00.00.43 - Inserindo nome da integração: EXCLUIR INTEGRACAO
+ 11 12 2024 - 00.00.43 - Variável é null, método variaveis será ignorado.
+ 11 12 2024 - 00.00.43 - equipeOuUsuario é null, método será ignorado.
+ 11 12 2024 - 00.00.43 - Criação de integração concluída
+ 11 12 2024 - 00.00.44 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.45 - Tentando excluir integração com o nome: EXCLUIR INTEGRACAO
+ 11 12 2024 - 00.00.45 - Tabela de integrações carregada
+ 11 12 2024 - 00.00.45 - Nome da integração na linha 1: EXCLUIR INTEGRACAO
+ 11 12 2024 - 00.00.47 - Integração excluída com sucesso
+ 11 12 2024 - 00.00.47 - Notificação de sucesso exibida: Integração deletado
+ 11 12 2024 - 00.00.49 - informações
+ 11 12 2024 - 00.00.51 - Logar
+ 11 12 2024 - 00.00.51 - TESTE - Desativar integração
+ 11 12 2024 - 00.00.51 - Iniciando criação de nova integração
+ 11 12 2024 - 00.00.51 - Acessando Configuração
+ 11 12 2024 - 00.00.52 - Clicando na opção de integrações
+ 11 12 2024 - 00.00.52 - Selecionar botão de adicionar novo item. xpath: //button/span
+ 11 12 2024 - 00.00.52 - Selecionando tipo de integração: BUSCAR_EQUIPES
+ 11 12 2024 - 00.00.53 - Tipo de integração BUSCAR_EQUIPES encontrado e selecionado
+ 11 12 2024 - 00.00.53 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+ 11 12 2024 - 00.00.53 - Inserindo token do fornecedor (Omnia)
+ 11 12 2024 - 00.00.53 - Inserindo nome da integração: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.53 - Variável é null, método variaveis será ignorado.
+ 11 12 2024 - 00.00.53 - equipeOuUsuario é null, método será ignorado.
+ 11 12 2024 - 00.00.53 - Criação de integração concluída
+ 11 12 2024 - 00.00.53 - Clicando no botão de salvar
+ 11 12 2024 - 00.00.54 - Tentando desativar integração com o nome: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.55 - Esperando
+ 11 12 2024 - 00.00.55 - Tabela de integrações carregada
+ 11 12 2024 - 00.00.55 - Nome da integração na linha 1: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.55 - Integração encontrada: DESATIVAR INTEGRACAO
+ 11 12 2024 - 00.00.57 - Clicando no botão de desativar integração
+ 11 12 2024 - 00.00.58 - Notificação de sucesso exibida: Integração desativada
+ 11 12 2024 - 00.01.00 - informações
+ 11 12 2024 - 00.01.01 - Logar
+ 11 12 2024 - 00.01.01 - TESTE - Editar agendador de disparo
+ 11 12 2024 - 00.01.01 - Iniciando adição de agendador em grupo
+ 11 12 2024 - 00.01.01 - Acessando Configuração
+ 11 12 2024 - 00.01.02 - Clicando na opção de integrações
+ 11 12 2024 - 00.01.03 - Selecionar botão de adicionar novo item. xpath: //p-card[@id='agendadorTarefas']/div/div/div/div[2]/p
+ 11 12 2024 - 00.01.03 - Inserindo descrição do agendador: EDITAR AGENDADOR
+ 11 12 2024 - 00.01.03 - Clicando no dropdown de tipo de alerta
+ 11 12 2024 - 00.01.03 - Tipo de alerta ALERTAR_AGENDAMENTOS selecionado
+ 11 12 2024 - 00.01.03 - Adição de agendador em grupo concluída
+ 11 12 2024 - 00.01.03 - Clicando no botão de salvar
+ 11 12 2024 - 00.01.03 - Notificação de sucesso exibida: Tarefa agendada
+ 11 12 2024 - 00.01.05 - Fechar modal
+ 11 12 2024 - 00.01.05 - Tentando editar agendamento de disparo com o nome: EDITAR AGENDADOR
+ 11 12 2024 - 00.01.06 - Encontrado: EDITAR AGENDADOR
+ 11 12 2024 - 00.01.06 - Agendador encontrado e editado
+ 11 12 2024 - 00.01.06 - Inserindo descrição do agendador: (editado)
+ 11 12 2024 - 00.01.06 - Clicando no botão de salvar
+ 11 12 2024 - 00.01.06 - Notificação de sucesso exibida: Tarefa agendada
+ 11 12 2024 - 00.01.06 - Tentando excluir agendamento com o nome: EDITAR AGENDADOR
+ 11 12 2024 - 00.01.10 - informações
+ 11 12 2024 - 00.01.11 - Logar
+ 11 12 2024 - 00.01.11 - TESTE - Criar integração
+ 11 12 2024 - 00.01.11 - Iniciando criação de nova integração
+ 11 12 2024 - 00.01.11 - Acessando Configuração
+ 11 12 2024 - 00.01.12 - Clicando na opção de integrações
+ 11 12 2024 - 00.01.12 - Selecionar botão de adicionar novo item. xpath: //button/span
+ 11 12 2024 - 00.01.13 - Selecionando tipo de integração: BUSCAR_EQUIPES
+ 11 12 2024 - 00.01.13 - Tipo de integração BUSCAR_EQUIPES encontrado e selecionado
+ 11 12 2024 - 00.01.13 - Inserindo URL da integração: https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes
+ 11 12 2024 - 00.01.13 - Inserindo token do fornecedor (Omnia)
+ 11 12 2024 - 00.01.13 - Inserindo nome da integração: CRIAR INTEGRACAO
+ 11 12 2024 - 00.01.13 - Variável é null, método variaveis será ignorado.
+ 11 12 2024 - 00.01.13 - equipeOuUsuario é null, método será ignorado.
+ 11 12 2024 - 00.01.13 - Criação de integração concluída
+ 11 12 2024 - 00.01.13 - Clicando no botão de salvar
+ 11 12 2024 - 00.01.14 - Notificação de sucesso exibida: Integração cadastrada

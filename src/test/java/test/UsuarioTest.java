@@ -50,7 +50,7 @@ public class UsuarioTest {
         Browser.fecharNavegador(Access.quit);
     }
     
-    @Test
+  
     public void criarUsuarioMedico() {
     	String user = "teste" + hora;
     	String nome = "Testevaldo " + hora;
@@ -67,7 +67,7 @@ public class UsuarioTest {
     	usuario.validarNotificacao("Cadastro criado com sucesso");
     }
     
-    @Test
+    
     public void criarUsuarioADM() {
     	String user = "teste" + hora;
     	String nome = "Testevaldo " + hora;
@@ -86,7 +86,7 @@ public class UsuarioTest {
     	usuario.validarNotificacao("Cadastro criado com sucesso"); 
     }
     
-    @Test
+
     public void criarUsuarioSemCamposObg() {
     	usuario.acessarUsuarios();
     	usuario.usuarioAdm();

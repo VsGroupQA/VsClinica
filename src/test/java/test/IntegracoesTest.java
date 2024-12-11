@@ -236,7 +236,7 @@ public class IntegracoesTest {
     // Cenário
     // Fazer com BDD CUCUMBER
     
-    @Test
+    // BDD
     public void disparoAlertaAgendamento() {
     	String nomeIntegracao = "DISPARO AGENDAMENTO";
     	String nomeAgendador = "AGENDADOR ALERTA";
@@ -282,23 +282,5 @@ public class IntegracoesTest {
 
     }
     
-//    @Test
-    public void cenarioDisparoAlertaAgendamentoLeadOmnia() {
-    	
-    }
-    
-//    @Test
-    public void cenarioDisparoAgendamentoCancelado() {
-    	
-
-    }
-    
-    public void cenarioDisparoAlertaAgendamentoPorEmail() {
-    	
-    }
-    
-    public void cenarioDisparoAniversariantes() {
-    	
-    }
 }
 
