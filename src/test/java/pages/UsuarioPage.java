@@ -1,18 +1,13 @@
 
 package pages;
 
-import java.time.Duration;
 import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.Actions;
 import utils.Log;
 
@@ -29,7 +24,7 @@ public class UsuarioPage {
 	public void acessarUsuarios() {
 	actions.esperarElementoVisivel(By.id("ROLE_USUARIOS"), 10);
 	actions.clicarBotaoPegandoPeloId("ROLE_USUARIOS");
-	Log.registrar("Acessando tela usuário");
+	Log.registrar("Tela de Usuários");
 	}
 	
 	public void usuarioAdm() {
@@ -38,9 +33,9 @@ public class UsuarioPage {
 		Log.registrar("Acessar usuários ADM");
 	}
 	
-	public void adicionarUsuario() {
+	public void abrirModalNovoUsuario() {
 	actions.clicarBotaoPegandoPeloCss(".pi-plus");
-	Log.registrar("Adicionando usuário");
+	Log.registrar("Modal de novo usuários");
 	}
 	
 	public void dropdown(String nomeDrop) {
@@ -86,28 +81,22 @@ public class UsuarioPage {
 		    }
 	}
 	
-	public void validarNotificacao(String msg) {
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-			WebElement notificacao = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-toast-detail")));
-			String textoNotificacao = notificacao.getText();
-			
-			Assert.assertEquals(msg, textoNotificacao);
-			Log.registrar("Notificação de sucesso exibida: " + textoNotificacao);
-			
-		} catch (NoSuchElementException e) {
-			Log.registrar("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
-			Assert.fail("Falha ao encontrar a notificação de sucesso: " + e.getMessage());
-		}
-	}
-	
 	
 	
 	// GRUPO
 	
+	/**
+	 * Adicionar um novo usuário
+	 *
+	 * @param nomeUsuario       Nome do usuario medico.
+	 * @param emailUsuario 		Email do usuario.
+	 * @param loginUsuario    	Login de acesso do medico.
+	 * @param senhaUsuario    	Senha de acesso do medico.
+	 * @param permissao    		permissão de usuario.
+	 */
 	public void criarUsuario(String nomeUsuario, String emailUsuario, String loginUsuario, String senhaUsuario, String permissao) {
 
-		adicionarUsuario();
+		abrirModalNovoUsuario();
 		actions.escreverPegandoPeloName("nome", nomeUsuario);
 		actions.escreverPegandoPeloName("cep", "30270-300");
 		actions.escreverPegandoPeloName("email", emailUsuario);

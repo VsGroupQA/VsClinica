@@ -42,7 +42,7 @@ public class Actions {
                 tentativas++;
             }
         }
-        throw new RuntimeException("Ação falhou após 3 tentativas");
+        throw new RuntimeException("Ação falhou após várias tentativas");
     }
 
     // CSS
@@ -78,6 +78,10 @@ public class Actions {
     // XPATH
     public WebElement pegarElementoPeloXpath(String xpath) {
         return localizarElementoComTentativas(By.xpath(xpath));
+    }
+    
+    public void clicarBtnXpathSemTratamentoErro (String xpath) {
+    	 driver.findElement(By.xpath(xpath)).click();
     }
 
     public void clicarBotaoPegandoPeloXpath(String xpath) {
@@ -122,6 +126,8 @@ public class Actions {
                 .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
+    // NOTIFICACAO
+    
     /**
      * Valida a notificação exibida após a ação.
      *
@@ -136,4 +142,12 @@ public class Actions {
             Log.registrar("Notificação de sucesso exibida: " + textoNotificacao);
         });
     }
+    
+    /**
+     * Fechar notificação.
+     */
+    public void fecharNotificacao () {
+    	esperar(300);
+		clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon");
+	}
 } 

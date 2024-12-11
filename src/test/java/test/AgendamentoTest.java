@@ -67,44 +67,44 @@ public class AgendamentoTest {
 
     @Test
     public void criarNovoAgendamento() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR NOVO AGENDAMENTO");
         String[] horarios = gerarHorariosAgendamento();
         // Criar
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
         // Validar
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
     @Test
     public void agendamentoDuplicado() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento duplicado");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO DUPLICADO");
         String[] horarios = gerarHorariosAgendamento();
         // Criar
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
         // Validar
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
         // Criar Duplicado
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], false);
     }
 
     @Test
     public void agendamentoPelaLista() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento - Lista");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR NOVO AGENDAMENTO LISTA");
         String[] horarios = gerarHorariosAgendamento();
         // Criar
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], true);
         // Validar
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
     @Test
     public void agendamentoPelaListaDuplicado() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento duplicado - Lista");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO DUPLICADO PELA LISTA");
         String[] horarios = gerarHorariosAgendamento();
         // Criar
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], true);
         // Validar
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
         // Criar Duplicado
         agendamento.criarAgendamentoLista(horarios[0], horarios[1], horarios[2], false);
     }
@@ -112,7 +112,7 @@ public class AgendamentoTest {
 //    @Test
     public void agendamentoPelaFicha() {
     	// Funcionando, porém recarregando página
-    	Log.registrar("TESTE REALIZADO - Criar agendamento - Ficha do paciente");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO PELA FICHA");
         String[] horarios = gerarHorariosAgendamento();
         
         agendamento.navbar("ROLE_PACIENTES");
@@ -121,12 +121,12 @@ public class AgendamentoTest {
        
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
        
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
 
     @Test
     public void agendamentoPelaFichaDuplicado() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento duplicado - Ficha do paciente");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO PELA FICHA DUPLICADO");
         String[] horarios = gerarHorariosAgendamento();
         // Acessar
         agendamento.navbar("ROLE_PACIENTES");
@@ -134,60 +134,62 @@ public class AgendamentoTest {
         agendamento.selecionarPaciente();
         // Criar
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], true);
-        actions.esperar(3000);
+        actions.esperar(2000);
         agendamento.criarAgendamentoFichaPaciente(horarios[0], horarios[1], horarios[2], false);
     }
     
     @Test
     public void agendamentoSemCamposObrigatorios() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento sem campos obrigatórios");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO SEM CAMPOS OBGS PREENCHIDOS");
         String[] horarios = gerarHorariosAgendamento();
         // Criar
         agendamento.criarAgendamentoSemCamposObg(horarios[0], horarios[1], horarios[2], false);
     }
     
-    @Test
+    //////////////////////////
+    
     public void criarAgendamentoComExcecaoBloqueio() {
-    	Log.registrar("TESTE REALIZADO - Criar agendamento - Com botão EXCEÇÃO");
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR AGENDAMENTO COM EXCEÇÃO DE BLOQUEIO");
+    	Log.registrar("**Necessário que o login utilizado tenha permissão de 'Exceção'**");
     	String[] horarios = gerarHorariosAgendamento();
         // Cria
         agendamento.criarAgendamento(horarios[0], horarios[1], horarios[2], true);
         // Valida
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
         // Cria com exceção
         agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         // Valida
-        agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+        actions.validarNotificacao("Agendamento cadastrado com sucesso.");
     }
     
-    @Test
+   
     public void confirmarAgendamento() {
-    	Log.registrar("TESTE REALIZADO - Confirmar agendamento");
+    	Log.registrar("===== TESTE REALIZADO ===== - CONFIRMAR AGENDAMENTO");
     	String[] horarios = gerarHorariosAgendamento();
     	// Cria
     	agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         // Valida
-    	agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+    	actions.validarNotificacao("Agendamento cadastrado com sucesso.");
         // Altera status
     	actions.esperar(1500);
     	agendamento.alterarStatus(Access.paciente, 1);
     	// Valida
-    	agendamento.validarNotificacao("Agendamento confirmado com sucesso.");
+    	actions.validarNotificacao("Agendamento confirmado com sucesso.");
     }
     
-    @Test
+   
     public void cancelarAgendamento() {
-    	Log.registrar("TESTE REALIZADO - Cancelar agendamento");
+    	Log.registrar("===== TESTE REALIZADO ===== - CANCELAR AGENDAMENTO");
     	String[] horarios = gerarHorariosAgendamento();
     	// Criar
     	agendamento.criarAgendamentoExcecao(horarios[0], horarios[1], horarios[2], true);
         // Valida
-    	agendamento.validarNotificacao("Agendamento cadastrado com sucesso.");
+    	actions.validarNotificacao("Agendamento cadastrado com sucesso.");
         // Altera satus
     	actions.esperar(1500);
     	agendamento.alterarStatus(Access.paciente, 2);
     	// Valida
-    	agendamento.validarNotificacao("Agendamento cancelado com sucesso.");
+    	actions.validarNotificacao("Agendamento cancelado com sucesso.");
     }
     
     
