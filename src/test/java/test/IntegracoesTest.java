@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
+import utils.Actions;
 import utils.Browser;
 import pages.AgendamentoPage;
 import pages.IntegracoesPage;
@@ -24,6 +25,7 @@ public class IntegracoesTest {
     private LoginPage loginPage;
     private IntegracoesPage integracao;
     private AgendamentoPage agendamento;
+    private Actions actions;
     
     private static LocalDateTime agora = LocalDateTime.now();
     
@@ -53,6 +55,7 @@ public class IntegracoesTest {
         loginPage.signIn(Access.usuario, Access.senha);
         integracao = new IntegracoesPage(driver);
         agendamento = new AgendamentoPage(driver);
+        actions = new Actions(driver);
     }
 
     @AfterEach
@@ -98,7 +101,7 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.fecharNotificacao();
+        actions.fecharNotificacao();
         
         // Editar
         integracao.editarIntegracao(nomeIntegracao);
@@ -123,7 +126,7 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.fecharNotificacao();
+        actions.fecharNotificacao();
         
         // Desativar
         integracao.desativarIntegracao(nomeIntegracao);
@@ -147,7 +150,7 @@ public class IntegracoesTest {
                 null
         );
         integracao.botaoSalvar("/html/body/app-root/div/app-configuracoes/div/app-integracao/p-dialog/div/div/div[3]/form/div[8]/p-button[1]/button/span");
-        integracao.fecharNotificacao();
+        actions.fecharNotificacao();
         
         // Excluir
         integracao.excluirIntegracao(nomeIntegracao);
@@ -169,7 +172,7 @@ public class IntegracoesTest {
     	// Validar
     	integracao.validarNotificacao("Tarefa agendada");
     	// Exluir
-    	integracao.fecharNotificacao();
+    	actions.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.excluirAgendamento(nomeAgendador);
     }
@@ -184,7 +187,7 @@ public class IntegracoesTest {
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
     	// Editar
-    	integracao.fecharNotificacao();
+    	actions.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.editarAgendador(nomeAgendador);
     	integracao.descricaoAgendador("(editado)");
@@ -205,12 +208,12 @@ public class IntegracoesTest {
     	integracao.botaoSalvar("//p-button/button/span");
     	integracao.validarNotificacao("Tarefa agendada");
     	// Desativar
-    	integracao.fecharNotificacao();
+    	actions.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.desativarAgendador(nomeAgendador);
     	// Validar
     	integracao.validarNotificacao("Tarefa desativada");
-    	integracao.fecharNotificacao();
+    	actions.fecharNotificacao();
     	// Exluir
     	integracao.excluirAgendamento(nomeAgendador);
     }
@@ -226,7 +229,7 @@ public class IntegracoesTest {
     	// Validar
     	integracao.validarNotificacao("Tarefa agendada");
     	// Excluir
-    	integracao.fecharNotificacao();
+    	actions.fecharNotificacao();
     	integracao.fecharModal("//p-button[2]/button/span");
     	integracao.excluirAgendamento(nomeAgendador);
     	
@@ -249,7 +252,7 @@ public class IntegracoesTest {
         		horaMaisUm,
         		true
         );
-        integracao.fecharNotificacao();
+        actions.fecharNotificacao();
         
         // Criar integração de disparo
         integracao.criarIntegracao(
@@ -272,7 +275,7 @@ public class IntegracoesTest {
         
         // Validar
         integracao.validarNotificacao("Integração cadastrada");
-        integracao.fecharNotificacao();
+        actions.fecharNotificacao();
         
         // Criar agendador
         integracao.adicionarAgendador(nomeAgendador);

@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
+import utils.Actions;
 import utils.Browser;
 import pages.UsuarioPage;
 import pages.LoginPage;
@@ -21,6 +22,8 @@ public class UsuarioTest {
     private static WebDriver driver;
     private LoginPage loginPage;
     private UsuarioPage usuario;
+    private Actions actions;
+
     
     private static LocalDateTime agora = LocalDateTime.now();
     private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("HHmmSS");
@@ -43,6 +46,7 @@ public class UsuarioTest {
         loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
         usuario = new UsuarioPage(driver);
+        actions = new Actions(driver);
     }
 
     @AfterEach
@@ -50,10 +54,11 @@ public class UsuarioTest {
         Browser.fecharNavegador(Access.quit);
     }
     
-  
+    @Test
     public void criarUsuarioMedico() {
-    	String user = "teste" + hora;
+    	String user = "user" + hora;
     	String nome = "Testevaldo " + hora;
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO");
     	
     	usuario.acessarUsuarios();
     	usuario.criarUsuario(
@@ -64,16 +69,16 @@ public class UsuarioTest {
     			"Default"
     			);
     	usuario.botaoSalvar(true);
-    	usuario.validarNotificacao("Cadastro criado com sucesso");
+    	actions.validarNotificacao("Cadastro criado com sucesso");
     }
     
-    
-    public void criarUsuarioADM() {
-    	String user = "teste" + hora;
+    @Test
+    public void criarUsuarioDuplicado() {
+    	String user = "user" + hora;
     	String nome = "Testevaldo " + hora;
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO DUPLICADO");
     	
     	usuario.acessarUsuarios();
-    	usuario.usuarioAdm();
     	usuario.criarUsuario(
     			nome, 
     			"teste@teste.com", 
@@ -82,23 +87,69 @@ public class UsuarioTest {
     			"Default"
     			);
     	usuario.botaoSalvar(true);
-    	// Ajustar notificação - (editado com sucesso)
-    	usuario.validarNotificacao("Cadastro criado com sucesso"); 
-    }
-    
-
-    public void criarUsuarioSemCamposObg() {
-    	usuario.acessarUsuarios();
-    	usuario.usuarioAdm();
+    	actions.validarNotificacao("Cadastro criado com sucesso");
+    	actions.fecharNotificacao();
+    	// Duplicado
     	usuario.criarUsuario(
-    			"", 
-    			"", 
-    			"", 
-    			"", 
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
     			"Default"
     			);
     	usuario.botaoSalvar(false);
+    	actions.validarNotificacao("login "+ user +" já existente.");
     }
     
+//    @Test
+    public void criarUsuarioMedicoSemCamposObgs() {
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO SEM CAMPOS OBRIGATOIOS");
+    	
+    	usuario.acessarUsuarios();
+    	usuario.criarUsuario(
+    			"", 
+    			"", 
+    			"", 
+    			"", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Cadastro criado com sucesso");
+    }
     
+    public void editarUsuarioMedico () {
+    	
+    }
+    
+    public void excluirUsuarioMedico () {
+    	
+    }
+    
+    public void criarEscalaMedica() {
+    	
+    }
+    
+    public void adicionarBloqueioMedico () {
+    	
+    }
+    
+    public void criarUsuarioAdm () {
+    	
+    }
+    
+    public void criarUsuarioAdmDuplicado () {
+    	
+    }
+    
+    public void criarUsuarioAdmSemCamposObgs () {
+    	
+    }
+    
+    public void editarUsuarioAdm () {
+    	
+    }
+    
+    public void excluirUsuarioAdm () {
+    	
+    }
 }

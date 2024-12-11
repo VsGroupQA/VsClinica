@@ -222,13 +222,6 @@ public class IntegracoesPage {
 		}
 	}
 	
-	 /**
-     * Fechar notificação
-     */
-	public void fecharNotificacao () {
-		actions.esperar(1000);
-		actions.clicarBotaoPegandoPeloCss(".p-toast-icon-close-icon");
-	}
 	
 	/**
      * Clica no botão de salvar agendador.
