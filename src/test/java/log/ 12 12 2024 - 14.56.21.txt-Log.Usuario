@@ -1,0 +1,56 @@
+ 12 12 2024 - 14.56.29 - informações
+ 12 12 2024 - 14.56.30 - Logar
+ 12 12 2024 - 14.56.30 - ===== TESTE REALIZADO ===== - EXCLUIR USUÁRIO MEDICO
+ 12 12 2024 - 14.56.31 - Tela de Usuários
+ 12 12 2024 - 14.56.31 - Modal de novo usuários
+ 12 12 2024 - 14.56.34 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.56.34 - Concluir agendamento
+ 12 12 2024 - 14.56.34 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 14.56.35 - Nome do usuario na linha: 1: Testevaldo 145668
+ 12 12 2024 - 14.56.36 - Usuario excluido com sucesso
+ 12 12 2024 - 14.56.36 - Notificação de sucesso exibida: Profissional excluído com sucesso.
+ 12 12 2024 - 14.56.44 - informações
+ 12 12 2024 - 14.56.45 - Logar
+ 12 12 2024 - 14.56.45 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO DUPLICADO
+ 12 12 2024 - 14.56.45 - Tela de Usuários
+ 12 12 2024 - 14.56.46 - Modal de novo usuários
+ 12 12 2024 - 14.56.48 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.56.48 - Concluir agendamento
+ 12 12 2024 - 14.56.49 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 14.56.49 - Modal de novo usuários
+ 12 12 2024 - 14.56.51 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.56.51 - Concluir agendamento
+ 12 12 2024 - 14.56.52 - Notificação de sucesso exibida: login user145680 já existente.
+ 12 12 2024 - 14.56.58 - informações
+ 12 12 2024 - 14.56.59 - Logar
+ 12 12 2024 - 14.56.59 - ===== TESTE REALIZADO ===== - EDITAR USUÁRIO MEDICO
+ 12 12 2024 - 14.56.59 - Tela de Usuários
+ 12 12 2024 - 14.57.00 - Modal de novo usuários
+ 12 12 2024 - 14.57.02 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.57.02 - Concluir agendamento
+ 12 12 2024 - 14.57.02 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 14.57.03 - Tabela localizada
+ 12 12 2024 - 14.57.03 - Nome na linha: 1: Testevaldo 145682
+ 12 12 2024 - 14.57.03 - Usuario encontrado: Testevaldo 145682
+ 12 12 2024 - 14.57.03 - Botão de edição clicado
+ 12 12 2024 - 14.57.04 - Concluir agendamento
+ 12 12 2024 - 14.57.04 - Notificação de sucesso exibida: Cadastro atualizado com sucesso
+ 12 12 2024 - 14.57.10 - informações
+ 12 12 2024 - 14.57.11 - Logar
+ 12 12 2024 - 14.57.11 - ===== TESTE REALIZADO ===== - CRIAR ESCALA MEDICA
+ 12 12 2024 - 14.57.11 - Tela de Usuários
+ 12 12 2024 - 14.57.12 - Modal de novo usuários
+ 12 12 2024 - 14.57.14 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.57.14 - Concluir agendamento
+ 12 12 2024 - 14.57.15 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 14.57.15 - Nome do usuario na linha: 1: Testevaldo 145722
+ 12 12 2024 - 14.57.16 - Usuario Testevaldo 145722 acessado.
+ 12 12 2024 - 14.57.19 - Notificação de sucesso exibida: Disponibilidade criada com sucesso.
+ 12 12 2024 - 14.57.26 - informações
+ 12 12 2024 - 14.57.27 - Logar
+ 12 12 2024 - 14.57.27 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO
+ 12 12 2024 - 14.57.27 - Tela de Usuários
+ 12 12 2024 - 14.57.28 - Modal de novo usuários
+ 12 12 2024 - 14.57.30 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 14.57.30 - Concluir agendamento
+ 12 12 2024 - 14.57.31 - Notificação de sucesso exibida: Cadastro criado com sucesso

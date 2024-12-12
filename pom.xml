@@ -15,6 +15,22 @@
 		    <artifactId>selenium-java</artifactId>
 		    <version>4.22.0</version>
 		</dependency>
+		
+		<!-- Cucumber -->
+	<dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-java</artifactId>
+    	<version>7.20.1</version>
+    	<scope>test</scope>
+	</dependency>
+	
+	<!-- Cucumber Junit-->
+	<dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-junit</artifactId>
+    	<version>6.9.1</version>
+    	<scope>test</scope>
+	</dependency>
 
 		<!-- BrowserMob Proxy -->
 		<dependency>

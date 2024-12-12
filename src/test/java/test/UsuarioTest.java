@@ -25,9 +25,13 @@ public class UsuarioTest {
     private Actions actions;
 
     
-    private static LocalDateTime agora = LocalDateTime.now();
-    private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("HHmmSS");
-    private String hora = agora.format(formato);
+    private LocalDateTime agora = LocalDateTime.now();
+    private static final DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HHmmSS");
+    private static final DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String hora = agora.format(formatoHora);
+    String dia = agora.format(formatoDia);
+    
+    
     
     @BeforeAll
     public static void iniciarLog() {
@@ -76,6 +80,7 @@ public class UsuarioTest {
     public void criarUsuarioDuplicado() {
     	String user = "user" + hora;
     	String nome = "Testevaldo " + hora;
+    	
     	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO DUPLICADO");
     	
     	usuario.acessarUsuarios();
@@ -97,59 +102,180 @@ public class UsuarioTest {
     			"123", 
     			"Default"
     			);
-    	usuario.botaoSalvar(false);
+    	usuario.botaoSalvar(true);
     	actions.validarNotificacao("login "+ user +" já existente.");
     }
     
-//    @Test
-    public void criarUsuarioMedicoSemCamposObgs() {
-    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO SEM CAMPOS OBRIGATOIOS");
+    @Test
+    public void editarUsuarioMedico () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
+    	Log.registrar("===== TESTE REALIZADO ===== - EDITAR USUÁRIO MEDICO");
     	usuario.acessarUsuarios();
     	usuario.criarUsuario(
-    			"", 
-    			"", 
-    			"", 
-    			"", 
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
     			"Default"
     			);
     	usuario.botaoSalvar(true);
     	actions.validarNotificacao("Cadastro criado com sucesso");
-    }
-    
-    public void editarUsuarioMedico () {
+    	actions.fecharNotificacao();
     	
+    	usuario.pesquisarUsuario(nome);
+    	usuario.editarUsuario(nome);
+    	usuario.observacaoModal("EDITADO POR TESTE AUTOMATIZADO");
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Cadastro atualizado com sucesso");
+    
     }
     
+    @Test
     public void excluirUsuarioMedico () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
+    	Log.registrar("===== TESTE REALIZADO ===== - EXCLUIR USUÁRIO MEDICO");
+    	usuario.acessarUsuarios();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Cadastro criado com sucesso");
+    	actions.fecharNotificacao();
+    	
+    	usuario.pesquisarUsuario(nome);
+    	usuario.excluirUsuario(nome);
+    	actions.validarNotificacao("Profissional excluído com sucesso.");
+    
     }
     
+    @Test
     public void criarEscalaMedica() {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR ESCALA MEDICA");
+    	usuario.acessarUsuarios();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Cadastro criado com sucesso");
+    	actions.fecharNotificacao();
+    	
+    	usuario.pesquisarUsuario(nome);
+    	usuario.acessarEscalaProfissional(nome);
+    	usuario.criarEscala("8:00", "18:00");
+    	actions.validarNotificacao("Disponibilidade criada com sucesso.");
     }
     
+    @Test
     public void adicionarBloqueioMedico () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
+    	
+    	Log.registrar("===== TESTE REALIZADO ===== - ADICIONAR BLOQUEIO MEDICO");
+    	usuario.acessarUsuarios();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Cadastro criado com sucesso");
+    	actions.fecharNotificacao();
+    	
+    	usuario.pesquisarUsuario(nome);
+    	usuario.acessarEscalaProfissional(nome);
+    	usuario.adicionarBloqueioMedico(dia, "12:00", "13:00");
+    	actions.validarNotificacao("Salvo com sucesso.");
     	
     }
     
+    @Test
     public void criarUsuarioAdm () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO ADM");
+    	
+    	usuario.acessarUsuarios();
+    	usuario.acessarUsuarioAdm();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Usuário cadastrado com sucesso.");
     	
     }
     
+    @Test
     public void criarUsuarioAdmDuplicado () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR USUÁRIO ADM DUPLICADO");
+    	
+    	usuario.acessarUsuarios();
+    	usuario.acessarUsuarioAdm();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Usuário cadastrado com sucesso.");
+    	actions.fecharNotificacao();
+    	
+    	// Duplicado
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("login "+ user +" já existente.");
     }
     
-    public void criarUsuarioAdmSemCamposObgs () {
-    	
-    }
-    
+    @Test
     public void editarUsuarioAdm () {
+
+    	
+    	Log.registrar("===== TESTE REALIZADO ===== - EDITAR USUÁRIO ADM");
+    	usuario.acessarUsuarios();
+    	usuario.acessarUsuarioAdm();
+    	
+    	usuario.pesquisarUsuarioAdm("Cristiano Dutra");
+    	usuario.editarUsuario("Cristiano Dutra");
+    	usuario.observacaoModal("EDITADO POR TESTE AUTOMATIZADO");
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Usuário cadastrado com sucesso.");
     	
     }
     
     public void excluirUsuarioAdm () {
     	
     }
+    
+ 
 }
