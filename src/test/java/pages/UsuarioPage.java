@@ -96,7 +96,7 @@ public class UsuarioPage {
 		    }
 	}
 	
-	public void editarUsuario(String nomeEsperado) {
+	public void editarUsuario(String nomeEsperado, String elemento) {
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
 	    Log.registrar("Tabela localizada");
 
@@ -110,7 +110,7 @@ public class UsuarioPage {
 
 	            if (txt.equals(nomeEsperado)) {
 	                Log.registrar("Usuario encontrado: " + txt);
-	                WebElement botaoEditar = linhas.get(i - 1).findElement(By.xpath("./td[6]/div/button"));
+	                WebElement botaoEditar = linhas.get(i - 1).findElement(By.xpath(elemento));
 	                botaoEditar.click();
 	                Log.registrar("Botão de edição clicado");
 	                break;
@@ -142,6 +142,32 @@ public class UsuarioPage {
 				
 				if (item.equals(nomeEsperado)) {
 					WebElement botaoExcluir = driver.findElement(By.xpath("//tr[" + i + "]/td[6]/div/button[2]/span"));
+					botaoExcluir.click();
+					actions.clicarBotaoPegandoPeloXpath("//span[contains(.,'Sim')]");
+					Log.registrar("Usuario excluido com sucesso");
+					break;
+				}
+
+			} catch (NoSuchElementException e) {
+				Log.registrar("Elemento não encontrado na linha " + i + ": " + e.getMessage());
+			}
+
+		}
+	}
+	
+	public void excluirUsuarioAdm(String nomeEsperado) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
+
+		List<WebElement> linhas = driver.findElements(By.xpath("//table/tbody/tr"));
+
+		for (int i = 1; i <= linhas.size(); i++) {
+			try {
+				WebElement nomeColuna = driver.findElement(By.xpath("//tr[" + i + "]/td[1]"));
+				String item = nomeColuna.getText();
+				Log.registrar("Nome do usuario ADM na linha: " + i + ": " + item);
+				
+				if (item.equals(nomeEsperado)) {
+					WebElement botaoExcluir = driver.findElement(By.xpath("//tr["+i+"]/td[8]/div/button[2]/span"));
 					botaoExcluir.click();
 					actions.clicarBotaoPegandoPeloXpath("//span[contains(.,'Sim')]");
 					Log.registrar("Usuario excluido com sucesso");

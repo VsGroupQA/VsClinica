@@ -22,12 +22,12 @@ public class Actions {
             try {
                 return driver.findElement(by);
             } catch (Exception e) {
-                esperar(5000);
+                esperar(1000);
                 tentativas++;
             }
         }
-        Log.registrar("Elemento não localizado após 3 tentativas");
-        throw new RuntimeException("Elemento não localizado após 3 tentativas: " + by.toString());
+        Log.registrar("Elemento não localizado após tentativas");
+        throw new RuntimeException("Elemento não localizado após tentativas: " + by.toString());
     }
 
     private void executarAcaoComTentativas(Runnable acao) {
@@ -42,7 +42,7 @@ public class Actions {
                 tentativas++;
             }
         }
-        throw new RuntimeException("Ação falhou após várias tentativas");
+        throw new RuntimeException("Ação falhou após tentativas");
     }
 
     // CSS

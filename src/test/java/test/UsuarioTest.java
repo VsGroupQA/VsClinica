@@ -125,7 +125,7 @@ public class UsuarioTest {
     	actions.fecharNotificacao();
     	
     	usuario.pesquisarUsuario(nome);
-    	usuario.editarUsuario(nome);
+    	usuario.editarUsuario(nome, "./td[6]/div/button");
     	usuario.observacaoModal("EDITADO POR TESTE AUTOMATIZADO");
     	usuario.botaoSalvar(true);
     	actions.validarNotificacao("Cadastro atualizado com sucesso");
@@ -200,6 +200,7 @@ public class UsuarioTest {
     	
     	usuario.pesquisarUsuario(nome);
     	usuario.acessarEscalaProfissional(nome);
+    	actions.esperar(300);
     	usuario.adicionarBloqueioMedico(dia, "12:00", "13:00");
     	actions.validarNotificacao("Salvo com sucesso.");
     	
@@ -259,22 +260,53 @@ public class UsuarioTest {
     
     @Test
     public void editarUsuarioAdm () {
-
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
     	Log.registrar("===== TESTE REALIZADO ===== - EDITAR USUÁRIO ADM");
     	usuario.acessarUsuarios();
     	usuario.acessarUsuarioAdm();
-    	
-    	usuario.pesquisarUsuarioAdm("Cristiano Dutra");
-    	usuario.editarUsuario("Cristiano Dutra");
-    	usuario.observacaoModal("EDITADO POR TESTE AUTOMATIZADO");
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
     	usuario.botaoSalvar(true);
     	actions.validarNotificacao("Usuário cadastrado com sucesso.");
+    	actions.fecharNotificacao();
+    	
+    	usuario.pesquisarUsuarioAdm(nome);
+    	usuario.editarUsuario(nome, "//td[8]/div/button/span");
+    	usuario.observacaoModal("EDITADO POR TESTE AUTOMATIZADO");
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Usuário editado com sucesso.");
     	
     }
     
+    @Test
     public void excluirUsuarioAdm () {
+    	String user = "user" + hora;
+    	String nome = "Testevaldo " + hora;
     	
+    	Log.registrar("===== TESTE REALIZADO ===== - EXCLUIR USUÁRIO ADM");
+    	usuario.acessarUsuarios();
+    	usuario.acessarUsuarioAdm();
+    	usuario.criarUsuario(
+    			nome, 
+    			"teste@teste.com", 
+    			user, 
+    			"123", 
+    			"Default"
+    			);
+    	usuario.botaoSalvar(true);
+    	actions.validarNotificacao("Usuário cadastrado com sucesso.");
+    	actions.fecharNotificacao();
+    	
+    	usuario.pesquisarUsuarioAdm(nome);
+    	usuario.excluirUsuarioAdm(nome);
+    	actions.validarNotificacao("Usuário excluído com sucesso.");
     }
     
  

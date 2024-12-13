@@ -1,0 +1,103 @@
+ 12 12 2024 - 21.08.40 - informações
+ 12 12 2024 - 21.08.41 - Logar
+ 12 12 2024 - 21.08.41 - ===== TESTE REALIZADO ===== - EXCLUIR USUÁRIO MEDICO
+ 12 12 2024 - 21.08.42 - Tela de Usuários
+ 12 12 2024 - 21.08.42 - Modal de novo usuários
+ 12 12 2024 - 21.08.44 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.08.44 - Concluir agendamento
+ 12 12 2024 - 21.08.44 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 21.08.45 - Nome do usuario na linha: 1: Testevaldo 210820
+ 12 12 2024 - 21.08.45 - Usuario excluido com sucesso
+ 12 12 2024 - 21.08.45 - Notificação de sucesso exibida: Profissional excluído com sucesso.
+ 12 12 2024 - 21.08.48 - informações
+ 12 12 2024 - 21.08.49 - Logar
+ 12 12 2024 - 21.08.49 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO DUPLICADO
+ 12 12 2024 - 21.08.49 - Tela de Usuários
+ 12 12 2024 - 21.08.50 - Modal de novo usuários
+ 12 12 2024 - 21.08.51 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.08.51 - Concluir agendamento
+ 12 12 2024 - 21.08.55 - informações
+ 12 12 2024 - 21.08.56 - Logar
+ 12 12 2024 - 21.08.56 - ===== TESTE REALIZADO ===== - EDITAR USUÁRIO ADM
+ 12 12 2024 - 21.08.56 - Tela de Usuários
+ 12 12 2024 - 21.08.57 - Modal de novo usuários
+ 12 12 2024 - 21.08.58 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.08.58 - Concluir agendamento
+ 12 12 2024 - 21.08.59 - Notificação de sucesso exibida: Usuário cadastrado com sucesso.
+ 12 12 2024 - 21.08.59 - Tabela localizada
+ 12 12 2024 - 21.08.59 - Nome na linha: 1: Testevaldo 210811
+ 12 12 2024 - 21.08.59 - Usuario encontrado: Testevaldo 210811
+ 12 12 2024 - 21.08.59 - Botão de edição clicado
+ 12 12 2024 - 21.09.00 - Concluir agendamento
+ 12 12 2024 - 21.09.00 - Notificação de sucesso exibida: Usuário editado com sucesso.
+ 12 12 2024 - 21.09.03 - informações
+ 12 12 2024 - 21.09.04 - Logar
+ 12 12 2024 - 21.09.04 - ===== TESTE REALIZADO ===== - EXCLUIR USUÁRIO ADM
+ 12 12 2024 - 21.09.04 - Tela de Usuários
+ 12 12 2024 - 21.09.04 - Modal de novo usuários
+ 12 12 2024 - 21.09.06 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.06 - Concluir agendamento
+ 12 12 2024 - 21.09.06 - Notificação de sucesso exibida: Usuário cadastrado com sucesso.
+ 12 12 2024 - 21.09.07 - Nome do usuario ADM na linha: 1: Testevaldo 210983
+ 12 12 2024 - 21.09.07 - Usuario excluido com sucesso
+ 12 12 2024 - 21.09.07 - Notificação de sucesso exibida: Usuário excluído com sucesso.
+ 12 12 2024 - 21.09.09 - informações
+ 12 12 2024 - 21.09.10 - Logar
+ 12 12 2024 - 21.09.10 - ===== TESTE REALIZADO ===== - EDITAR USUÁRIO MEDICO
+ 12 12 2024 - 21.09.11 - Tela de Usuários
+ 12 12 2024 - 21.09.11 - Modal de novo usuários
+ 12 12 2024 - 21.09.12 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.12 - Concluir agendamento
+ 12 12 2024 - 21.09.13 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 21.09.14 - Tabela localizada
+ 12 12 2024 - 21.09.14 - Nome na linha: 1: Testevaldo 210968
+ 12 12 2024 - 21.09.14 - Usuario encontrado: Testevaldo 210968
+ 12 12 2024 - 21.09.14 - Botão de edição clicado
+ 12 12 2024 - 21.09.14 - Concluir agendamento
+ 12 12 2024 - 21.09.15 - Notificação de sucesso exibida: Cadastro atualizado com sucesso
+ 12 12 2024 - 21.09.19 - informações
+ 12 12 2024 - 21.09.20 - Logar
+ 12 12 2024 - 21.09.20 - ===== TESTE REALIZADO ===== - ADICIONAR BLOQUEIO MEDICO
+ 12 12 2024 - 21.09.20 - Tela de Usuários
+ 12 12 2024 - 21.09.21 - Modal de novo usuários
+ 12 12 2024 - 21.09.22 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.22 - Concluir agendamento
+ 12 12 2024 - 21.09.23 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 21.09.23 - Nome do usuario na linha: 1: Testevaldo 210910
+ 12 12 2024 - 21.09.23 - Usuario Testevaldo 210910 acessado.
+ 12 12 2024 - 21.09.24 - Data inserida: 12/12/2024
+ 12 12 2024 - 21.09.25 - Notificação de sucesso exibida: Salvo com sucesso.
+ 12 12 2024 - 21.09.27 - informações
+ 12 12 2024 - 21.09.28 - Logar
+ 12 12 2024 - 21.09.28 - ===== TESTE REALIZADO ===== - CRIAR ESCALA MEDICA
+ 12 12 2024 - 21.09.29 - Tela de Usuários
+ 12 12 2024 - 21.09.29 - Modal de novo usuários
+ 12 12 2024 - 21.09.30 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.31 - Concluir agendamento
+ 12 12 2024 - 21.09.31 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 21.09.31 - Nome do usuario na linha: 1: Testevaldo 210960
+ 12 12 2024 - 21.09.32 - Usuario Testevaldo 210960 acessado.
+ 12 12 2024 - 21.09.34 - Notificação de sucesso exibida: Disponibilidade criada com sucesso.
+ 12 12 2024 - 21.09.37 - informações
+ 12 12 2024 - 21.09.38 - Logar
+ 12 12 2024 - 21.09.38 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO ADM
+ 12 12 2024 - 21.09.38 - Tela de Usuários
+ 12 12 2024 - 21.09.39 - Modal de novo usuários
+ 12 12 2024 - 21.09.40 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.40 - Concluir agendamento
+ 12 12 2024 - 21.09.41 - Notificação de sucesso exibida: Usuário cadastrado com sucesso.
+ 12 12 2024 - 21.09.43 - informações
+ 12 12 2024 - 21.09.44 - Logar
+ 12 12 2024 - 21.09.44 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO MEDICO
+ 12 12 2024 - 21.09.44 - Tela de Usuários
+ 12 12 2024 - 21.09.44 - Modal de novo usuários
+ 12 12 2024 - 21.09.46 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.46 - Concluir agendamento
+ 12 12 2024 - 21.09.46 - Notificação de sucesso exibida: Cadastro criado com sucesso
+ 12 12 2024 - 21.09.49 - informações
+ 12 12 2024 - 21.09.50 - Logar
+ 12 12 2024 - 21.09.50 - ===== TESTE REALIZADO ===== - CRIAR USUÁRIO ADM DUPLICADO
+ 12 12 2024 - 21.09.50 - Tela de Usuários
+ 12 12 2024 - 21.09.51 - Modal de novo usuários
+ 12 12 2024 - 21.09.52 - Nome no dropdown: 'Default' encontrado e selecionado
+ 12 12 2024 - 21.09.52 - Concluir agendamento
