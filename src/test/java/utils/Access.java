@@ -38,6 +38,9 @@ public class Access {
     public static String paciente = "Jhonata Venancio - VS GROUP";
     public static String medico = "VS GROUP";
     
+    // PACIENTE
+    public static String numero = "31996463050";
+    
     // INTEGRAÇÃO
     public static String urlBuscarEquipe = "https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/equipes";
     public static String urlBuscarUsuario = "https://omnia-dev.vsomnia.com.br:8443/equipe-usuario/usuarios";

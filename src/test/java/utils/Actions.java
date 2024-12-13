@@ -143,6 +143,23 @@ public class Actions {
         });
     }
     
+    public void validarAcessoTelaDebitos() {
+        executarAcaoComTentativas(() -> {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            
+            // Espera até que a URL contenha o caminho desejado
+            boolean urlContemCaminho = wait.until(ExpectedConditions.urlContains("/detalhes-paciente/debitos"));
+            
+            // Obtem a URL atual para log e verificação
+            String urlAtual = driver.getCurrentUrl();
+            
+            // Validação para garantir que o caminho desejado está na URL
+            Assert.assertTrue("A URL atual não contém o caminho esperado. URL atual: " + urlAtual, urlContemCaminho);
+
+            Log.registrar("A URL atual contém o caminho esperado: " + urlAtual);
+        });
+    }
+    
     /**
      * Fechar notificação.
      */
