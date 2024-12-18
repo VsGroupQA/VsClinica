@@ -156,9 +156,5 @@ public class PacienteTest {
     	paciente.debitosPaciente(nome);
     	actions.validarAcessoTelaDebitos();
     }
-    
-    public void pesquisarPaciente () {
-    	
-    }
-    
+  
 }

@@ -7,10 +7,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import io.qameta.allure.*;
-
 import utils.Log;
 import utils.Access;
 import utils.Actions;
@@ -20,6 +21,7 @@ import pages.LoginPage;
 @Epic("Módulo de Autenticação")
 @Feature("Funcionalidade de Login")
 public class LoginTest {
+
     private static WebDriver driver;
     private LoginPage loginPage;
     private Actions actions;
@@ -55,11 +57,14 @@ public class LoginTest {
         String urlInicial = driver.getCurrentUrl();
         loginPage.signIn(Access.usuario, Access.senha);
         Log.registrar("esperar");
-        
+
         String urlAposLogin = driver.getCurrentUrl();
         String mensagem = "Login realizado com sucesso!";
+
+        // Verificação se as URLs são diferentes, indicando que o login foi realizado
         assertNotEquals(urlInicial, urlAposLogin, mensagem);
         Log.registrar(mensagem);
+        Allure.addAttachment("URL após login", urlAposLogin);  // Anexando a URL no Allure
     }
 
     @Test
@@ -69,15 +74,17 @@ public class LoginTest {
     public void loginSemUsuario() {
         loginPage.signIn("", Access.senha);
         loginPage.validarTextoIgual("body > app-root > p-toast > div > p-toastitem", "Usuário ou senha incorretos");
+        capturarTela();  // Captura de tela quando falhar
     }
 
     @Test
     @Story("Usuário tenta fazer login sem inserir a senha")
     @Description("Testa o login sem senha e verifica a mensagem de erro exibida")
     @Severity(SeverityLevel.NORMAL)
-    public void loginemSenha() {
+    public void loginSemSenha() {
         loginPage.signIn(Access.usuario, "");
         loginPage.validarTextoIgual("body > app-root > p-toast > div > p-toastitem", "Usuário ou senha incorretos");
+        capturarTela();  // Captura de tela quando falhar
     }
 
     @Test
@@ -88,14 +95,20 @@ public class LoginTest {
         loginPage.signIn(Access.usuario, Access.senha);
         String urlInicial = driver.getCurrentUrl();
         actions.esperar(1000);
-        
+
         loginPage.logout();
         actions.esperar(200);
-        String urlAposLogin = driver.getCurrentUrl();
-        
-        String mensagem = "Login realizado com sucesso!";
-        
-        assertNotEquals(urlInicial, urlAposLogin, mensagem);
+        String urlAposLogout = driver.getCurrentUrl();
+
+        String mensagem = "Login e logout realizados com sucesso!";
+        assertNotEquals(urlInicial, urlAposLogout, mensagem);
         Log.registrar(mensagem);
+        Allure.addAttachment("URL após logout", urlAposLogout);  // Anexando a URL no Allure
+    }
+
+    // Método para capturar a tela em falhas de login
+    @Attachment(value = "Captura de Tela", type = "image/png")
+    public byte[] capturarTela() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

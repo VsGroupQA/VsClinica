@@ -3,26 +3,26 @@ package test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import utils.Log;
 import utils.Access;
 import utils.Actions;
 import utils.Browser;
-import pages.UsuarioPage;
+import pages.FichaPacientePage;
 import pages.LoginPage;
 
 public class FichaPacienteTest {
 
     private static WebDriver driver;
     private LoginPage loginPage;
-    private UsuarioPage usuario;
     private Actions actions;
+    private FichaPacientePage ficha;
 
     
     private static LocalDateTime agora = LocalDateTime.now();
@@ -31,7 +31,7 @@ public class FichaPacienteTest {
     
     @BeforeAll
     public static void iniciarLog() {
-        Log.criarArquivoLog("Log.Usuario");
+        Log.criarArquivoLog("Log.FichaPaciente");
     }
 
     @AfterAll
@@ -45,8 +45,8 @@ public class FichaPacienteTest {
         driver.get(Access.url);
         loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
-        usuario = new UsuarioPage(driver);
         actions = new Actions(driver);
+        ficha = new FichaPacientePage(driver);
     }
 
     @AfterEach
@@ -54,8 +54,11 @@ public class FichaPacienteTest {
         Browser.fecharNavegador(Access.quit);
     }
     
+    @Test
     public void editarPaciente () {
-    	
+    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR NOVO PACIENTE");
+    	actions.esperar(100);
+    	ficha.acessarPacientes();
     }
     
     public void alterarImagemPaciente () {
