@@ -5,7 +5,7 @@ package utils;
 public class Access {
 
     // URL
-    public static String url = setUrl(1);
+    public static String url = setUrl(2);
     
     // NAVEGADOR
     public static String navegador = "chrome";
@@ -25,8 +25,8 @@ public class Access {
      */
     
     // ACESSO ADMIN
-    public static String usuario = "venateste"; //"admin.vs";
-    public static String senha = "123"; //"Luandabh001";
+    public static String usuario = "admin.vs";
+    public static String senha = "Luandabh001";
     
     // ACESSO CLINICO
     public static String usuarioMedico = "vena";

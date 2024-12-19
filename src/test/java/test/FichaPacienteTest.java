@@ -1,13 +1,10 @@
 package test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import utils.Log;
@@ -21,14 +18,9 @@ public class FichaPacienteTest {
 
     private static WebDriver driver;
     private LoginPage loginPage;
+    private FichaPacientePage fichaPaciente;
     private Actions actions;
-    private FichaPacientePage ficha;
 
-    
-    private static LocalDateTime agora = LocalDateTime.now();
-    private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("HHmmSS");
-    private String hora = agora.format(formato);
-    
     @BeforeAll
     public static void iniciarLog() {
         Log.criarArquivoLog("Log.FichaPaciente");
@@ -45,8 +37,8 @@ public class FichaPacienteTest {
         driver.get(Access.url);
         loginPage = new LoginPage(driver);
         loginPage.signIn(Access.usuario, Access.senha);
+        fichaPaciente = new FichaPacientePage(driver);
         actions = new Actions(driver);
-        ficha = new FichaPacientePage(driver);
     }
 
     @AfterEach
@@ -56,9 +48,14 @@ public class FichaPacienteTest {
     
     @Test
     public void editarPaciente () {
-    	Log.registrar("===== TESTE REALIZADO ===== - CRIAR NOVO PACIENTE");
-    	actions.esperar(100);
-    	ficha.acessarPacientes();
+    	Log.registrar("===== TESTE REALIZADO ===== - EDITAR PACIENTE PELA FICHA");
+    	fichaPaciente.acessarPacientes();
+    	fichaPaciente.pesquisarPaciente("Teste - VS");
+    	fichaPaciente.acessarPaciente("Teste - VSGroup");
+    	fichaPaciente.editarPaciente();
+    	fichaPaciente.obsevacaoModal("EDITADO");
+    	fichaPaciente.salvarModalPaciente();
+    	actions.validarNotificacao("Paciente editado com sucesso.");
     }
     
     public void alterarImagemPaciente () {
@@ -73,8 +70,13 @@ public class FichaPacienteTest {
     	
     }
     
+    @Test
     public void preencherEtapas () {
-    	
+    	Log.registrar("===== TESTE REALIZADO ===== - PREENCHER ETAPAS");
+    	fichaPaciente.acessarPacientes();
+    	fichaPaciente.pesquisarPaciente("Teste - VS");
+    	fichaPaciente.acessarPaciente("Teste - VSGroup");
+    	fichaPaciente.preencherObservacao("sssss");
     }
     
     public void subirImagensEtapas () {
